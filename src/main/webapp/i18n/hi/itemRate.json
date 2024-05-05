@@ -1,0 +1,37 @@
+{
+  "rentalUiApp": {
+    "itemRate": {
+      "home": {
+        "title": "ItemRates",
+        "createLabel": "नया Item Rate बनाएँ",
+        "createOrEditLabel": "Item Rate बनाएँ या संपादित करें",
+        "notFound": "No Item Rates found"
+      },
+      "created": "एक नया Item Rate [identifier: {{ param }}] तैयार है",
+      "updated": "एक Item Rate [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Item Rate [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Item Rate [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Item Rate"
+      },
+      "name": "Name",
+      "rateType": "Rate Type",
+      "unit": "Unit",
+      "rate": "Rate",
+      "remarks": "Remarks",
+      "itemId": "Item Id",
+      "itemN": "Item N",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "perUnit": "Per Unit",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

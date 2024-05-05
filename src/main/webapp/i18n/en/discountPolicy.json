@@ -1,0 +1,28 @@
+{
+  "rentalUiApp": {
+    "discountPolicy": {
+      "home": {
+        "title": "Discount Policies",
+        "createLabel": "Create a new Discount/Fine Policy",
+        "createOrEditLabel": "Create or edit a Discount/Fine Policy",
+        "notFound": "No Discount Policies found"
+      },
+      "created": "A new Discount Policy is created with identifier {{ param }}",
+      "updated": "A Discount Policy is updated with identifier {{ param }}",
+      "deleted": "A Discount Policy is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Discount Policy {{ id }}?"
+      },
+      "detail": {
+        "title": "Discount Policy"
+      },
+      "id": "Id",
+      "name": "Name",
+      "discount": "Discount/ Fine",
+      "numberOfDays": "Number Of Days",
+      "discountType": "Discount",
+      "policyType": "Policy Type",
+      "businessType": "Business Type"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "rentalUiApp": {
+    "bill": {
+      "home": {
+        "title": "Bills",
+        "createLabel": "नया Bill बनाएँ",
+        "createOrEditLabel": "Bill बनाएँ या संपादित करें",
+        "notFound": "No Bills found"
+      },
+      "created": "एक नया Bill [identifier: {{ param }}] तैयार है",
+      "updated": "एक Bill [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Bill [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Bill [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Bill"
+      },
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "totalArea": "Total Area",
+      "monthlyRate": "Monthly Rate",
+      "serviceChargeRate": "Service Charge Rate",
+      "serviceChargeAmount": "Service Charge Amount",
+      "waterRate": "Water Rate",
+      "waterAmount": "Water Amount",
+      "waterFromUnit": "Water From Unit",
+      "waterFillUnit": "Water Fill Unit",
+      "electricityRate": "Electricity Rate",
+      "electricityFromUnit": "Electricity From Unit",
+      "electricityToUnit": "Electricity To Unit",
+      "discountAmount": "Discount Amount",
+      "fineAmount": "Fine Amount",
+      "month": "Month",
+      "elementCollection": "Element Collection",
+      "paymentStatus": "Payment Status",
+      "customerId": "Customer Id",
+      "customerN": "Customer N",
+      "fiscalYearId": "Fiscal Year Id",
+      "fiscalYearN": "Fiscal Year N"
+    }
+  }
+}

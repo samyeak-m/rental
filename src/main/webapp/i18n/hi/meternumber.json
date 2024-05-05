@@ -1,0 +1,25 @@
+{
+  "rentalUiApp": {
+    "meternumber": {
+      "home": {
+        "title": "Meternumbers",
+        "createLabel": "नया Meternumber बनाएँ",
+        "createOrEditLabel": "Meternumber बनाएँ या संपादित करें",
+        "notFound": "No Meternumbers found"
+      },
+      "created": "एक नया Meternumber [identifier: {{ param }}] तैयार है",
+      "updated": "एक Meternumber [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Meternumber [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Meternumber [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Meternumber"
+      },
+      "meterNumber": "Meter Number",
+      "floorId": "Floor Id",
+      "customerId": "Customer Id",
+      "blockId": "Block Id"
+    }
+  }
+}

@@ -1,0 +1,172 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-fiscal-year-heading" jhiTranslate="rentalUiApp.fiscalYear.home.createOrEditLabel">Create or edit a Fiscal Year</h2>
+
+            <hr>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-row">
+                <div class="form-group col-4" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+                </div>
+               <!-- <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.fiscalYearFrom" for="field_fiscalYearFrom">Fiscal Year From</label>
+                    <input type="text" class="form-control" name="fiscalYearFrom" id="field_fiscalYearFrom"
+                           formControlName="fiscalYearFrom"/>
+                    <div *ngIf="editForm.get('fiscalYearFrom')!.invalid && (editForm.get('fiscalYearFrom')!.dirty || editForm.get('fiscalYearFrom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fiscalYearFrom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.fiscalYearTill" for="field_fiscalYearTill">Fiscal Year Till</label>
+                    <input type="text" class="form-control" name="fiscalYearTill" id="field_fiscalYearTill"
+                           formControlName="fiscalYearTill"/>
+                    <div *ngIf="editForm.get('fiscalYearTill')!.invalid && (editForm.get('fiscalYearTill')!.dirty || editForm.get('fiscalYearTill')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fiscalYearTill')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.fiscalAdStart" for="field_fiscalAdStart">Fiscal Ad Start</label>
+                    <div class="input-group">
+                        <input id="field_fiscalAdStart" type="text" class="form-control" name="fiscalAdStart" ngbDatepicker #fiscalAdStartDp="ngbDatepicker" formControlName="fiscalAdStart"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="fiscalAdStartDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('fiscalAdStart')!.invalid && (editForm.get('fiscalAdStart')!.dirty || editForm.get('fiscalAdStart')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fiscalAdStart')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.fiscalAdEnd" for="field_fiscalAdEnd">Fiscal Ad End</label>
+                    <div class="input-group">
+                        <input id="field_fiscalAdEnd" type="text" class="form-control" name="fiscalAdEnd" ngbDatepicker #fiscalAdEndDp="ngbDatepicker" formControlName="fiscalAdEnd"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="fiscalAdEndDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('fiscalAdEnd')!.invalid && (editForm.get('fiscalAdEnd')!.dirty || editForm.get('fiscalAdEnd')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fiscalAdEnd')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>-->
+
+                <div class="form-row">
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.fiscalBsStart" for="field_fiscalBsStart">Fiscal Bs Start</label>
+                    <input type="text" class="form-control" name="fiscalBsStart" id="field_fiscalBsStart" formControlName="fiscalBsStart"/> <!--(keydown)="formatFiscalYear($event)"-->
+
+                    <div *ngIf="editForm.get('fiscalBsStart')!.invalid && (editForm.get('fiscalBsStart')!.dirty || editForm.get('fiscalBsStart')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fiscalBsStart')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.fiscalBsEnd" for="field_fiscalBsEnd">Fiscal Bs End</label>
+                    <input type="text" class="form-control" name="fiscalBsEnd" id="field_fiscalBsEnd" formControlName="fiscalBsEnd"/> <!--(keydown)="formatFiscalYearEnd($event)"-->
+                    <div *ngIf="editForm.get('fiscalBsEnd')!.invalid && (editForm.get('fiscalBsEnd')!.dirty || editForm.get('fiscalBsEnd')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fiscalBsEnd')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                </div>
+     <!--           <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.createdDate" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.updatedDate" for="field_updatedDate">Updated Date</label>
+                    <div class="d-flex">
+                        <input id="field_updatedDate" type="datetime-local" class="form-control" name="updatedDate" formControlName="updatedDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.deleted" for="field_deleted">Deleted</label>
+                    <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                           formControlName="deleted"/>
+                    <div *ngIf="editForm.get('deleted')!.invalid && (editForm.get('deleted')!.dirty || editForm.get('deleted')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('deleted')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.insertedBy" for="field_insertedBy">Inserted By</label>
+                    <input type="text" class="form-control" name="insertedBy" id="field_insertedBy"
+                           formControlName="insertedBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.insertedByID" for="field_insertedByID">Inserted By ID</label>
+                    <input type="number" class="form-control" name="insertedByID" id="field_insertedByID"
+                           formControlName="insertedByID"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.updatedBy" for="field_updatedBy">Updated By</label>
+                    <input type="text" class="form-control" name="updatedBy" id="field_updatedBy"
+                           formControlName="updatedBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.updatedByID" for="field_updatedByID">Updated By ID</label>
+                    <input type="number" class="form-control" name="updatedByID" id="field_updatedByID"
+                           formControlName="updatedByID"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.fiscalYear.status" for="field_status">Status</label>
+                    <input type="checkbox" class="form-control" name="status" id="field_status"
+                           formControlName="status"/>
+                    <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('status')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>-->
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

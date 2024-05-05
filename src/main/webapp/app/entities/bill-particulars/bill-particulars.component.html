@@ -1,0 +1,95 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+    <h2 id="page-heading">
+        <span jhiTranslate="rentalUiApp.billParticulars.home.title">Bill Particulars</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bill-particulars" [routerLink]="['/bill-particulars/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="rentalUiApp.billParticulars.home.createLabel">
+            Create a new Bill Particulars
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="billParticulars?.length === 0">
+        <span jhiTranslate="rentalUiApp.billParticulars.home.notFound">No billParticulars found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="billParticulars && billParticulars.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="code"><span jhiTranslate="rentalUiApp.billParticulars.code">Code</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="rentalUiApp.billParticulars.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="remarks"><span jhiTranslate="rentalUiApp.billParticulars.remarks">Remarks</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdDate"><span jhiTranslate="rentalUiApp.billParticulars.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="updatedDate"><span jhiTranslate="rentalUiApp.billParticulars.updatedDate">Updated Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="deleted"><span jhiTranslate="rentalUiApp.billParticulars.deleted">Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="insertedBy"><span jhiTranslate="rentalUiApp.billParticulars.insertedBy">Inserted By</span> <fa-icon icon="sort"></fa-icon></th>
+<!--                    <th scope="col"  jhiSortBy="insertedById"><span jhiTranslate="rentalUiApp.billParticulars.insertedById">Inserted By Id</span> <fa-icon icon="sort"></fa-icon></th>-->
+                    <th scope="col"  jhiSortBy="updatedBy"><span jhiTranslate="rentalUiApp.billParticulars.updatedBy">Updated By</span> <fa-icon icon="sort"></fa-icon></th>
+<!--                    <th scope="col"  jhiSortBy="updatedById"><span jhiTranslate="rentalUiApp.billParticulars.updatedById">Updated By Id</span> <fa-icon icon="sort"></fa-icon></th>-->
+                    <th scope="col"  jhiSortBy="status"><span jhiTranslate="rentalUiApp.billParticulars.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let billParticulars of billParticulars ;trackBy: trackId">
+                    <td><a [routerLink]="['/bill-particulars', billParticulars.id, 'view']">{{ billParticulars.id }}</a></td>
+                    <td>{{ billParticulars.code }}</td>
+                    <td>{{ billParticulars.name }}</td>
+                    <td>{{ billParticulars.remarks }}</td>
+                    <td>{{ billParticulars.createdDate | date:'medium' }}</td>
+                    <td>{{ billParticulars.updatedDate | date:'medium' }}</td>
+                    <td>{{ billParticulars.deleted }}</td>
+                    <td><a [routerLink]="['/admin/user-management', billParticulars.insertedBy, 'view']">{{ billParticulars.insertedBy }}</a></td>
+<!--                    <td>{{ billParticulars.insertedById }}</td>-->
+                    <td><a [routerLink]="['/admin/user-management', billParticulars.updatedBy, 'view']">{{ billParticulars.updatedBy }}</a></td>
+<!--                    <td>{{ billParticulars.updatedById }}</td>-->
+                    <td>{{ billParticulars.status }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/bill-particulars', billParticulars.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/bill-particulars', billParticulars.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(billParticulars)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="billParticulars && billParticulars.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
+    </div>
+</div>

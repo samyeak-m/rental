@@ -1,0 +1,37 @@
+{
+  "rentalUiApp": {
+    "customerShutter": {
+      "home": {
+        "title": "Customer Shutters",
+        "createLabel": "Create a new Customer Shutter",
+        "createOrEditLabel": "Create or edit a Customer Shutter",
+        "notFound": "No Customer Shutters found"
+      },
+      "created": "A new Customer Shutter is created with identifier {{ param }}",
+      "updated": "A Customer Shutter is updated with identifier {{ param }}",
+      "deleted": "A Customer Shutter is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Customer Shutter {{ id }}?"
+      },
+      "detail": {
+        "title": "Customer Shutter"
+      },
+      "effectiveDateFrom": "Effective Date From",
+      "effectiveDateTo": "Effective Date To",
+      "customerId": "Customer Id",
+      "customerN": "Customer N",
+      "shutterId": "Shutter Id",
+      "shutterN": "Shutter N",
+      "customerRegistrationId": "Customer Registration Id",
+      "customerRegistrationN": "Customer Registration N",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

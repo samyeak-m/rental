@@ -1,0 +1,30 @@
+{
+  "rentalUiApp": {
+    "discountPolicy": {
+      "home": {
+        "title": "DiscountPolicies",
+        "createLabel": "नया Discount Policy बनाएँ",
+        "createOrEditLabel": "Discount Policy बनाएँ या संपादित करें",
+        "notFound": "No Discount Policies found"
+      },
+      "created": "एक नया Discount Policy [identifier: {{ param }}] तैयार है",
+      "updated": "एक Discount Policy [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Discount Policy [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Discount Policy [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Discount Policy"
+      },
+      "firstDiscountTime": "First Discount Time",
+      "firstDiscountRate": "First Discount Rate",
+      "secondDiscountTime": "Second Discount Time",
+      "secondDiscountRate": "Second Discount Rate",
+      "firstFineTime": "First Fine Time",
+      "firstFineRate": "First Fine Rate",
+      "secondFineTime": "Second Fine Time",
+      "secondFineRate": "Second Fine Rate",
+      "organization": "Organization"
+    }
+  }
+}

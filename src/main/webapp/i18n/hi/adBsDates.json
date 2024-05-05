@@ -1,0 +1,38 @@
+{
+  "rentalUiApp": {
+    "adBsDates": {
+      "home": {
+        "title": "AdBsDates",
+        "createLabel": "नया Ad Bs Dates बनाएँ",
+        "createOrEditLabel": "Ad Bs Dates बनाएँ या संपादित करें",
+        "notFound": "No Ad Bs Dates found"
+      },
+      "created": "एक नया Ad Bs Dates [identifier: {{ param }}] तैयार है",
+      "updated": "एक Ad Bs Dates [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Ad Bs Dates [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Ad Bs Dates [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Ad Bs Dates"
+      },
+      "adDate": "Ad Date",
+      "bsDate": "Bs Date",
+      "day": "Day",
+      "holiday": "Holiday",
+      "month": "Month",
+      "totalDays": "Total Days",
+      "fiscalYearId": "Fiscal Year Id",
+      "fiscalYearN": "Fiscal Year N",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedByID": "Inserted By ID",
+      "updatedBy": "Updated By",
+      "updatedByID": "Updated By ID",
+      "status": "Status",
+      "fiscalYear": "Fiscal Year"
+    }
+  }
+}

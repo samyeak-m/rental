@@ -1,0 +1,59 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="ledger">
+            <h2><span jhiTranslate="rentalUiApp.ledger.detail.title">Ledger</span> {{ ledger.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.ledger.remarks">Remarks</span></th>
+                    <th><span jhiTranslate="rentalUiApp.ledger.paidAmount">Paid Amount</span></th>
+                    <th><span jhiTranslate="rentalUiApp.ledger.customerName">Customer</span></th>
+                    <th><span jhiTranslate="rentalUiApp.ledger.month">Month</span></th>
+                    <th><span jhiTranslate="rentalUiApp.ledger.ledgerType">Ledger Type</span></th>
+                    <th><span jhiTranslate="rentalUiApp.ledger.fiscalYearId">Fiscal Year</span></th>
+                    <th><span jhiTranslate="rentalUiApp.ledger.discountAmount">Discount Amount</span></th>
+                    <th><span jhiTranslate="rentalUiApp.ledger.fineAmount">Fine Amount</span></th>
+                    <th><span jhiTranslate="rentalUiApp.ledger.finalAmount">Final Amount</span></th>
+                    <th><span jhiTranslate="rentalUiApp.ledger.billId">Bill</span></th>
+                </tr>
+                <tr>
+                    <td> <span>{{ ledger.remarks }}</span></td>
+                    <td><span>{{ ledger.paidAmount }}</span></td>
+                    <td> <span> {{ledger.customerName}}</span></td>
+                    <td><span>{{ ledger.month }}</span></td>
+                    <td> <span> {{ledger.ledgerType}}</span></td>
+                    <td><div *ngIf="ledger.fiscalYearId">
+                        <a [routerLink]="['/fiscal-year', ledger.fiscalYearId, 'view']">{{ ledger.fiscalYearFrom + '/' + ledger.fiscalYearTill }}</a>
+                    </div></td>
+                    <td> <span>{{ ledger.discountAmount }}</span></td>
+                    <td><span>{{ ledger.fineAmount }}</span></td>
+                    <td> <span>{{ ledger.finalAmount }}</span></td>
+                    <td> <div *ngIf="ledger.billId">
+                        <a [routerLink]="['/bill', ledger.billId, 'view']">{{ ledger.billId }}</a>
+                    </div></td>
+                </tr>
+            </table>
+
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/ledger', ledger.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

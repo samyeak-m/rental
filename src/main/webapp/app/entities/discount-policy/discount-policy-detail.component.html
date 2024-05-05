@@ -1,0 +1,56 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="discountPolicy">
+            <h2><span jhiTranslate="rentalUiApp.discountPolicy.detail.title">Discount Policy</span> {{ discountPolicy.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.discountPolicy.firstDiscountTime">First Discount Time</span></th>
+                    <th><span jhiTranslate="rentalUiApp.discountPolicy.firstDiscountRate">First Discount Rate</span></th>
+                    <th><span jhiTranslate="rentalUiApp.discountPolicy.secondDiscountTime">Second Discount Time</span></th>
+                    <th><span jhiTranslate="rentalUiApp.discountPolicy.secondDiscountRate">Second Discount Rate</span></th>
+                    <th><span jhiTranslate="rentalUiApp.discountPolicy.firstFineTime">First Fine Time</span></th>
+                    <th><span jhiTranslate="rentalUiApp.discountPolicy.firstFineRate">First Fine Rate</span></th>
+                    <th><span jhiTranslate="rentalUiApp.discountPolicy.secondFineTime">Second Fine Time</span></th>
+                    <th><span jhiTranslate="rentalUiApp.discountPolicy.secondFineRate">Second Fine Rate</span></th>
+                    <th><span jhiTranslate="rentalUiApp.discountPolicy.organization">Organization</span></th>
+                </tr>
+<!--                <tr>-->
+<!--                    <td><span>{{ discountPolicy.firstDiscountTime }}</span></td>-->
+<!--                    <td><span>{{ discountPolicy.firstDiscountRate }}</span></td>-->
+<!--                    <td><span>{{ discountPolicy.secondDiscountTime }}</span></td>-->
+<!--                    <td><span>{{ discountPolicy.secondDiscountRate }}</span></td>-->
+<!--                    <td><span>{{ discountPolicy.firstFineTime }}</span></td>-->
+<!--                    <td><span>{{ discountPolicy.firstFineRate }}</span></td>-->
+<!--                    <td><span>{{ discountPolicy.secondFineTime }}</span></td>-->
+<!--                    <td><span>{{ discountPolicy.secondFineRate }}</span></td>-->
+<!--                    <td>-->
+<!--                        <div *ngIf="discountPolicy.organization">-->
+<!--                        <a [routerLink]="['/organization', discountPolicy.organization?.id, 'view']">{{ discountPolicy.organization?.name }}</a>-->
+<!--                       </div>-->
+<!--                    </td>-->
+<!--                </tr>-->
+            </table>
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/discount-policy', discountPolicy.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

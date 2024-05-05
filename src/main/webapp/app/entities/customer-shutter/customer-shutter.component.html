@@ -1,0 +1,105 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+    <h2 id="page-heading">
+        <span jhiTranslate="rentalUiApp.customerShutter.home.title">Customer Shutters</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-customer-shutter" [routerLink]="['/customer-shutter/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="rentalUiApp.customerShutter.home.createLabel">
+            Create a new Customer Shutter
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="customerShutters?.length === 0">
+        <span jhiTranslate="rentalUiApp.customerShutter.home.notFound">No customerShutters found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="customerShutters && customerShutters.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="effectiveDateFrom"><span jhiTranslate="rentalUiApp.customerShutter.effectiveDateFrom">Effective Date From</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="effectiveDateTo"><span jhiTranslate="rentalUiApp.customerShutter.effectiveDateTo">Effective Date To</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="customerId"><span jhiTranslate="rentalUiApp.customerShutter.customerId">Customer Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="customerN"><span jhiTranslate="rentalUiApp.customerShutter.customerN">Customer N</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="shutterId"><span jhiTranslate="rentalUiApp.customerShutter.shutterId">Shutter Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="shutterN"><span jhiTranslate="rentalUiApp.customerShutter.shutterN">Shutter N</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="customerRegistrationId"><span jhiTranslate="rentalUiApp.customerShutter.customerRegistrationId">Customer Registration Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="customerRegistrationN"><span jhiTranslate="rentalUiApp.customerShutter.customerRegistrationN">Customer Registration N</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdDate"><span jhiTranslate="rentalUiApp.customerShutter.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="updatedDate"><span jhiTranslate="rentalUiApp.customerShutter.updatedDate">Updated Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="deleted"><span jhiTranslate="rentalUiApp.customerShutter.deleted">Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="insertedBy"><span jhiTranslate="rentalUiApp.customerShutter.insertedBy">Inserted By</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="insertedById"><span jhiTranslate="rentalUiApp.customerShutter.insertedById">Inserted By Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="updatedBy"><span jhiTranslate="rentalUiApp.customerShutter.updatedBy">Updated By</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="updatedById"><span jhiTranslate="rentalUiApp.customerShutter.updatedById">Updated By Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="status"><span jhiTranslate="rentalUiApp.customerShutter.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customerShutter of customerShutters ;trackBy: trackId">
+                    <td><a [routerLink]="['/customer-shutter', customerShutter.id, 'view']">{{ customerShutter.id }}</a></td>
+                    <td>{{ customerShutter.effectiveDateFrom | date:'medium' }}</td>
+                    <td>{{ customerShutter.effectiveDateTo | date:'medium' }}</td>
+                    <td>{{ customerShutter.customerId }}</td>
+                    <td>{{ customerShutter.customerN }}</td>
+                    <td>{{ customerShutter.shutterId }}</td>
+                    <td>{{ customerShutter.shutterN }}</td>
+                    <td>{{ customerShutter.customerRegistrationId }}</td>
+                    <td>{{ customerShutter.customerRegistrationN }}</td>
+                    <td>{{ customerShutter.createdDate | date:'medium' }}</td>
+                    <td>{{ customerShutter.updatedDate | date:'medium' }}</td>
+                    <td>{{ customerShutter.deleted }}</td>
+                    <td>{{ customerShutter.insertedBy }}</td>
+                    <td>{{ customerShutter.insertedById }}</td>
+                    <td>{{ customerShutter.updatedBy }}</td>
+                    <td>{{ customerShutter.updatedById }}</td>
+                    <td>{{ customerShutter.status }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/customer-shutter', customerShutter.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/customer-shutter', customerShutter.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(customerShutter)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="customerShutters && customerShutters.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
+    </div>
+</div>

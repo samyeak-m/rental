@@ -1,0 +1,37 @@
+{
+  "rentalUiApp": {
+    "customerShutter": {
+      "home": {
+        "title": "CustomerShutters",
+        "createLabel": "नया Customer Shutter बनाएँ",
+        "createOrEditLabel": "Customer Shutter बनाएँ या संपादित करें",
+        "notFound": "No Customer Shutters found"
+      },
+      "created": "एक नया Customer Shutter [identifier: {{ param }}] तैयार है",
+      "updated": "एक Customer Shutter [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Customer Shutter [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Customer Shutter [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Customer Shutter"
+      },
+      "effectiveDateFrom": "Effective Date From",
+      "effectiveDateTo": "Effective Date To",
+      "customerId": "Customer Id",
+      "customerN": "Customer N",
+      "shutterId": "Shutter Id",
+      "shutterN": "Shutter N",
+      "customerRegistrationId": "Customer Registration Id",
+      "customerRegistrationN": "Customer Registration N",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

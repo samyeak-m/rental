@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+        <div *ngIf="itemRate">
+            <h2><span jhiTranslate="rentalUiApp.itemRate.detail.title">Item Rate</span> {{ itemRate.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.rateType">Rate Type</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.unit">Unit</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.rate">Rate</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.remarks">Remarks</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.itemId">Item Id</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.itemN">Item N</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.createdDate">Created Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.updatedDate">Updated Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.deleted">Deleted</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.insertedBy">Inserted By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.insertedById">Inserted By Id</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.updatedBy">Updated By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.updatedById">Updated By Id</span></th>
+                    <th><span jhiTranslate="rentalUiApp.itemRate.status">Status</span></th>
+                </tr>
+                <tr>
+                    <td><span>{{ itemRate.rateType }}</span></td>
+                    <td><span>{{ itemRate.unit }}</span></td>
+                    <td><span>{{ itemRate.rate }}</span></td>
+                    <td><span>{{ itemRate.remarks }}</span></td>
+                    <td><span>{{ itemRate.itemId }}</span></td>
+                    <td><span>{{ itemRate.itemN }}</span></td>
+                    <td><span>{{ itemRate.createdDate | date:'medium' }}</span></td>
+                    <td><span>{{ itemRate.updatedDate | date:'medium' }}</span></td>
+                    <td><span>{{ itemRate.deleted }}</span></td>
+                    <td><span>{{ itemRate.insertedBy }}</span></td>
+                    <td><span>{{ itemRate.insertedById }}</span></td>
+                    <td><span>{{ itemRate.updatedBy }}</span></td>
+                    <td><span>{{ itemRate.updatedById }}</span></td>
+                    <td> <span>{{ itemRate.status }}</span></td>
+                </tr>
+            </table>
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/item-rate', itemRate.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

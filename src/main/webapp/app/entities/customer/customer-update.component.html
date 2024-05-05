@@ -1,0 +1,259 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-customer-heading" jhiTranslate="rentalUiApp.customer.home.createOrEditLabel">Create or edit a Customer</h2>
+
+            <hr>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-row">
+                <div class="form-group col-4" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.code" for="field_code">Code</label>
+                    <input type="text" class="form-control" name="code" id="field_code"
+                           formControlName="code" readonly/>
+                    <div *ngIf="editForm.get('code')!.invalid && (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('code')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+
+                    <div class="form-group col-4">
+                        <label class="form-control-label"  for="field_name">Type</label>
+                        <input type="text" class="form-control" name="type" id="field_type"
+                               formControlName="type"/>
+                        <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('type')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.permanentAddress" for="field_permanentAddress">Permanent Address</label>
+                    <input type="text" class="form-control" name="permanentAddress" id="field_permanentAddress"
+                           formControlName="permanentAddress"/>
+                    <div *ngIf="editForm.get('permanentAddress')!.invalid && (editForm.get('permanentAddress')!.dirty || editForm.get('permanentAddress')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('permanentAddress')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.temporaryAddress" for="field_temporaryAddress">Temporary Address</label>
+                    <input type="text" class="form-control" name="temporaryAddress" id="field_temporaryAddress"
+                           formControlName="temporaryAddress"/>
+                    <div *ngIf="editForm.get('temporaryAddress')!.invalid && (editForm.get('temporaryAddress')!.dirty || editForm.get('temporaryAddress')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('temporaryAddress')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.residentPhoneNumber" for="field_residentPhoneNumber">Resident Phone Number</label>
+                    <input type="text" class="form-control" name="residentPhoneNumber" id="field_residentPhoneNumber"
+                           formControlName="residentPhoneNumber"/>
+                    <div *ngIf="editForm.get('residentPhoneNumber')!.invalid && (editForm.get('residentPhoneNumber')!.dirty || editForm.get('residentPhoneNumber')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('residentPhoneNumber')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.mobileNumber" for="field_mobileNumber">Mobile Number</label>
+                    <input type="text" class="form-control" name="mobileNumber" id="field_mobileNumber"
+                           formControlName="mobileNumber"/>
+                    <div *ngIf="editForm.get('mobileNumber')!.invalid && (editForm.get('mobileNumber')!.dirty || editForm.get('mobileNumber')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('mobileNumber')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                    <div class="form-group col-4">
+                        <label class="form-control-label"  for="field_panNumber">PAN/VAT Number</label>
+                        <input type="text" class="form-control" name="mobileNumber" id="field_panNumber"
+                               formControlName="panNumber"/>
+                        <div *ngIf="editForm.get('panNumber')!.invalid && (editForm.get('panNumber')!.dirty || editForm.get('panNumber')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('panNumber')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label class="form-control-label"  for="field_vatNumber">Registration No.</label>
+                        <input type="text" class="form-control" name="vatNumber" id="field_vatNumber"
+                               formControlName="vatNumber"/>
+                        <div *ngIf="editForm.get('vatNumber')!.invalid && (editForm.get('vatNumber')!.dirty || editForm.get('panNumber')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('vatNumber')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.faxNumber" for="field_faxNumber">Fax Number</label>
+                    <input type="text" class="form-control" name="faxNumber" id="field_faxNumber"
+                           formControlName="faxNumber"/>
+                </div>
+
+                    <div class="form-group col-4">
+                        <label class="form-control-label"  for="field_faxNumber">Rent Opening Balance</label>
+                        <input type="text" class="form-control" name="rentOpeningBalance" id="field_rentOpeningBalance"
+                               formControlName="rentOpeningBalance"/>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label class="form-control-label"  for="field_faxNumber">Electricity Opening Balance</label>
+                        <input type="text" class="form-control" name="electricityOpeningBalance" id="field_electricityOpeningBalance"
+                               formControlName="electricityOpeningBalance"/>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label class="form-control-label"  for="field_faxNumber">Service Charge Balance</label>
+                        <input type="text" class="form-control" name="serviceOpeningBalance"
+                               formControlName="serviceOpeningBalance"/>
+                    </div>
+
+
+
+               <!-- <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.officePhoneNumber" for="field_officePhoneNumber">Office Phone Number</label>
+                    <input type="text" class="form-control" name="officePhoneNumber" id="field_officePhoneNumber"
+                           formControlName="officePhoneNumber"/>
+                </div>-->
+
+                <!--<div class="form-group col-6">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.filePath" for="field_filePath">File Path</label>
+                    <input type="text" class="form-control" name="filePath" id="field_filePath"
+                           formControlName="filePath"/>
+                </div>-->
+
+                    <div class="form-group">
+                        <label class="form-control-label" for="filePicker">Choose a Photo:</label><br>
+                        <input class="form-control-file" type="file" name="imgFile" id="filePicker" accept="image/*" (change)="handleFileSelect($event)" required>
+
+                        <div [hidden]="!(editForm.controls.imgFile?.dirty && editForm.controls.imgFile?.invalid)">
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.controls.imgFile?.errors?.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label" for="filePicker">Choose a Document File 1:</label><br>
+                        <input class="form-control-file" type="file" name="documentFile" id="filePicker1"  (change)="handleDocumentFileSelect($event)">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label" for="filePicker">Choose a Document File 2:</label><br>
+                        <input class="form-control-file" type="file" name="vatFile" id="filePicker2"  (change)="handleVatFileSelect($event)">
+                    </div>
+
+
+
+                </div>
+               <!-- <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.createdDate" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.updatedDate" for="field_updatedDate">Updated Date</label>
+                    <div class="d-flex">
+                        <input id="field_updatedDate" type="datetime-local" class="form-control" name="updatedDate" formControlName="updatedDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.deleted" for="field_deleted">Deleted</label>
+                    <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                           formControlName="deleted"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.insertedBy" for="field_insertedBy">Inserted By</label>
+                    <input type="text" class="form-control" name="insertedBy" id="field_insertedBy"
+                           formControlName="insertedBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.insertedById" for="field_insertedById">Inserted By Id</label>
+                    <input type="number" class="form-control" name="insertedById" id="field_insertedById"
+                           formControlName="insertedById"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.updatedBy" for="field_updatedBy">Updated By</label>
+                    <input type="text" class="form-control" name="updatedBy" id="field_updatedBy"
+                           formControlName="updatedBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.updatedById" for="field_updatedById">Updated By Id</label>
+                    <input type="number" class="form-control" name="updatedById" id="field_updatedById"
+                           formControlName="updatedById"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customer.status" for="field_status">Status</label>
+                    <input type="checkbox" class="form-control" name="status" id="field_status"
+                           formControlName="status"/>
+                </div>-->
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

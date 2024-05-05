@@ -1,0 +1,27 @@
+{
+  "rentalUiApp": {
+    "item": {
+      "home": {
+        "title": "Water",
+        "createLabel": "Create a new Water rate",
+        "createOrEditLabel": "Create or edit a Water rate",
+        "notFound": "No Water rate found"
+      },
+      "created": "A new Water rate is created with identifier {{ param }}",
+      "updated": "A Water rate is updated with identifier {{ param }}",
+      "deleted": "A Water rate is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Water rate {{ id }}?"
+      },
+      "detail": {
+        "title": "Water"
+      },
+      "name": "Name",
+      "code": "Code",
+      "rate": "Rate",
+      "unit": "Unit",
+      "remarks": "Remarks",
+      "businessType": "Business Type"
+    }
+  }
+}

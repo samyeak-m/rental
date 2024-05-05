@@ -1,0 +1,94 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h2 id="page-heading">
+                <span>Bill Generation</span>
+
+            </h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+
+            <jhi-alert></jhi-alert>
+            <form name="editForm" role="form" (ngSubmit)="filter()" style="margin-right: 40px">
+                <div class="row">
+                    <jhi-alert-error></jhi-alert-error>
+                    <div>
+                        <input type="text" class="form-control" id="query" name="query"
+                               placeholder="Search Customer"  [(ngModel)]="query" />
+                    </div>
+                    <div style="margin-left: 30px">
+                        <button type="submit" id="search-user" class="btn btn-primary" [disabled]="!query">
+                            <fa-icon></fa-icon>&nbsp;<span>Search</span>
+                        </button>
+                        <button type="reset" id="reset-user" class="btn btn-primary" (click)="reset()">
+                            <fa-icon></fa-icon>&nbsp;<span>Reset</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class=" form-row">
+                <div class="form-group col-3">
+                    <label class="form-control-label" for="field_month">Month</label>
+                    <select class="form-control" id="field_month" [(ngModel)]="month"
+                            (change)="resetFiscal()"
+                            name="month">
+                        <option value="BAISHAKH" selected>BAISHAKH</option>
+                        <option value="JESTHA">JESTHA</option>
+                        <option value="ASHAD">ASHAD</option>
+                        <option value="SHRAWAN">SHRAWAN</option>
+                        <option value="BHADRA">BHADRA</option>
+                        <option value="ASHOJ">ASHOJ</option>
+                        <option value="KARTIK">KARTIK</option>
+                        <option value="MANGSIR">MANGSIR</option>
+                        <option value="POUSH">POUSH</option>
+                        <option value="MAGH">MAGH</option>
+                        <option value="FALGUN">FALGUN</option>
+                        <option value="CHAITRA">CHAITRA</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group col-3">
+                <label class="form-control-label"
+                       for="field_fiscalYear">Fiscal Year</label>
+                <div class="input-group">
+                    <select class="form-control" id="field_fiscalYear" [(ngModel)]="fiscalYearId"
+                            (change)="getFromToFiscal()"
+                            name="fiscalYear">
+                        <option [value]="null" *ngIf="!fiscalYearId" selected></option>
+                        <option [ngValue]="fiscalYear.id"
+                                *ngFor="let fiscalYear of fiscalYears">{{ fiscalYear.fiscalYearFrom + '/' + fiscalYear.fiscalYearTill }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col"><span>Customer</span> <fa-icon icon="sort"></fa-icon></th>
+            <th
+                scope="col-sm"><span class="col-sm-1"><input
+                type="checkbox" [(ngModel)]="this.approve"
+                (change)="approveCustomersForBillStatus()"
+                class="form-control book" name="collect" value="true"/></span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let customer of customers trackBy: trackId;">
+           <th scope="col"><span>{{customer.customerN}}</span> </th>
+            <th
+                scope="col-sm"><span class="col-sm-1"><input   class="form-check-input bok" type="checkbox"
+                            [(ngModel)]="customer.approve"
+                            (change)="approveBillstatus(customer)"
+                            name="maker" id="field_maker"/>
+            </span>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+
+        <button class="btn btn-primary ok" (click)="save()">
+            <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+</div>

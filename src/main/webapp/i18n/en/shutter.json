@@ -1,0 +1,35 @@
+{
+  "rentalUiApp": {
+    "shutter": {
+      "home": {
+        "title": "Shutters",
+        "createLabel": "Create a new Shutter",
+        "createOrEditLabel": "Create or edit a Shutter",
+        "notFound": "No Shutters found"
+      },
+      "created": "A new Shutter is created with identifier {{ param }}",
+      "updated": "A Shutter is updated with identifier {{ param }}",
+      "deleted": "A Shutter is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Shutter {{ id }}?"
+      },
+      "detail": {
+        "title": "Shutter"
+      },
+      "shutterNo": "Shutter No",
+      "itemCode": "Shutter Code",
+      "area": "Area",
+      "rate": "Rate",
+      "floorId": "Floor",
+      "floorN": "Floor Name",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+    <h2 id="page-heading">
+        <span jhiTranslate="rentalUiApp.shutter.home.title">Shutters</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-shutter" [routerLink]="['/shutter/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="rentalUiApp.shutter.home.createLabel">
+            Create a new Shutter
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+
+            <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+                <div>
+                    <jhi-alert-error></jhi-alert-error>
+                    <div class="form-group col-4">
+                        <label class="form-control-label" for="field_content">Upload Excel File Containing Stall</label>
+                        <input type="file" class="form-control" name="content" id="field_content" (change)="selectFile($event)"
+                               formControlName="content"/>
+                        <div
+                            *ngIf="editForm.get('content')!.invalid && (editForm.get('content')!.dirty || editForm.get('content')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('content')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 10px;margin-top: 10px;">
+                    <button type="reset" id="cancel-save" class="btn btn-secondary">
+                        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                    </button>
+
+                    <button type="submit" id="save-entity" [disabled]="editForm.invalid" class="btn btn-primary">
+                        <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    </button>
+                </div>
+            </form>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="shutters?.length === 0">
+        <span jhiTranslate="rentalUiApp.shutter.home.notFound">No shutters found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="shutters && shutters.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="shutterNo"><span jhiTranslate="rentalUiApp.shutter.shutterNo">Shutter No</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="itemCode"><span jhiTranslate="rentalUiApp.shutter.itemCode">Shutter Code</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="area"><span jhiTranslate="rentalUiApp.shutter.area">Area</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="rate"><span jhiTranslate="rentalUiApp.shutter.rate">Rate</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="floorN"><span jhiTranslate="rentalUiApp.shutter.floorN">Floor Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let shutter of shutters ;trackBy: trackId">
+                    <td><a [routerLink]="['/shutter', shutter.id, 'view']">{{ shutter.id }}</a></td>
+                    <td>{{ shutter.shutterNo }}</td>
+                    <td>{{ shutter.itemCode }}</td>
+                    <td>{{ shutter.area }}</td>
+                    <td>{{ shutter.rate }}</td>
+                    <td><a [routerLink]="['/floor', shutter.floorId, 'view']">{{ shutter.floorN }}</a></td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/shutter', shutter.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/shutter', shutter.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(shutter)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="shutters && shutters.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"
+                            (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
+    </div>
+</div>

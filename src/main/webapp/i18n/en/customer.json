@@ -1,0 +1,38 @@
+{
+  "rentalUiApp": {
+    "customer": {
+      "home": {
+        "title": "Customer Setup",
+        "createLabel": "Create a new Customer",
+        "createOrEditLabel": "Create or edit a Customer",
+        "notFound": "No Customers found"
+      },
+      "created": "A new Customer is created with identifier {{ param }}",
+      "updated": "A Customer is updated with identifier {{ param }}",
+      "deleted": "A Customer is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Customer {{ id }}?"
+      },
+      "detail": {
+        "title": "Customer Setup"
+      },
+      "code": "Code",
+      "name": "Name",
+      "permanentAddress": "Permanent Address",
+      "temporaryAddress": "Temporary Address",
+      "residentPhoneNumber": "Resident Phone Number",
+      "mobileNumber": "Mobile Number",
+      "faxNumber": "Fax Number",
+      "officePhoneNumber": "Office Phone Number",
+      "filePath": "File Path",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

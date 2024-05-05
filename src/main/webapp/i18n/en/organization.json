@@ -1,0 +1,35 @@
+{
+  "rentalUiApp": {
+    "organization": {
+      "home": {
+        "title": "Organizations",
+        "createLabel": "Create a new Organization",
+        "createOrEditLabel": "Create or edit a Organization",
+        "notFound": "No Organizations found"
+      },
+      "created": "A new Organization is created with identifier {{ param }}",
+      "updated": "A Organization is updated with identifier {{ param }}",
+      "deleted": "A Organization is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Organization {{ id }}?"
+      },
+      "detail": {
+        "title": "Organization"
+      },
+      "name": "Name",
+      "address": "Address",
+      "telephoneNo": "Telephone No",
+      "faxNo": "Fax No",
+      "email": "Email",
+      "contactPerson": "Contact Person",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

@@ -1,0 +1,132 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="adBsDates">
+            <h2><span jhiTranslate="rentalUiApp.adBsDates.detail.title">Ad Bs Dates</span> {{ adBsDates.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.adDate">Ad Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.bsDate">Bs Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.day">Day</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.holiday">Holiday</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.month">Month</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.fiscalYearId">Fiscal Year Id</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.fiscalYearN">Fiscal Year N</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.createdDate">Created Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.updatedDate">Updated Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.deleted">Deleted</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.insertedBy">Inserted By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.updatedBy">Updated By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.status">Status</span></th>
+                    <th><span jhiTranslate="rentalUiApp.adBsDates.fiscalYear">Fiscal Year</span></th>
+                </tr>
+                <tr>
+                    <td><span>{{ adBsDates.adDate | date:'mediumDate' }}</span></td>
+                    <td><span>{{ adBsDates.bsDate }}</span></td>
+                    <td> <span>{{ adBsDates.day }}</span></td>
+                    <td> <span>{{ adBsDates.holiday }}</span></td>
+                    <td><span>{{ adBsDates.month }}</span></td>
+                    <td>  <span>{{ adBsDates.fiscalYearId }}</span></td>
+                    <td><span>{{ adBsDates.fiscalYearN }}</span></td>
+                    <td><span>{{ adBsDates.createdDate | date:'medium' }}</span></td>
+                    <td> <span>{{ adBsDates.updatedDate | date:'medium' }}</span></td>
+                    <td> <span>{{ adBsDates.deleted }}</span></td>
+                    <td><span>{{ adBsDates.insertedBy }}</span></td>
+                    <td> <span>{{ adBsDates.updatedBy }}</span></td>
+                    <td>  <span>{{ adBsDates.status }}</span></td>
+                    <td> <div *ngIf="adBsDates.fiscalYear">
+                        <a [routerLink]="['/fiscal-year', adBsDates.fiscalYear?.id, 'view']">{{ adBsDates.fiscalYear?.id }}</a>
+                    </div></td>
+                </tr>
+            </table>
+
+           <!-- <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.adDate">Ad Date</span></dt>
+                <dd>
+                    <span>{{ adBsDates.adDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.bsDate">Bs Date</span></dt>
+                <dd>
+                    <span>{{ adBsDates.bsDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.day">Day</span></dt>
+                <dd>
+                    <span>{{ adBsDates.day }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.holiday">Holiday</span></dt>
+                <dd>
+                    <span>{{ adBsDates.holiday }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.month">Month</span></dt>
+                <dd>
+                    <span>{{ adBsDates.month }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.fiscalYearId">Fiscal Year Id</span></dt>
+                <dd>
+                    <span>{{ adBsDates.fiscalYearId }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.fiscalYearN">Fiscal Year N</span></dt>
+                <dd>
+                    <span>{{ adBsDates.fiscalYearN }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.createdDate">Created Date</span></dt>
+                <dd>
+                    <span>{{ adBsDates.createdDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.updatedDate">Updated Date</span></dt>
+                <dd>
+                    <span>{{ adBsDates.updatedDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.deleted">Deleted</span></dt>
+                <dd>
+                    <span>{{ adBsDates.deleted }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.insertedBy">Inserted By</span></dt>
+                <dd>
+                    <span>{{ adBsDates.insertedBy }}</span>
+                </dd>
+&lt;!&ndash;                <dt><span jhiTranslate="rentalUiApp.adBsDates.insertedByID">Inserted By ID</span></dt>&ndash;&gt;
+&lt;!&ndash;                <dd>&ndash;&gt;
+&lt;!&ndash;                    <span>{{ adBsDates.insertedByID }}</span>&ndash;&gt;
+&lt;!&ndash;                </dd>&ndash;&gt;
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.updatedBy">Updated By</span></dt>
+                <dd>
+                    <span>{{ adBsDates.updatedBy }}</span>
+                </dd>
+&lt;!&ndash;                <dt><span jhiTranslate="rentalUiApp.adBsDates.updatedByID">Updated By ID</span></dt>&ndash;&gt;
+&lt;!&ndash;                <dd>&ndash;&gt;
+&lt;!&ndash;                    <span>{{ adBsDates.updatedByID }}</span>&ndash;&gt;
+&lt;!&ndash;                </dd>&ndash;&gt;
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.status">Status</span></dt>
+                <dd>
+                    <span>{{ adBsDates.status }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.adBsDates.fiscalYear">Fiscal Year</span></dt>
+                <dd>
+                    <div *ngIf="adBsDates.fiscalYear">
+                        <a [routerLink]="['/fiscal-year', adBsDates.fiscalYear?.id, 'view']">{{ adBsDates.fiscalYear?.id }}</a>
+                    </div>
+                </dd>
+            </dl>-->
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/ad-bs-dates', adBsDates.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

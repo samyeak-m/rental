@@ -1,0 +1,38 @@
+{
+  "rentalUiApp": {
+    "adBsDates": {
+      "home": {
+        "title": "Ad Bs Dates",
+        "createLabel": "Create a new Ad Bs Dates",
+        "createOrEditLabel": "Create or edit a Ad Bs Dates",
+        "notFound": "No Ad Bs Dates found"
+      },
+      "created": "A new Ad Bs Dates is created with identifier {{ param }}",
+      "updated": "A Ad Bs Dates is updated with identifier {{ param }}",
+      "deleted": "A Ad Bs Dates is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ad Bs Dates {{ id }}?"
+      },
+      "detail": {
+        "title": "Ad Bs Dates"
+      },
+      "adDate": "Ad Date",
+      "bsDate": "Bs Date",
+      "day": "Day",
+      "holiday": "Holiday",
+      "month": "Month",
+      "totalDays": "Total Days",
+      "fiscalYearId": "Fiscal Year Id",
+      "fiscalYearN": "Fiscal Year N",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedByID": "Inserted By ID",
+      "updatedBy": "Updated By",
+      "updatedByID": "Updated By ID",
+      "status": "Status",
+      "fiscalYear": "Fiscal Year"
+    }
+  }
+}

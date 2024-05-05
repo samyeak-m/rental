@@ -1,0 +1,61 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="organization">
+            <h2><span jhiTranslate="rentalUiApp.organization.detail.title">Organization</span> {{ organization.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.organization.name">Name</span></th>
+                    <th><span jhiTranslate="rentalUiApp.organization.address">Address</span></th>
+                    <th><span jhiTranslate="rentalUiApp.organization.telephoneNo">Telephone No</span></th>
+                    <th><span jhiTranslate="rentalUiApp.organization.faxNo">Fax No</span></th>
+                    <th><span jhiTranslate="rentalUiApp.organization.email">Email</span></th>
+                    <th><span jhiTranslate="rentalUiApp.organization.contactPerson">Contact Person</span></th>
+                    <th>File Path</th>
+                    <th><span jhiTranslate="rentalUiApp.organization.createdDate">Created Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.organization.updatedDate">Updated Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.organization.deleted">Deleted</span></th>
+                    <th><span jhiTranslate="rentalUiApp.organization.insertedBy">Inserted By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.organization.updatedBy">Updated By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.organization.status">Status</span></th>
+                <tr>
+                    <td><span>{{ organization.name }}</span></td>
+                    <td><span>{{ organization.address }}</span></td>
+                    <td><span>{{ organization.telephoneNo }}</span></td>
+                    <td><span>{{ organization.faxNo }}</span></td>
+                    <td><span>{{ organization.email }}</span></td>
+                    <td><span>{{ organization.contactPerson }}</span></td>
+                    <td><span><img src="{{ organization.filePath }}" width="70" height="70" /></span></td>
+                    <td><span>{{ organization.createdDate | date:'medium'  }}</span></td>
+                    <td><span>{{ organization.updatedDate | date:'medium'  }}</span></td>
+                    <td><span>{{ organization.deleted }}</span></td>
+                    <td><span>{{ organization.insertedBy }}</span></td>
+                    <td><span>{{ organization.updatedBy }}</span></td>
+                    <td><span>{{ organization.status }}</span></td>
+                </tr>
+            </table>
+
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/organization', organization.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

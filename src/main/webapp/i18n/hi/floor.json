@@ -1,0 +1,32 @@
+{
+  "rentalUiApp": {
+    "floor": {
+      "home": {
+        "title": "Floors",
+        "createLabel": "नया Floor बनाएँ",
+        "createOrEditLabel": "Floor बनाएँ या संपादित करें",
+        "notFound": "No Floors found"
+      },
+      "created": "एक नया Floor [identifier: {{ param }}] तैयार है",
+      "updated": "एक Floor [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Floor [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Floor [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Floor"
+      },
+      "code": "Code",
+      "name": "Name",
+      "remarks": "Remarks",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

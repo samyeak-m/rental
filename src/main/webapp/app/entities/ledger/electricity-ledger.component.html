@@ -1,0 +1,226 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h2 id="page-heading">
+                <span>Electricity Ledger Report</span>
+
+            </h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+
+            <jhi-alert></jhi-alert>
+            <div class="alert alert-warning" id="no-result" *ngIf="shutterElectricities?.length === 0">
+                <span>No Floor Report  found</span>
+            </div>
+            <div class=" form-row">
+                <div class="form-group col-3">
+                    <label class="form-control-label"
+                           for="field_customer">Customer</label>
+                    <select  class="form-control" id="field_customer"
+                             [(ngModel)]="customerId"
+                             name="customerId">
+                        <option value="ALL" selected>ALL</option>
+                        <option [ngValue]="customerOption.id"
+                                *ngFor="let customerOption of customers">{{ customerOption.name }}</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group col-3">
+                    <label class="form-control-label" for="field_filterBy">Filter By</label>
+                    <select class="form-control" id="field_filterBy" [(ngModel)]="filterBy" (click)="showMonthOrNot()"
+                            name="filterBy">
+                        <option value="YEAR" selected>YEAR</option>
+                        <option value="MONTH">MONTH</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-3" *ngIf="showMonth">
+                    <label class="form-control-label" for="field_month">Month</label>
+                    <select class="form-control" id="field_month" [(ngModel)]="month" (change)="resetFiscal()"
+                            name="month">
+                        <option value="BAISHAKH" selected>BAISHAKH</option>
+                        <option value="JESTHA">JESTHA</option>
+                        <option value="ASHAD">ASHAD</option>
+                        <option value="SHRAWAN">SHRAWAN</option>
+                        <option value="BHADRA">BHADRA</option>
+                        <option value="ASHOJ">ASHOJ</option>
+                        <option value="KARTIK">KARTIK</option>
+                        <option value="MANGSIR">MANGSIR</option>
+                        <option value="POUSH">POUSH</option>
+                        <option value="MAGH">MAGH</option>
+                        <option value="FALGUN">FALGUN</option>
+                        <option value="CHAITRA">CHAITRA</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class=" form-row">
+                <div class="form-group col-3">
+                    <label class="form-control-label"
+                           for="field_fiscalYear">Fiscal Year</label>
+                    <div class="input-group">
+                        <select class="form-control" id="field_fiscalYear" [(ngModel)]="fiscalYearId"
+                                (change)="getFromToFiscal()"
+                                name="fiscalYear">
+                            <option [value]="null" *ngIf="!fiscalYearId" selected></option>
+                            <option [ngValue]="fiscalYear.id"
+                                    *ngFor="let fiscalYear of fiscalYears">{{ fiscalYear.fiscalYearFrom + '/' + fiscalYear.fiscalYearTill }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group col-3">
+                    <label class="form-control-label"
+                           for="field_fromDate">From Date</label>
+                    <div class="input-group">
+                        <input id="field_fromDate" type="text" [(ngModel)]="fromDate" class="form-control" name="fromDate"/>
+                    </div>
+                </div>
+
+                <div class="form-group col-3">
+                    <label class="form-control-label"
+                           for="field_toDate">To Date</label>
+                    <div class="input-group">
+                        <input id="field_toDate" type="text" [(ngModel)]="toDate" class="form-control" name="toDate"/>
+                    </div>
+                </div>
+
+                <div class="form-group"style="margin-left:10px;">
+                    <label>Search</label>
+                    <div class="input-group">
+                        <span class="input-group-append">
+                            <button (click)="filter()" class="btn btn-primary" type="button">Search</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left:10px;">
+                    <label>Reset</label>
+                    <div class="input-group">
+                        <span class="input-group-append">
+                            <button (click)="resetSearch()"  class="btn btn-danger" type="button">Reset</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive" id="entities" *ngIf="shutterElectricities && shutterElectricities.length > 0">
+                <table aria-describedby="page-heading" class="table table-striped" id="exportReport">
+                    <thead>
+                    <button  type="submit" (click)="generateElectricityPdf()"
+                             class="btn btn-primary"style="margin-bottom:20px; width:0.75in;border-radius:4px;margin-left:15px;">
+                        <fa-icon></fa-icon>&nbsp;<span>Pdf</span>
+                    </button>
+
+                    <tr class="text-center" align="left">
+                        <th colspan="12" scope="col" style="text-align: center"><span><b> UNITED WORLD TRADE </b>
+                        <br>
+                            <b>
+                         TRIPURESHWOR
+                            </b>
+                        </span></th>
+                    </tr>
+
+                    <tr class="text-center">
+                        <th colspan="12" scope="col" style="text-align: center"><span><b> ELECTRICITY METER READING REPORT </b>
+                        </span></th>
+                    </tr>
+
+
+                    <tr class="text-center">
+                        <th *ngIf="floorBlocks && floorBlocks.length>0" scope="col" style="text-align: center">
+                            <span> Meter Reading Month </span>
+                            <span *ngIf="floorBlocks[0].latestMonth">{{floorBlocks[0].latestMonth}}</span>
+                        </th>
+                        <th *ngIf="floorBlocks && floorBlocks.length>0" scope="col" style="text-align: center">
+                            <span>Meter Reading YEAR</span>
+                            <span *ngIf="floorBlocks[0].latestFiscalYear">{{floorBlocks[0].latestFiscalYear}}</span>
+                        </th>
+                        <th scope="col" style="text-align: center">
+                            <span></span>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+                <table class="table table-striped" aria-describedby="page-heading">
+                    <div *ngFor="let floorBlock of floorBlocks; let i=index">
+                        <div *ngIf="this.shutterElectricities.length>0">
+                    <thead>
+                    <tr>
+                    <td colspan="8"> {{floorBlock.floorNo}}</td>
+                    <td colspan="1" *ngIf="floorBlock.blockShutterDto">DB NO: {{floorBlock.blockShutterDto.blockNo}} </td>
+                    </tr>
+                    <tr>
+                        <th scope="col"><span>SN</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"><span>Customer</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"><span>Shop</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"><span>Shop Number</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"><span>Meter Number</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"><span>Previous Reading</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"><span>Present Reading</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"><span>Unit</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"><span>Rate</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"><span>Amount</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <ng-container *ngFor="let bill of this.floorBlock?.blockShutterDto?.shutterElectricityDtos let in= index ">
+                    <tr>
+                        <td> {{bill.customerId}}</td>
+                        <td> {{bill.customerName}}</td>
+                        <td> {{bill.customerName}}</td>
+                        <td> {{bill.shutterDTO?.shutterNo}} </td>
+                        <td>{{bill.meterNumber}} </td>
+                        <td><input type="number" [(ngModel)]="bill.fromUnitValue"> </td>
+                            <td>
+                                <input type="number" [(ngModel)]="bill.toUnitValue">
+                                <button *ngIf="bill.toUnitValue"  (click)="save(bill)" class="btn btn-primary">
+                                    <span>Save</span>
+                                </button>
+                            </td>
+                        <td> {{bill.totalUnit}}</td>
+                        <td> {{bill.rate}}</td>
+                        <td> {{bill.totalAmount}}</td>
+                    </tr>
+                    </ng-container>
+                    </tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Total </td>
+                                <td></td>
+                                <td>{{floorBlock.totalElectricityUnit}}</td>
+                                <td></td>
+                                <td></td>
+                                <td>{{floorBlock.totalElectricityAmount}}</td>
+                            </tr>
+                    </div>
+                     </div>
+
+
+                    <div class="container">
+                        <div  class="form-row">
+                            <div class="col-md-4">
+                                <hr style=" width:80%;height:2px;border-width:0;background-color:black;margin-right: 100px; margin-top:20px;">
+                            <label style="color:black">Prepared By</label>
+                            </div>
+                            <div class="col-md-4">
+                                <hr style=" width:80%;height:2px;border-width:0;background-color:black;margin-right: 100px; margin-top:20px;">
+                                <label style="color:black"> Check By</label>
+                            </div>
+                            <div class="col-md-4">
+                                <hr style=" width:80%;height:2px;border-width:0;background-color:black;margin-right: 100px; margin-top:20px;">
+                                <label style="color:black"> Approved By</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

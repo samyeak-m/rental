@@ -1,0 +1,9 @@
+{
+  "rentalUiApp": {
+    "LedgerType": {
+      "null": "",
+      "PAID_AMOUNT": "PAID_AMOUNT",
+      "AMOUNT": "AMOUNT"
+    }
+  }
+}

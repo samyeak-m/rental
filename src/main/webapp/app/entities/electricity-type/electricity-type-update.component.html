@@ -1,0 +1,172 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-electricity-type-heading" jhiTranslate="rentalUiApp.electricityType.home.createOrEditLabel">Create or edit a Electricity Type</h2>
+
+            <hr>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-row">
+                <div class="form-group col-6" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.typeCode" for="field_typeCode">Type Code</label>
+                    <input type="text" class="form-control" name="typeCode" id="field_typeCode"
+                           formControlName="typeCode" readonly/>
+                    <div *ngIf="editForm.get('typeCode')!.invalid && (editForm.get('typeCode')!.dirty || editForm.get('typeCode')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('typeCode')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-6">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.typeName" for="field_typeName">Type Name</label>
+                    <input type="text" class="form-control" name="typeName" id="field_typeName"
+                           formControlName="typeName"/>
+                    <div *ngIf="editForm.get('typeName')!.invalid && (editForm.get('typeName')!.dirty || editForm.get('typeName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('typeName')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.rate" for="field_rate">Rate</label>
+                    <input type="number" class="form-control" name="rate" id="field_rate"
+                           formControlName="rate"/>
+                    <div *ngIf="editForm.get('rate')!.invalid && (editForm.get('rate')!.dirty || editForm.get('rate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('rate')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('rate')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group col-4">
+                    <label class="form-control-label"  for="field_businessTypeId">BusinessType</label>
+<!--                    <input type="number" class="form-control" name="businessTypeId" id="field_businessTypeId"-->
+<!--                           formControlName="businessTypeId"/>-->
+                    <select class="form-control" id="field_businessTypeId" name="businessTypeId" formControlName="businessTypeId">
+                        <option *ngIf="!editForm.get('businessTypeId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="businessTypeOption.id" *ngFor="let businessTypeOption of businessType; trackBy: trackById">{{ businessTypeOption.typeName }}</option>
+                    </select>
+
+                    <div *ngIf="editForm.get('businessTypeId')!.invalid && (editForm.get('businessTypeId')!.dirty || editForm.get('businessTypeId')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('businessTypeId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('businessTypeId')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+<!--                    <div class="form-group col-4">-->
+<!--                        <label class="form-control-label"  for="field_businessTypeId">DB No</label>-->
+<!--                        &lt;!&ndash;                    <input type="number" class="form-control" name="businessTypeId" id="field_businessTypeId"&ndash;&gt;-->
+<!--                        &lt;!&ndash;                           formControlName="businessTypeId"/>&ndash;&gt;-->
+<!--                        <select class="form-control" id="field_bloclId" name="blockId" formControlName="blockId">-->
+<!--                            <option *ngIf="!editForm.get('blockId')!.value" [ngValue]="null" selected></option>-->
+<!--                            <option [ngValue]="block.id" *ngFor="let block of blocks; trackBy: trackById">{{ block.name }}</option>-->
+<!--                        </select>-->
+
+<!--                    </div>-->
+
+                </div>
+                <div class="form-row">
+                <div class="form-group col-6">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.remarks" for="field_remarks">Remarks</label>
+                    <input type="text" class="form-control" name="remarks" id="field_remarks"
+                           formControlName="remarks"/>
+                </div>
+                </div>
+                </div>
+               <!-- <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.businessTypeN" for="field_businessTypeN">Business Type N</label>
+                    <input type="text" class="form-control" name="businessTypeN" id="field_businessTypeN"
+                           formControlName="businessTypeN"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.createdDate" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.updatedDate" for="field_updatedDate">Updated Date</label>
+                    <div class="d-flex">
+                        <input id="field_updatedDate" type="datetime-local" class="form-control" name="updatedDate" formControlName="updatedDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.deleted" for="field_deleted">Deleted</label>
+                    <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                           formControlName="deleted"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.insertedBy" for="field_insertedBy">Inserted By</label>
+                    <input type="text" class="form-control" name="insertedBy" id="field_insertedBy"
+                           formControlName="insertedBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.insertedById" for="field_insertedById">Inserted By Id</label>
+                    <input type="number" class="form-control" name="insertedById" id="field_insertedById"
+                           formControlName="insertedById"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.updatedBy" for="field_updatedBy">Updated By</label>
+                    <input type="text" class="form-control" name="updatedBy" id="field_updatedBy"
+                           formControlName="updatedBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.updatedById" for="field_updatedById">Updated By Id</label>
+                    <input type="number" class="form-control" name="updatedById" id="field_updatedById"
+                           formControlName="updatedById"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.electricityType.status" for="field_status">Status</label>
+                    <input type="checkbox" class="form-control" name="status" id="field_status"
+                           formControlName="status"/>
+                </div>-->
+<!--            </div>-->
+
+            <div style="margin-top: 20px;">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

@@ -1,0 +1,37 @@
+{
+  "rentalUiApp": {
+    "itemRate": {
+      "home": {
+        "title": "Item Rates",
+        "createLabel": "Create a new Item Rate",
+        "createOrEditLabel": "Create or edit a Item Rate",
+        "notFound": "No Item Rates found"
+      },
+      "created": "A new Item Rate is created with identifier {{ param }}",
+      "updated": "A Item Rate is updated with identifier {{ param }}",
+      "deleted": "A Item Rate is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Item Rate {{ id }}?"
+      },
+      "detail": {
+        "title": "Item Rate"
+      },
+      "name": "Name",
+      "rateType": "Rate Type",
+      "unit": "Unit",
+      "rate": "Rate",
+      "remarks": "Remarks",
+      "itemId": "Item Id",
+      "itemN": "Item N",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "perUnit": "Per Unit",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="serviceCharge">
+            <h2><span jhiTranslate="rentalUiApp.serviceCharge.detail.title">Service Charge</span> {{ serviceCharge.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.serviceCharge.code">Code</span></th>
+                    <th><span jhiTranslate="rentalUiApp.serviceCharge.name">Name</span></th>
+                    <th><span jhiTranslate="rentalUiApp.serviceCharge.rate">Rate</span></th>
+                    <th><span jhiTranslate="rentalUiApp.serviceCharge.remark">Remark</span></th>
+                    <th><span jhiTranslate="rentalUiApp.serviceCharge.businessTypeId">Business Type Id</span></th>
+                    <th><span jhiTranslate="rentalUiApp.serviceCharge.createdDate">Created Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.serviceCharge.updatedDate">Updated Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.serviceCharge.deleted">Deleted</span></th>
+                    <th><span jhiTranslate="rentalUiApp.serviceCharge.insertedBy">Inserted By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.serviceCharge.updatedBy">Updated By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.serviceCharge.status">Status</span></th>
+                </tr>
+                <tr>
+                    <td><span>{{ serviceCharge.code }}</span></td>
+                    <td><span>{{ serviceCharge.name }}</span></td>
+                    <td><span>{{ serviceCharge.rate }}</span></td>
+                    <td><span>{{ serviceCharge.remark }}</span></td>
+                    <td><span><a
+                        [routerLink]="['/business-type', serviceCharge.businessTypeId, 'view']">{{ serviceCharge.businessTypeN }}</a></span>
+                    </td>
+                    <td><span>{{ serviceCharge.createdDate | date:'medium'  }}</span></td>
+                    <td><span>{{ serviceCharge.updatedDate | date:'medium'  }}</span></td>
+                    <td><span>{{ serviceCharge.deleted }}</span></td>
+                    <td><span>{{ serviceCharge.insertedBy }}</span></td>
+                    <td><span>{{ serviceCharge.updatedBy }}</span></td>
+                    <td><span>{{ serviceCharge.status }}</span></td>
+
+                </tr>
+            </table>
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/service-charge', serviceCharge.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

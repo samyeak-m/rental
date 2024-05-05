@@ -1,0 +1,32 @@
+{
+  "rentalUiApp": {
+    "businessType": {
+      "home": {
+        "title": "BusinessTypes",
+        "createLabel": "नया Business Type बनाएँ",
+        "createOrEditLabel": "Business Type बनाएँ या संपादित करें",
+        "notFound": "No Business Types found"
+      },
+      "created": "एक नया Business Type [identifier: {{ param }}] तैयार है",
+      "updated": "एक Business Type [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Business Type [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Business Type [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Business Type"
+      },
+      "typeCode": "Code",
+      "typeName": "Name",
+      "remarks": "Remarks",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

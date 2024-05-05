@@ -1,0 +1,89 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+    <h2 id="page-heading">
+        <span jhiTranslate="rentalUiApp.adBsDates.home.title">Ad Bs Dates</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-ad-bs-dates" [routerLink]="['/ad-bs-dates/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="rentalUiApp.adBsDates.home.createLabel">
+            Create a new Ad Bs Dates
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="adBsDates?.length === 0">
+        <span jhiTranslate="rentalUiApp.adBsDates.home.notFound">No adBsDates found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="adBsDates && adBsDates.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="adDate"><span jhiTranslate="rentalUiApp.adBsDates.adDate">Ad Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="bsDate"><span jhiTranslate="rentalUiApp.adBsDates.bsDate">Bs Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="day"><span jhiTranslate="rentalUiApp.adBsDates.day">Day</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="holiday"><span jhiTranslate="rentalUiApp.adBsDates.holiday">Holiday</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="month"><span jhiTranslate="rentalUiApp.adBsDates.month">Month</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fiscalYear.id"><span jhiTranslate="rentalUiApp.adBsDates.fiscalYear">Fiscal Year</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let adBsDates of adBsDates ;trackBy: trackId">
+                    <td><a [routerLink]="['/ad-bs-dates', adBsDates.id, 'view']">{{ adBsDates.id }}</a></td>
+                    <td>{{ adBsDates.adDate | date:'mediumDate' }}</td>
+                    <td>{{ adBsDates.bsDate }}</td>
+                    <td>{{ adBsDates.day }}</td>
+                    <td>{{ adBsDates.holiday }}</td>
+                    <td>{{ adBsDates.month }}</td>
+                    <td>
+                        <div *ngIf="adBsDates.fiscalYear">
+                            <a [routerLink]="['/fiscal-year', adBsDates.fiscalYear?.id, 'view']" >{{ adBsDates.fiscalYear?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/ad-bs-dates', adBsDates.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/ad-bs-dates', adBsDates.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(adBsDates)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="adBsDates && adBsDates.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
+    </div>
+</div>

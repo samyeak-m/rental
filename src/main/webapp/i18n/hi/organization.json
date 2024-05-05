@@ -1,0 +1,35 @@
+{
+  "rentalUiApp": {
+    "organization": {
+      "home": {
+        "title": "Organizations",
+        "createLabel": "नया Organization बनाएँ",
+        "createOrEditLabel": "Organization बनाएँ या संपादित करें",
+        "notFound": "No Organizations found"
+      },
+      "created": "एक नया Organization [identifier: {{ param }}] तैयार है",
+      "updated": "एक Organization [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Organization [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Organization [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Organization"
+      },
+      "name": "Name",
+      "address": "Address",
+      "telephoneNo": "Telephone No",
+      "faxNo": "Fax No",
+      "email": "Email",
+      "contactPerson": "Contact Person",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

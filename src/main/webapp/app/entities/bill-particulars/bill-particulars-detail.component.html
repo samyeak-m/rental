@@ -1,0 +1,52 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="billParticulars">
+            <h2><span jhiTranslate="rentalUiApp.billParticulars.detail.title">Bill Particulars</span> {{ billParticulars.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.billParticulars.code">Code</span></th>
+                    <th><span jhiTranslate="rentalUiApp.billParticulars.name">Name</span></th>
+                    <th><span jhiTranslate="rentalUiApp.billParticulars.remarks">Remarks</span></th>
+                    <th><span jhiTranslate="rentalUiApp.billParticulars.createdDate">Created Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.billParticulars.updatedDate">Updated Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.billParticulars.deleted">Deleted</span></th>
+                    <th><span jhiTranslate="rentalUiApp.billParticulars.insertedBy">Inserted By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.billParticulars.updatedBy">Updated By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.billParticulars.status">Status</span></th>
+                </tr>
+                <tr>
+                    <td><span>{{ billParticulars.code }}</span></td>
+                    <td><span>{{ billParticulars.name }}</span></td>
+                    <td> <span>{{ billParticulars.remarks }}</span></td>
+                    <td>  <span>{{ billParticulars.createdDate | date:'medium' }}</span></td>
+                    <td> <span>{{ billParticulars.updatedDate | date:'medium' }}</span></td>
+                    <td> <span>{{ billParticulars.deleted }}</span></td>
+                    <td> <span>{{ billParticulars.insertedBy }}</span></td>
+                    <td><span>{{ billParticulars.updatedBy }}</span></td>
+                    <td> <span>{{ billParticulars.status }}</span></td>
+                </tr>
+            </table>
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bill-particulars', billParticulars.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,24 @@
+{
+  "rentalUiApp": {
+    "cashReceipt": {
+      "home": {
+        "title": "Cash Receipts",
+        "createLabel": "Create a new Cash Receipt",
+        "createOrEditLabel": "Create or edit a Cash Receipt",
+        "notFound": "No Cash Receipts found"
+      },
+      "created": "A new Cash Receipt is created with identifier {{ param }}",
+      "updated": "A Cash Receipt is updated with identifier {{ param }}",
+      "deleted": "A Cash Receipt is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cash Receipt {{ id }}?"
+      },
+      "detail": {
+        "title": "Cash Receipt"
+      },
+      "amount": "Amount",
+      "bill": "Bill",
+      "customer": "Customer"
+    }
+  }
+}

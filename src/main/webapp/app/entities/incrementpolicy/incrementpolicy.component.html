@@ -1,0 +1,89 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+    <h2 id="page-heading">
+        <span jhiTranslate="rentalUiApp.incrementpolicy.home.title">Incrementpolicies</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-incrementpolicy" [routerLink]="['/incrementpolicy/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="rentalUiApp.incrementpolicy.home.createLabel">
+            Create a new Incrementpolicy
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="incrementpolicies?.length === 0">
+        <span jhiTranslate="rentalUiApp.incrementpolicy.home.notFound">No incrementpolicies found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="incrementpolicies && incrementpolicies.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="totalDays"><span jhiTranslate="rentalUiApp.incrementpolicy.totalDays">Total Days</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="amount"><span jhiTranslate="rentalUiApp.incrementpolicy.amount">Amount</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="policyType"><span jhiTranslate="rentalUiApp.incrementpolicy.policyType">Policy Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="incrementType"><span jhiTranslate="rentalUiApp.incrementpolicy.incrementType">Increment Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="incrementType"><span>Additional Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="increment"><span jhiTranslate="rentalUiApp.incrementpolicy.increment">Increment</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="customerRegistrationId"><span jhiTranslate="rentalUiApp.incrementpolicy.customerRegistrationId">Customer Registration Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="effectiveDateFrom"><span>Effective Date From</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let incrementpolicy of incrementpolicies ;trackBy: trackId">
+                    <td><a [routerLink]="['/incrementpolicy', incrementpolicy.id, 'view']">{{ incrementpolicy.id }}</a></td>
+                    <td>{{ incrementpolicy.totalTime }}</td>
+                    <td>{{ incrementpolicy.amount }}</td>
+                    <td>{{ incrementpolicy.policyType }}</td>
+                    <td>{{ incrementpolicy.incrementType }}</td>
+                    <td>{{ incrementpolicy.additionalType }}</td>
+                    <td>{{ incrementpolicy.increment }}</td>
+                    <td>{{ incrementpolicy.customerName }}</td>
+                    <td>{{ incrementpolicy.effectiveDateFrom }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/incrementpolicy', incrementpolicy.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/incrementpolicy', incrementpolicy.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(incrementpolicy)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="incrementpolicies && incrementpolicies.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+{
+  "rentalUiApp": {
+    "electricityType": {
+      "home": {
+        "title": "Electricity Types",
+        "createLabel": "Create a new Electricity Type",
+        "createOrEditLabel": "Create or edit a Electricity Type",
+        "notFound": "No Electricity Types found"
+      },
+      "created": "A new Electricity Type is created with identifier {{ param }}",
+      "updated": "A Electricity Type is updated with identifier {{ param }}",
+      "deleted": "A Electricity Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Electricity Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Electricity Type"
+      },
+      "typeCode": "Code",
+      "typeName": "Name",
+      "rate": "Rate",
+      "remarks": "Remarks",
+      "businessTypeId": "Business Type Id",
+      "businessTypeN": "Business Type",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

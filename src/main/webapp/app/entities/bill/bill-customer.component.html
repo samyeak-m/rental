@@ -1,0 +1,474 @@
+<body>
+<div>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <div *ngIf="!this.showForm && !this.showElectricityForm && !this.showPayForm && !this.showAdjustBillForm">
+        <div class="square white " style="max-height:40in; padding-right:20px;padding-left:20px;margin-bottom:60px;">
+            <header class="test">
+                <h1>Invoice</h1>
+                <h1>World Trade Centre</h1>
+                <h1>Tripureshwor,Kathmandu,Nepal</h1>
+                <h1>Tel:+977 156701,Fax:977 1234567.</h1>
+            </header>
+            <div  class="modal-body">
+                <div class="container pt-3 pb-3">
+                    <div class="row">
+                        <div class="col-md-6 text-left">
+                            <p class="mb-1"><span>VAT No: </span> 300042438</p>
+                        </div>
+                        <div class="col-md-6 text-right">
+
+                        </div>
+                        <div class="col-md-8 text-left">
+                            <p class="mb-1"style="margin-top:15px;"><span>Name:</span>
+                                <span class="underline underline--dotted">{{billCustomer.bills[0].customerN}}</span>
+                            </p>
+
+
+                            <p class="mb-1" style="margin-top:15px;"><span>Mode of Payment:</span>
+                                <label for="cash1">Cash</label>
+                                <input type="checkbox" id="cash1" name="cash1" value="Cash">
+                                <label for="cash1" style="margin-left:5px;">Cheque</label>
+                                <input type="checkbox" id="Cheque1" name="Cheque1" value="Cheque">
+                                <label for="credit1" style="margin-left:5px;">Credit</label>
+                                <input type="checkbox" id="Credit1" name="Credit1" value="Credit">
+                                <label for="others" style="margin-left:5px;">Others</label>
+                                <input type="checkbox" id="others" name="others" value="Others">
+                            </p>
+                        </div>
+                        <table class="table">
+                            <table>
+                                <thead>
+                                <tr >
+                                    <th scope="col" style="border: 1px solid black;">Particulars</th>
+                                    <th scope="col" style="border: 1px solid black;">Amount</th>
+                                </tr>
+                                </thead>
+                                <tbody *ngFor="let bill of billCustomer.bills; trackBy: trackId">
+                                <tr>
+                                    <td>Monthly Rate</td>
+                                    <td>{{bill.monthlyRate}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Service Charge Amount</td>
+                                    <td>{{bill.serviceChargeAmount}}</td>
+                                </tr>
+                                <tr>
+                                    <td><span>Water Amount</span></td>
+                                    <td>{{bill.waterAmount}}</td>
+                                </tr>
+
+                                <tr *ngIf="bill.paymentStatus!=='INCOMPLETE'">
+                                    <td><span>Electricity Amount</span></td>
+                                    <td>{{bill.electricityAmount}}</td>
+                                </tr>
+
+                                <tr *ngIf="bill.paymentStatus!=='INCOMPLETE'">
+                                    <td><span>Total Electricity Unit</span></td>
+                                    <td>{{bill.totalElectricityUnit}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><span>Month</span></td>
+                                    <td>{{bill.month}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><span>Payment Status:</span></td>
+                                    <td>{{bill.paymentStatus}}</td>
+                                </tr>
+
+
+                                <tr *ngIf="bill.paymentStatus!=='INCOMPLETE'">
+                                    <td><span>Discount Amount</span></td>
+                                    <td>{{bill.discountAmount}}</td>
+                                </tr>
+                                <tr>
+                                    <td><span>VAT Amount</span></td>
+                                    <td>{{bill.totalVat}}</td>
+                                </tr>
+
+                                <tr  *ngIf="bill.paymentStatus!=='INCOMPLETE'">
+                                    <td><span>Fine Amount</span></td>
+                                    <td>{{bill.fineAmount}}</td>
+                                </tr>
+
+                                <tr *ngIf="bill.electricityDeduct && bill.electricityDeduct>0.0">
+                                    <td><span>Electricity Deduct Amount</span></td>
+                                    <td>(-{{bill.electricityDeduct}})</td>
+                                </tr>
+
+                                <tr *ngIf="bill.serviceChargeDeduct && bill.serviceChargeDeduct>0.0">
+                                    <td><span>Service Charge Deduct Amount</span></td>
+                                    <td>(-{{bill.serviceChargeDeduct}})</td>
+                                </tr>
+                                <tr *ngIf="bill.waterDeduct && bill.waterDeduct>0.0">
+                                    <td><span>Water Deduct Amount</span></td>
+                                    <td>(-{{bill.waterDeduct}})</td>
+                                </tr>
+
+                                <tr *ngIf="bill.monthlyDeduct && bill.monthlyDeduct>0.0">
+                                    <td><span>Monthy Deduct Amount</span></td>
+                                    <td>(-{{bill.monthlyDeduct}})</td>
+                                </tr>
+
+                                <tr *ngIf="bill.tdsDeduct && bill.tdsDeduct>0.0">
+                                    <td><span>Tds Deduct Amount</span></td>
+                                    <td>(-{{bill.tdsDeduct}})</td>
+                                </tr>
+
+                                <tr *ngIf="bill.billAdjust && bill.billAdjust>0.0">
+                                    <td class="font"><span> Bill Adjust Amount</span></td>
+                                    <td class="tod1 font">(-{{bill.billAdjust}})</td>
+                                </tr>
+
+
+                                <tr *ngIf="bill.paymentStatus==='PARTIAL'">
+                                    <td><span>Paid Amount</span></td>
+                                    <td>(-{{bill.paidAmount}})</td>
+                                </tr>
+
+                                <hr style=" width:153%;background-color:black;">
+
+                                </tbody>
+                            </table>
+                        </table>
+
+
+
+                        <table class="table">
+                            <table>
+                                <thead>
+                                <tr  style="text-align: right;">
+                                    <th colspan="2"style="text-align:right;padding-left:60px;" ><span>Total Monthly Rate</span></th>
+                                    <td style="padding-left:120px;"><span>{{billCustomer.sumOfMonthlyRate}}</span></td>
+                                </tr>
+                                <tr  style="text-align: right;">
+                                    <th colspan="2"style="text-align:right;padding-left:50px;" ><span>Bill Amount</span></th>
+                                    <td style="padding-left:120px;"><span>{{billCustomer.sumOfBillAmount}}</span></td>
+                                </tr>
+                                </thead>
+                            </table>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <table style="margin-left:20px;width:95%;">
+                <tr>
+                    <th colspan="14" style="text-align:left; margin-top:20px;">In Words: <span class="underline underline--dotted">{{billCustomer.amountInWords}}</span></th>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="this.showElectricityForm">
+    <form name="electricity unit" (ngSubmit)="processElectricity()">
+
+        <label class="form-control-label" style=" display: inline-block;"> Electricity From Unit</label>
+        <input type="text" class="form-control" name="electricityFromUnit" id="field_waterFromUnit"
+               [(ngModel)]="this.electricityFromUnit"/>
+
+        <label class="form-control-label" > Electricity To Unit </label>
+        <input type="text" class="form-control" name="electricityFillUnit" id="field_waterFillUnit"
+               [(ngModel)]="this.electricityToUnit"/>
+        <div style="margin-bottom: 10px;margin-top: 20px; margin-left:10px;">
+            <button type="reset" (click)="reset()" class="btn btn-secondary"style="background-color:red; color:white; border: 2px solid white; padding: 10px 10px;">
+                <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            </button>
+
+            <button type="submit" id="save-entity"  class="btn btn-primary"  style="background-color: green;color:white; border:white; padding: 10px 10px;">
+                <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="row justify-content-center"style="margin-top:30px;"
+     *ngIf="!this.showPayForm && !this.showAdjustBillForm">
+    <button type="button" class="button1" (click)="openDialog(proceedBill)"
+            *ngIf="this.showPopup">
+        <span>Pay </span>
+    </button>
+    <button type="button" class="button1" *ngIf="
+   !this.showPopup && !this.showAdjustBillForm"
+            (click)="payForm()">
+        &nbsp;<span>Pay </span>
+    </button>
+
+
+
+    <button type="button" class="button1" *ngIf="!this.showPayForm && !this.showAdjustBillForm" (click)="showAdjustForm()">
+        <span>Adjust Bill </span>
+    </button>
+
+</div>
+<ng-template #proceedBill let-modal >
+    <form  name="registrationForm">
+        <div class="modal-header">
+            <h4 class="modal-title">Bill of {{this.billPaymentStatus.month}} is Incomplete</h4>
+
+            <button type="button" (click)="resetDialog()"
+                    class="close" data-dismiss="modal" aria-hidden="true"
+            ></button>
+        </div>
+
+        <div class="modal-body">
+            <jhi-alert-error></jhi-alert-error>
+
+            <p> Sorry you bill of {{this.billPaymentStatus.month}} is
+                incomplete please  add its electricity amount
+                to process its further operation
+            </p>
+        </div>
+    </form>
+
+</ng-template>
+
+<div *ngIf="this.showAdjustBillForm">
+    <form name="editForm" (ngSubmit)="adjust()"   role="form" novalidate [formGroup]="editForm">
+        <input type="text" formControlName="id" hidden>
+        <div class="form-group">
+            <div class="form-group col-6">
+                <label> Month</label>
+                <select class="form-control"  formControlName="month" required>
+                    <option value="BAISHAKH"> BAISHAKH</option>
+                    <option value="JESTHA"> JESTHA</option>
+                    <option value="ASHAD"> ASHAD</option>
+                    <option value="SHRAWAN"> SHRAWAN</option>
+                    <option value="BHADRA"> BHADRA</option>
+                    <option value="ASHOJ"> ASHOJ</option>
+                    <option value="KARTIK"> KARTIK</option>
+                    <option value="MANGSIR"> MANGSIR</option>
+                    <option value="POUSH"> POUSH</option>
+                    <option value="MAGH"> MAGH</option>
+                    <option value="FALGUN"> FALGUN</option>
+                    <option value="CHAITRA"> CHAITRA</option>
+                </select>
+                <div
+                    *ngIf="editForm.get('month')!.invalid && (editForm.get('month')!.dirty || editForm.get('month')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('month')?.errors?.required"
+                           jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div formArrayName="addParticulars">
+                <div *ngFor="let billParticular of billParticulars.controls; let i=index">
+                    <div [formGroupName]="i">
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label class="form-control-label">Payment For</label>
+                                <div class="d-flex">
+                                    <select  class="form-control" name="partialPayment"
+                                             (click)="setRemarks(i)"
+                                             formControlName="partialPayment" required>
+                                        <option value="BILLADJUST">BILLADJUST</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label class="form-control-label">Remarks</label>
+                                <fieldset [disabled]="billParticular.get(['disableRemarks'])!.value">
+                                    <input type="text"  id="remarks1"
+                                           class="form-control"
+                                           name="remarks"
+                                           (keydown)="setDiscountType(i)"
+                                           formControlName="remarks" required/>
+                                </fieldset>
+                            </div>
+                            <div class="form-group col-6">
+                                <label class="form-control-label">Discount Type</label>
+                                <fieldset [disabled]="billParticular.get(['disableDiscountType'])!.value">
+                                    <div class="d-flex">
+                                        <select  class="form-control" name="discountType"
+                                                 (click)="setAmountType(i)"
+                                                 formControlName="discountType" required >
+                                            <option value="DEDUCT"> DEDUCT</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label class="form-control-label">Amount Type</label>
+                                <fieldset [disabled]="billParticular.get(['disableAmountType'])!.value">
+                                    <div class="d-flex">
+                                        <select  class="form-control" name="amountType"
+                                                 (click)="setParticularAmount(i)"
+                                                 formControlName="amountType" required>
+                                            <option value="FLAT">FLAT</option>
+                                        </select>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label class="form-control-label">Amount</label>
+                                <fieldset [disabled]="billParticular.get(['disableAmount'])!.value">
+                                    <div class="d-flex">
+                                        <input type="number" (keyup)="validateAdjustAmount(i)"  id="amount3"
+                                               class="form-control"
+                                               name="amount"
+                                               *ngIf="!hideAmount"
+                                               formControlName="amount" required/>
+                                        <input type="number"  id="amount3"
+                                               class="form-control"
+                                               name="amount"
+                                               *ngIf="hideAmount"/>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px;margin-bottom:20px;">
+            <button type="button" (click)="reset()" id="cancel-save1" class="btn btn-secondary">
+                <fa-icon icon="ban"></fa-icon>&nbsp;<span
+                jhiTranslate="entity.action.cancel">Cancel</span>
+            </button>
+
+            <button type="submit"   [disabled]="editForm.invalid || isSaving || buttonDisabled"
+                    class="btn btn-primary">
+                <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="this.showPayForm">
+    <form name="editForm" (ngSubmit)="save()"  role="form" novalidate [formGroup]="editForm">
+        <input type="text" formControlName="id" hidden>
+        <div class="form-group">
+            <div class="form-group col-6">
+                <label> Month</label>
+                <select class="form-control"  formControlName="month" required (click)="findByCustomerIdAndMonth()">>
+                    <option value="BAISHAKH"> BAISHAKH</option>
+                    <option value="JESTHA"> JESTHA</option>
+                    <option value="ASHAD"> ASHAD</option>
+                    <option value="SHRAWAN"> SHRAWAN</option>
+                    <option value="BHADRA"> BHADRA</option>
+                    <option value="ASHOJ"> ASHOJ</option>
+                    <option value="KARTIK"> KARTIK</option>
+                    <option value="MANGSIR"> MANGSIR</option>
+                    <option value="POUSH"> POUSH</option>
+                    <option value="MAGH"> MAGH</option>
+                    <option value="FALGUN"> FALGUN</option>
+                    <option value="CHAITRA"> CHAITRA</option>
+                </select>
+                <div
+                    *ngIf="editForm.get('month')!.invalid && (editForm.get('month')!.dirty || editForm.get('month')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('months')?.errors?.required"
+                           jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div formArrayName="addParticulars">
+                <div *ngFor="let billParticular of billParticulars.controls; let i=index">
+                    <div [formGroupName]="i">
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label class="form-control-label">Payment For</label>
+                                <div class="d-flex">
+                                    <select  class="form-control" name="partialPayment"
+                                             (click)="setRemarks(i)"
+                                             formControlName="partialPayment" required>
+                                        <option [ngValue]="payment" *ngFor="let payment of partialPaymentList">{{payment}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label class="form-control-label">Remarks</label>
+                                <fieldset [disabled]="billParticular.get(['disableRemarks'])!.value">
+                                <input type="text"  id="remarks"
+                                       class="form-control"
+                                       name="remarks"
+                                       (keydown)="setDiscountType(i)"
+                                       formControlName="remarks" required/>
+                                </fieldset>
+                            </div>
+                            <div class="form-group col-6">
+                                <label class="form-control-label">Discount Type</label>
+                                <fieldset [disabled]="billParticular.get(['disableDiscountType'])!.value">
+                                <div class="d-flex">
+                                    <select  class="form-control" name="discountType"
+                                          (click)="setAmountType(i)"
+                                             formControlName="discountType" required >
+                                        <option value="DEDUCT"> DEDUCT</option>
+                                    </select>
+                                </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label class="form-control-label">Amount Type</label>
+                                    <fieldset [disabled]="billParticular.get(['disableAmountType'])!.value">
+                                        <div class="d-flex">
+                                        <select  class="form-control" name="amountType"
+                                             (click)="setParticularAmount(i)"
+                                             formControlName="amountType" required>
+                                        <option value="FLAT">FLAT</option>
+                                    </select>
+
+                                        </div>
+                                    </fieldset>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label class="form-control-label">Amount</label>
+                                    <fieldset [disabled]="billParticular.get(['disableAmount'])!.value">
+                                        <div class="d-flex">
+                                    <input type="number" (keyup)="validateAmount(i)"  id="amount"
+                                           class="form-control"
+                                           name="amount"
+                                           *ngIf="!hideAmount"
+                                           formControlName="amount" required/>
+                                        <input type="number"  id="amount2"
+                                               class="form-control"
+                                               name="amount"
+                                               *ngIf="hideAmount"/>
+                                        </div>
+                                    </fieldset>
+                            </div>
+                            <div class="form-group col-3"
+                                 *ngIf="!hideAddButton"
+                                 style="margin-top:40px;">
+                                                          <span (click)="addNewBillParticulars()" class="btn btn-primary">Add more
+                                                          </span>
+                                <button *ngIf="i > 0" (click)="removeBillParticulars(i)"
+                                        class="btn btn-danger"style="margin-top:10px;">Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px;margin-bottom:20px;">
+            <button type="button" (click)="reset()" id="cancel-save" class="btn btn-secondary">
+                <fa-icon icon="ban"></fa-icon>&nbsp;<span
+                jhiTranslate="entity.action.cancel">Cancel</span>
+            </button>
+
+            <button type="submit"   [disabled]="editForm.invalid || isSaving || buttonDisabled"
+                    class="btn btn-primary">
+                <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+

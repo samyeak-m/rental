@@ -1,0 +1,59 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="electricityType">
+            <h2><span jhiTranslate="rentalUiApp.electricityType.detail.title">Electricity Type</span> {{ electricityType.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.electricityType.typeCode">Type Code</span></th>
+                    <th><span jhiTranslate="rentalUiApp.electricityType.typeName">Type Name</span></th>
+                    <th><span jhiTranslate="rentalUiApp.electricityType.rate">Rate</span></th>
+                    <th><span jhiTranslate="rentalUiApp.electricityType.remarks">Remarks</span></th>
+                    <th><span jhiTranslate="rentalUiApp.electricityType.businessTypeId">Business Type Id</span></th>
+                    <th><span jhiTranslate="rentalUiApp.electricityType.businessTypeN">Business Type N</span></th>
+                    <th><span jhiTranslate="rentalUiApp.electricityType.createdDate">Created Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.electricityType.updatedDate">Updated Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.electricityType.deleted">Deleted</span></th>
+                    <th><span jhiTranslate="rentalUiApp.electricityType.insertedBy">Inserted By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.electricityType.updatedBy">Updated By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.electricityType.status">Status</span></th>
+                </tr>
+                <tr>
+                    <td>  <span>{{ electricityType.typeCode }}</span></td>
+                    <td> <span>{{ electricityType.typeName }}</span></td>
+                    <td> <span>{{ electricityType.rate }}</span></td>
+                    <td> <span>{{ electricityType.remarks }}</span></td>
+                    <td> <span><a [routerLink]="['/business-type', electricityType.businessTypeId, 'view']">{{ electricityType.businessTypeN }}</a></span></td>
+                    <td>  <span>{{ electricityType.businessTypeN }}</span></td>
+                    <td> <span>{{ electricityType.createdDate | date:'medium' }}</span></td>
+                    <td><span>{{ electricityType.updatedDate  | date:'medium'}}</span></td>
+                    <td><span>{{ electricityType.deleted }}</span></td>
+                    <td> <span>{{ electricityType.insertedBy }}</span></td>
+                    <td>  <span>{{ electricityType.updatedBy }}</span></td>
+                    <td> <span>{{ electricityType.status }}</span></td>
+                </tr>
+            </table>
+
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/electricity-type', electricityType.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

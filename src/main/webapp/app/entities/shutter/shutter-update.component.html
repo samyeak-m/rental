@@ -1,0 +1,122 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-shutter-heading" jhiTranslate="rentalUiApp.shutter.home.createOrEditLabel">Create or edit a Shutter</h2>
+
+            <hr>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-row">
+                <div class="form-group col-4" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-4">
+                        <label class="form-control-label" jhiTranslate="rentalUiApp.shutter.itemCode" for="field_itemCode">Shutter Code</label>
+                        <input type="text" class="form-control" name="itemCode" id="field_itemCode"
+                               formControlName="itemCode" readonly/>
+                        <div *ngIf="editForm.get('itemCode')!.invalid && (editForm.get('itemCode')!.dirty || editForm.get('itemCode')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('itemCode')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.shutter.shutterNo" for="field_shutterNo">Shutter No</label>
+                    <input type="text" class="form-control" name="shutterNo" id="field_shutterNo"
+                           formControlName="shutterNo"/>
+                    <div *ngIf="editForm.get('shutterNo')!.invalid && (editForm.get('shutterNo')!.dirty || editForm.get('shutterNo')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('shutterNo')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.shutter.area" for="field_area">Area</label>
+                    <input type="number" class="form-control" name="area" id="field_area"
+                           formControlName="area" required/>
+                    <div *ngIf="editForm.get('area')!.invalid && (editForm.get('area')!.dirty || editForm.get('area')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('area')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('area')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group col-4">
+                        <label class="form-control-label"  for="field_floorId">Floor</label>
+                        <select class="form-control" id="field_floorId" name="floorId" formControlName="floorId">
+                            <option *ngIf="!editForm.get('floorId')!.value" [ngValue]="null" selected></option>
+                            <option [ngValue]="floorOption.id" *ngFor="let floorOption of floor; trackBy: trackById">{{ floorOption.name }}</option>
+                        </select>
+
+                        <div *ngIf="editForm.get('floorId')!.invalid && (editForm.get('floorId')!.dirty || editForm.get('floorId')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('floorId')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.shutter.rate" for="field_rate">Rate</label>
+                    <input type="number" class="form-control" name="rate" id="field_rate"
+                           formControlName="rate" required>
+                    <div *ngIf="editForm.get('rate')!.invalid && (editForm.get('rate')!.dirty || editForm.get('rate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('rate')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('rate')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+
+                    <div class="form-group col-4">
+                        <label class="form-control-label" for="field_floorId">Block</label>
+                        <select class="form-control" id="field_blocks" name="blockId" formControlName="blockId" required>
+                            <option value="" disabled selected>Select a block</option>
+                            <option [ngValue]="block.id" *ngFor="let block of blocks; trackBy: trackById">{{ block.name }}</option>
+                        </select>
+                        <div *ngIf="editForm.get('blockId')!.invalid && (editForm.get('blockId')!.dirty || editForm.get('blockId')!.touched)">
+                            <small class="form-text text-danger" *ngIf="editForm.get('blockId')?.hasError('required')">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+
+</div>
+            <div style="margin-top: 20px;">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

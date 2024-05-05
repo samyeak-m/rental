@@ -1,0 +1,172 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+    <h2 id="page-heading">
+        <span jhiTranslate="rentalUiApp.customer.home.title">Customers</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-customer" [routerLink]="['/customer/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="rentalUiApp.customer.home.createLabel">
+            Create a new Customer
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+
+            <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+                <div>
+                    <jhi-alert-error></jhi-alert-error>
+                    <div class="form-group col-4">
+                        <label class="form-control-label" for="field_content">Upload Excel File Containing Stall</label>
+                        <input type="file" class="form-control" name="content" id="field_content" (change)="selectFile($event)"
+                               formControlName="content"/>
+                        <div
+                            *ngIf="editForm.get('content')!.invalid && (editForm.get('content')!.dirty || editForm.get('content')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('content')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 10px;margin-top: 10px;">
+                    <button type="reset" id="cancel-save" class="btn btn-secondary">
+                        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                    </button>
+
+                    <button type="submit" id="save-entity" [disabled]="editForm.invalid" class="btn btn-primary">
+                        <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    </button>
+                </div>
+            </form>
+
+            <form name="editForm" role="form" (ngSubmit)="filter()">
+                <div align="center" class="row">
+                    <jhi-alert-error></jhi-alert-error>
+                    <div  >
+                        <input style="width: 200px; margin-left: 500px;" type="text" class="form-control" id="query" name="query"
+                               placeholder="Search Customer"  [(ngModel)]="query" />
+                    </div>
+                    <div style="margin-left: 20px;">
+                        <button type="submit" id="search-user" class="btn btn-primary" [disabled]="!query">
+                            <fa-icon></fa-icon>&nbsp;<span>Search</span>
+                        </button>
+                        <button type="reset" id="reset-user" class="btn btn-primary" (click)="reset()">
+                            <fa-icon></fa-icon>&nbsp;<span>Reset</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="customers?.length === 0">
+        <span jhiTranslate="rentalUiApp.customer.home.notFound">No customers found</span>
+    </div>
+
+    <div style="margin-top: 20px;" class="table-responsive-sm" id="entities" *ngIf="customers && customers.length > 0">
+        <table class=" table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+<!--
+                    <th scope="col"  jhiSortBy="code"><span jhiTranslate="rentalUiApp.customer.code">Code</span> <fa-icon icon="sort"></fa-icon></th>
+-->
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="rentalUiApp.customer.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="type"><span>Type</span> <fa-icon icon="sort"></fa-icon></th>
+<!--
+                    <th scope="col" class="th"  jhiSortBy="permanentAddress"><span jhiTranslate="rentalUiApp.customer.permanentAddress">Permanen Address</span> <fa-icon icon="sort"></fa-icon></th>
+-->
+                    <th scope="col" class="th"  ><span jhiTranslate="rentalUiApp.customer.temporaryAddress">Tempo. Address</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" ><span jhiTranslate="rentalUiApp.customer.mobileNumber">Mobile No.</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  ><span >Rent Opening Balance</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  ><span >Electricity Opening Balance</span> <fa-icon icon="sort"></fa-icon></th>
+<!--
+                    <th scope="col"  jhiSortBy="officePhoneNumber"><span jhiTranslate="rentalUiApp.customer.officePhoneNumber">Office Phone Number</span> <fa-icon icon="sort"></fa-icon></th>
+--><th scope="col"  ><span>Service Opening Balance</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="filePath"><span jhiTranslate="rentalUiApp.customer.filePath">File Path</span> <fa-icon icon="sort"></fa-icon></th>
+
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customers ;trackBy: trackId">
+                    <td><a [routerLink]="['/customer', customer.id, 'view']">{{ customer.id }}</a></td>
+<!--
+                    <td>{{ customer.code }}</td>
+-->
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.type }}</td>
+                    <td class="td">{{ customer.permanentAddress }}</td>
+                    <td>{{ customer.mobileNumber }}</td>
+                    <td>{{ customer.rentOpeningBalance }}</td>
+                    <td>{{ customer.electricityOpeningBalance }}</td>
+                    <td>{{customer.serviceOpeningBalance}}</td>
+                    <!--
+                                        <td>{{ customer.officePhoneNumber }}</td>
+                    -->
+                    <td><img :src="http://localhost:8083/documents/view/image/{{customer.id}}"  width="70" height="70"/></td>
+
+                    <td class="text-right">
+                        <div class="btn-group customer-flex">
+                            <button type="submit"
+                                    [routerLink]="['/customer', customer.id, 'view']"
+                                    class="btn btn-info btn-sm padd-customer">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/customer', customer.id, 'edit']"
+                                    class="btn btn-primary btn-sm padd-customer">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit"
+                                    (click)="downloadDocumentFile(customer.id)"
+                                    class="btn btn-primary btn-sm padd-customer">
+                                <i class="fa fa-download"></i>
+                                <span class="d-none d-md-inline">Document 1</span>
+                            </button>
+
+                            <button type="submit"
+                                    (click)="downloadVatDocumentFile(customer.id)"
+                                    class="btn btn-primary btn-sm padd-customer">
+                                <i class="fa fa-download"></i>
+                                <span class="d-none d-md-inline">Document 2</span>
+                            </button>
+                            <button type="submit"
+                                    [routerLink]="['/bill',customer.id, 'billview']"
+                                    class="btn btn-primary btn-sm padd-customer">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">View Bill</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(customer)"
+                                    class="btn btn-danger btn-sm padd-customer">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="customers && customers.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
+    </div>
+</div>

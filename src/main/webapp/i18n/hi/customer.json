@@ -1,0 +1,38 @@
+{
+  "rentalUiApp": {
+    "customer": {
+      "home": {
+        "title": "Customers",
+        "createLabel": "नया Customer बनाएँ",
+        "createOrEditLabel": "Customer बनाएँ या संपादित करें",
+        "notFound": "No Customers found"
+      },
+      "created": "एक नया Customer [identifier: {{ param }}] तैयार है",
+      "updated": "एक Customer [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Customer [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Customer [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Customer"
+      },
+      "code": "Code",
+      "name": "Name",
+      "permanentAddress": "Permanent Address",
+      "temporaryAddress": "Temporary Address",
+      "residentPhoneNumber": "Resident Phone Number",
+      "mobileNumber": "Mobile Number",
+      "faxNumber": "Fax Number",
+      "officePhoneNumber": "Office Phone Number",
+      "filePath": "File Path",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

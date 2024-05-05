@@ -1,0 +1,32 @@
+{
+  "rentalUiApp": {
+    "ledger": {
+      "home": {
+        "title": "Ledgers",
+        "createLabel": "Create a new Ledger",
+        "createOrEditLabel": "Create or edit a Ledger",
+        "notFound": "No Ledgers found"
+      },
+      "created": "A new Ledger is created with identifier {{ param }}",
+      "updated": "A Ledger is updated with identifier {{ param }}",
+      "deleted": "A Ledger is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ledger {{ id }}?"
+      },
+      "detail": {
+        "title": "Ledger"
+      },
+      "remarks": "Remarks",
+      "paidAmount": "Paid Amount",
+      "amount": "Amount",
+      "month": "Month",
+      "ledgerType": "Ledger Type",
+      "fiscalYearId": "Fiscal Year",
+      "billId": "Bill",
+      "customerName": "Customer Name",
+      "discountAmount": "Discount Amount",
+      "fineAmount": "Fine Amount",
+      "finalAmount": "Total Amount"
+    }
+  }
+}

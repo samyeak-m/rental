@@ -1,0 +1,58 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="fiscalYear">
+            <h2><span jhiTranslate="rentalUiApp.fiscalYear.detail.title">Fiscal Year</span> {{ fiscalYear.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.fiscalYear.fiscalYearFrom">Fiscal Year From</span></th>
+                    <th><span jhiTranslate="rentalUiApp.fiscalYear.fiscalYearTill">Fiscal Year Till</span></th>
+                    <th><span jhiTranslate="rentalUiApp.fiscalYear.fiscalAdStart">Fiscal Ad Start</span></th>
+                    <th><span jhiTranslate="rentalUiApp.fiscalYear.fiscalAdEnd">Fiscal Ad End</span></th>
+                    <th><span jhiTranslate="rentalUiApp.fiscalYear.fiscalBsStart">Fiscal Bs Start</span></th>
+                    <th><span jhiTranslate="rentalUiApp.fiscalYear.fiscalBsEnd">Fiscal Bs End</span></th>
+                    <th><span jhiTranslate="rentalUiApp.fiscalYear.createdDate">Created Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.fiscalYear.updatedDate">Updated Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.fiscalYear.deleted">Deleted</span></th>
+                    <th><span jhiTranslate="rentalUiApp.fiscalYear.insertedBy">Inserted By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.fiscalYear.updatedBy">Updated By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.fiscalYear.status">Status</span></th>
+                </tr>
+                <tr>
+                    <td><span>{{ fiscalYear.fiscalYearFrom }}</span></td>
+                    <td><span>{{ fiscalYear.fiscalYearTill }}</span></td>
+                    <td><span>{{ fiscalYear.fiscalAdStart }}</span></td>
+                    <td><span>{{ fiscalYear.fiscalAdEnd }}</span></td>
+                    <td> <span>{{ fiscalYear.fiscalBsStart }}</span></td>
+                    <td><span>{{ fiscalYear.fiscalBsEnd }}</span></td>
+                    <td> <span>{{ fiscalYear.createdDate }}</span></td>
+                    <td><span>{{ fiscalYear.updatedDate }}</span></td>
+                    <td> <span>{{ fiscalYear.deleted }}</span></td>
+                    <td><span>{{ fiscalYear.insertedBy }}</span></td>
+                    <td> <span>{{ fiscalYear.updatedBy }}</span></td>
+                    <td> <span>{{ fiscalYear.status }}</span></td>
+                </tr>
+            </table>
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fiscal-year', fiscalYear.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

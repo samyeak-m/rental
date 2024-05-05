@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2 id="page-heading" style="margin-left: 270px">
+    <span> Fill Electricity</span>
+
+</h2>
+<form class="push-right" name="editForm" role="form" novalidate [formGroup]="editForm">
+    <div class="form-row">
+        <div class="form-group col-4" >
+            <label> Month</label>
+         <select class="form-control" formControlName="month" (click)="resetFiscal()">
+          <option value="BAISAKHA"> BAISAKHA</option>
+             <option value="JESTHA"> JESTHA</option>
+             <option value="ASHAD"> ASHAD</option>
+             <option value="SHRAWAN"> SHRAWAN</option>
+             <option value="BHADRA"> BHADRA</option>
+             <option value="ASHOJ"> ASHOJ</option>
+             <option value="KARTIK"> KARTIK</option>
+             <option value="MANGSIR"> MANGSIR</option>
+             <option value="POUSH"> POUSH</option>
+             <option value="MAGH"> MAGH</option>
+             <option value="FALGUN"> FALGUN</option>
+             <option value="CHAITRA"> CHAITRA</option>
+         </select>
+        </div>
+
+        <div class="form-group col-3">
+            <label for="field_fiscalYear">Fiscal Year</label>
+            <div class="input-group">
+                <select class="form-control" id="field_fiscalYear" formControlName="fiscalYearId"
+                        (change)="getFromToFiscal()"
+                        name="fiscalYearId">
+                    <option [ngValue]="fiscalYear.id"
+                            *ngFor="let fiscalYear of fiscalYears">{{ fiscalYear.fiscalYearFrom + '/' + fiscalYear.fiscalYearTill }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+        <div class="form-group">
+            <div formArrayName="shutterElectricityBill">
+                <div *ngFor="let customer of shutterElectricityBill.controls; let i=index">
+                    <div [formGroupName]="i">
+                            <div class="form-group col-3" style="padding-right:30px;">
+                                <label class="form-control-label"
+                                >Customer</label>
+
+                                <select
+                                    class="form-control" name="customer"
+                                    (change)="findByShutterNo(i)"
+                                    *ngIf="!customer.get('shutterNo')!.value"
+                                    formControlName="shutterNo" required>
+                                    <option *ngIf="!customer.get('shutterNo')!.value"
+                                            [ngValue]="null"
+                                            selected></option>
+                                    <option  [ngValue]="customerShutter.shutterN"
+                                             *ngFor="let customerShutter of customerShutters; trackBy: trackById">
+                                    {{customerShutter.customerShutterName}}
+                                    </option>
+                                </select>
+                                <select
+                                    class="form-control" name="customer"
+                                    (change)="findByShutterNo(i)"
+                                    *ngIf="customer.get('shutterNo')!.value"
+                                    formControlName="shutterNo" required>
+                                    <option [ngValue]="customer.get('shutterNo')!.value"
+                                            selected>
+                                        {{customer.get('customerShutterName')!.value}}</option>
+                                    <option  [ngValue]="customerShutter.shutterN"
+                                             *ngFor="let customerShutter of customerShutters; trackBy: trackById">
+                                        {{customerShutter.customerShutterName}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-3" style="padding-right:30px;">
+                                <label class="form-control-label"
+                                >From Unit</label>
+                                <input type="text" class="form-control" name="fromUnit" formControlName="fromUnit" required>
+                            </div>
+
+                            <div class="form-group col-3" style="padding-right:30px;">
+                                <label class="form-control-label"
+                                >To Unit</label>
+                                <input type="text" class="form-control" name="toUnit" (keyup)="setTotalUnit(i, $event)" formControlName="toUnit" required>
+                            </div>
+
+                        <div class="form-group col-3" style="padding-right:30px;">
+                            <label class="form-control-label"
+                            >Rate</label>
+                            <input type="number" class="form-control" name="rate"  formControlName="rate" required>
+                        </div>
+
+
+                        <div class="form-group col-3" style="padding-right:30px;">
+                            <label class="form-control-label"
+                            >Total Unit</label>
+                            <input type="number" class="form-control" name="totalUnit" formControlName="totalUnit" required>
+                        </div>
+
+                        <div class="form-group col-3" style="padding-right:30px;">
+                            <label class="form-control-label"
+                            >Total Amount</label>
+                            <input type="number" class="form-control" name="totalAmount" formControlName="totalAmount" required="">
+                        </div>
+
+
+                        <div class="form-group col-3" style="margin-top:30px;">
+                                            <span (click)="addBill()" class="btn btn-primary">Add more
+                                            </span>
+                            <button *ngIf="i > 0" (click)="removeCustomerBill(i)"
+                                    class="btn btn-danger">Remove
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div style="margin-top: 20px;">
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+            <fa-icon icon="ban"></fa-icon>&nbsp;<span
+            jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button type="button"
+                (click)="save()"
+                id="save-entity" [disabled]="editForm.invalid || isSaving"
+                class="btn btn-primary">
+            <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
+</body>
+</html>

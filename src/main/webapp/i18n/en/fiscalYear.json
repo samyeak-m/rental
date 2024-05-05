@@ -1,0 +1,35 @@
+{
+  "rentalUiApp": {
+    "fiscalYear": {
+      "home": {
+        "title": "Fiscal Years",
+        "createLabel": "Create a new Fiscal Year",
+        "createOrEditLabel": "Create or edit a Fiscal Year",
+        "notFound": "No Fiscal Years found"
+      },
+      "created": "A new Fiscal Year is created with identifier {{ param }}",
+      "updated": "A Fiscal Year is updated with identifier {{ param }}",
+      "deleted": "A Fiscal Year is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Fiscal Year {{ id }}?"
+      },
+      "detail": {
+        "title": "Fiscal Year"
+      },
+      "fiscalYearFrom": "Fiscal Year From",
+      "fiscalYearTill": "Fiscal Year Till",
+      "fiscalAdStart": "Fiscal Ad Start",
+      "fiscalAdEnd": "Fiscal Ad End",
+      "fiscalBsStart": "Fiscal Bs Start",
+      "fiscalBsEnd": "Fiscal Bs End",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedByID": "Inserted By ID",
+      "updatedBy": "Updated By",
+      "updatedByID": "Updated By ID",
+      "status": "Status"
+    }
+  }
+}

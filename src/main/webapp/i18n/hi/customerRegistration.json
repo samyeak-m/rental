@@ -1,0 +1,61 @@
+{
+  "rentalUiApp": {
+    "customerRegistration": {
+      "home": {
+        "title": "CustomerRegistrations",
+        "createLabel": "नया Customer Registration बनाएँ",
+        "createOrEditLabel": "Customer Registration बनाएँ या संपादित करें",
+        "notFound": "No Customer Registrations found"
+      },
+      "created": "एक नया Customer Registration [identifier: {{ param }}] तैयार है",
+      "updated": "एक Customer Registration [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Customer Registration [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Customer Registration [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Customer Registration"
+      },
+      "applicationNumber": "Application Number",
+      "registrationNumber": "Registration Number",
+      "applicationDate": "Application Date",
+      "registrationDate": "Registration Date",
+      "totalArea": "Total Area",
+      "monthlyRate": "Monthly Rate",
+      "customerType": "Customer Type",
+      "shopName": "Shop Name",
+      "discountAmount": "Discount Amount",
+      "electricityTypeId": "Electricity Type Id",
+      "electricityTypeName": "Electricity Type Name",
+      "advanceAmount": "Advance Amount",
+      "depositAmount": "Deposit Amount",
+      "paymentType": "Payment Type",
+      "advancementTillDate": "Advancement Till Date",
+      "currentUnit": "Current Unit",
+      "rate": "Rate",
+      "electricityMeterNumber": "Water Meter Number",
+      "itemMeterNumber": "Item Meter Number",
+      "bankNumber": "Bank Number",
+      "chequeNumber": "Cheque Number",
+      "itemRateId": "Item Rate Id",
+      "itemRateName": "Item Rate Name",
+      "enteredById": "Entered By Id",
+      "enteredByLogin": "Entered By Login",
+      "approvedById": "Approved By Id",
+      "approvedByLogin": "Approved By Login",
+      "customerId": "Customer Id",
+      "customerN": "Customer Name",
+      "enteredDate": "Entered Date",
+      "approvedDate": "Approved Date",
+      "customerShutterDTOList": "Customer Shutter DTO List",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "rentalUiApp": {
+    "bill": {
+      "home": {
+        "title": "Bills",
+        "createLabel": "Create a new Bill",
+        "createOrEditLabel": "Create or edit a Bill",
+        "notFound": "No Bills found"
+      },
+      "created": "A new Bill is created with identifier {{ param }}",
+      "updated": "A Bill is updated with identifier {{ param }}",
+      "deleted": "A Bill is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Bill {{ id }}?"
+      },
+      "detail": {
+        "title": "Bill"
+      },
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "totalArea": "Total Area",
+      "monthlyRate": "Rate",
+      "serviceChargeRate": "Service Charge Rate",
+      "serviceChargeAmount": "Service Charge Amount",
+      "waterRate": "Water Rate",
+      "waterAmount": "Water Amount",
+      "waterFromUnit": "Water From Unit",
+      "waterFillUnit": "Water Fill Unit",
+      "electricityRate": "Electricity Rate",
+      "electricityFromUnit": "Electricity From Unit",
+      "electricityToUnit": "Electricity To Unit",
+      "discountAmount": "Discount Amount",
+      "fineAmount": "Fine Amount",
+      "month": "Month",
+      "elementCollection": "Element Collection",
+      "paymentStatus": "Payment Status",
+      "customerId": "Customer Id",
+      "customerN": "Customer",
+      "fiscalYearId": "Fiscal Year Id",
+      "fiscalYearN": "Fiscal Year"
+    }
+  }
+}

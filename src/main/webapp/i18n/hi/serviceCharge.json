@@ -1,0 +1,34 @@
+{
+  "rentalUiApp": {
+    "serviceCharge": {
+      "home": {
+        "title": "ServiceCharges",
+        "createLabel": "नया Service Charge बनाएँ",
+        "createOrEditLabel": "Service Charge बनाएँ या संपादित करें",
+        "notFound": "No Service Charges found"
+      },
+      "created": "एक नया Service Charge [identifier: {{ param }}] तैयार है",
+      "updated": "एक Service Charge [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Service Charge [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Service Charge [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Service Charge"
+      },
+      "code": "Code",
+      "name": "Name",
+      "rate": "Rate",
+      "remark": "Remark",
+      "businessTypeId": "Business Type",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

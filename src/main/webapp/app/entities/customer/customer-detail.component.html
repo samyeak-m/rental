@@ -1,0 +1,66 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="customer">
+            <h2><span jhiTranslate="rentalUiApp.customer.detail.title">Customer</span> {{ customer.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.customer.code">Code</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.name">Name</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.permanentAddress">Permanent Address</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.temporaryAddress">Temporary Address</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.residentPhoneNumber">Resident Phone Number</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.mobileNumber">Mobile Number</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.faxNumber">Fax Number</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.officePhoneNumber">Office Phone Number</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.createdDate">Created Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.updatedDate">Updated Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.deleted">Deleted</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.insertedBy">Inserted By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.updatedBy">Updated By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.status">Status</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customer.filePath">File Path</span></th>
+                </tr>
+                <tr>
+                    <td> <span>{{ customer.code }}</span></td>
+                    <td> <span>{{ customer.name }}</span></td>
+                    <td> <span>{{ customer.permanentAddress }}</span></td>
+                    <td> <span>{{ customer.temporaryAddress }}</span></td>
+                    <td>  <span>{{ customer.residentPhoneNumber }}</span></td>
+                    <td> <span>{{ customer.mobileNumber }}</span></td>
+                    <td><span>{{ customer.faxNumber }}</span></td>
+                    <td> <span>{{ customer.officePhoneNumber }}</span></td>
+                    <td> <span>{{ customer.createdDate | date:'medium' }}</span></td>
+                    <td> <span>{{ customer.updatedDate | date:'medium' }}</span></td>
+                    <td>  <span>{{ customer.deleted }}</span></td>
+                    <td> <span>{{ customer.insertedBy }}</span></td>
+                    <td> <span>{{ customer.updatedBy }}</span></td>
+                    <td> <span>{{ customer.status }}</span></td>
+                    <td> <span><img src="{{ customer.filePath }}" width="70" height="70" /></span></td>
+                </tr>
+            </table>
+
+
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/customer', customer.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

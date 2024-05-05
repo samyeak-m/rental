@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h4 class="modal-title">Alert</h4>
+
+    <button aria-label="Close" data-dismiss="modal" class="close" type="button" (click)="activeModal.dismiss('closed')">
+        <span aria-hidden="true">x</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+           <h2>Your Request Has been submitted, you will be notified once the confirmation is done by the administrator !! </h2>
+        </div>
+
+        <div class="col-md-8">
+           <button (click)="closeAlert()">Close</button>
+        </div>
+    </div>
+</div>

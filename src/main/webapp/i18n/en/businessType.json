@@ -1,0 +1,32 @@
+{
+  "rentalUiApp": {
+    "businessType": {
+      "home": {
+        "title": "Business Types",
+        "createLabel": "Create a new Business Type",
+        "createOrEditLabel": "Create or edit a Business Type",
+        "notFound": "No Business Types found"
+      },
+      "created": "A new Business Type is created with identifier {{ param }}",
+      "updated": "A Business Type is updated with identifier {{ param }}",
+      "deleted": "A Business Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Business Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Business Type"
+      },
+      "typeCode": "Code",
+      "typeName": "Name",
+      "remarks": "Remarks",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

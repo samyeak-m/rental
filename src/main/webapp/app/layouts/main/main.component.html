@@ -1,0 +1,17 @@
+
+<div >
+    <router-outlet name="navbar"></router-outlet>
+</div>
+<div class="contain-l">
+    <div style="min-height: 650px; " class="row">
+        <div style="margin-top: 73px" class="col-2">
+            <jhi-sidenavbar *ngIf = "isAuthenticated()"></jhi-sidenavbar>
+        </div>
+        <div style="margin-top: 80px; background-color: #e0ffff !important;"  class="col-10">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <jhi-footer></jhi-footer>
+</div>
+
+

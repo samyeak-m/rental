@@ -1,0 +1,54 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="country">
+            <h2><span jhiTranslate="rentalUiApp.country.detail.title">Country</span> {{ country.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.country.name">Name</span></th>
+                    <th><span jhiTranslate="rentalUiApp.country.code">Code</span></th>
+                    <th><span jhiTranslate="rentalUiApp.country.nationality">Nationality</span></th>
+                    <th><span jhiTranslate="rentalUiApp.country.description">Description</span></th>
+                    <th><span jhiTranslate="rentalUiApp.country.createdDate">Created Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.country.updatedDate">Updated Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.country.deleted">Deleted</span></th>
+                    <th><span jhiTranslate="rentalUiApp.country.insertedBy">Inserted By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.country.updatedBy">Updated By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.country.status">Status</span></th>
+                </tr>
+              <tr>
+                    <td> <span>{{ country.name }}</span></td>
+                    <td> <span>{{ country.code }}</span></td>
+                    <td> <span>{{ country.nationality }}</span></td>
+                    <td> <span>{{ country.description }}</span></td>
+                    <td> <span>{{ country.createdDate | date:'medium' }}</span></td>
+                    <td>  <span>{{ country.updatedDate | date:'medium' }}</span></td>
+                   <td>  <span>{{ country.deleted }}</span></td>
+                   <td>  <span>{{ country.insertedBy }}</span></td>
+                   <td> <span>{{ country.updatedBy }}</span></td>
+                   <td><span>{{ country.status }}</span></td>
+              </tr>
+            </table>
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/country', country.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,604 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <form name="editForm" role="form" novalidate  [formGroup]="editForm">
+                <h2 id="jhi-customer-registration-heading"
+                    jhiTranslate="rentalUiApp.customerRegistration.home.createOrEditLabel">Create or edit a Customer
+                    Registration</h2>
+
+                <hr>
+                <div>
+                    <jhi-alert-error></jhi-alert-error>
+
+
+                    <div class="form-row">
+                        <div class="form-group col-4" [hidden]="!editForm.get('id')!.value">
+                            <label for="id" jhiTranslate="global.field.id">ID</label>
+                            <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly/>
+                        </div>
+                    </div>
+
+                    <div class="form-row  ">
+                        <div class="form-group col-4">
+                            <label class="form-control-label"
+                                   jhiTranslate="rentalUiApp.customerRegistration.applicationNumber"
+                                   for="field_applicationNumber">Application Number</label>
+                            <input type="text" class="form-control" name="applicationNumber"
+                                   id="field_applicationNumber"
+                                   formControlName="applicationNumber" readonly/>
+                            <div
+                                *ngIf="editForm.get('applicationNumber')!.invalid && (editForm.get('applicationNumber')!.dirty || editForm.get('applicationNumber')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('applicationNumber')?.errors?.required"
+                                       jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group col-4">
+                            <label class="form-control-label"
+                                   jhiTranslate="rentalUiApp.customerRegistration.applicationDate"
+                                   for="field_applicationDate">Application Date</label>
+                            <input type="text" class="form-control" name="applicationDate" id="field_applicationDate"
+                                   formControlName="applicationDate" readonly/>
+                            <div
+                                *ngIf="editForm.get('applicationDate')!.invalid && (editForm.get('applicationDate')!.dirty || editForm.get('applicationDate')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('applicationDate')?.errors?.required"
+                                       jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group col-4">
+                            <label class="form-control-label"
+                                   jhiTranslate="rentalUiApp.customerRegistration.registrationNumber"
+                                   for="field_registrationNumber">Registration Number</label>
+                            <input type="text" class="form-control" name="registrationNumber"
+                                   id="field_registrationNumber"
+                                   formControlName="registrationNumber" readonly/>
+                            <div
+                                *ngIf="editForm.get('registrationNumber')!.invalid && (editForm.get('registrationNumber')!.dirty || editForm.get('registrationNumber')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('registrationNumber')?.errors?.required"
+                                       jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group col-4">
+                            <label class="form-control-label"
+                                   jhiTranslate="rentalUiApp.customerRegistration.registrationDate"
+                                   for="field_registrationDate" >Registration Date</label>
+                            <input type="text" class="form-control" name="registrationDate" id="field_registrationDate"
+                                   formControlName="registrationDate" readonly/>
+                            <div
+                                *ngIf="editForm.get('registrationDate')!.invalid && (editForm.get('registrationDate')!.dirty || editForm.get('registrationDate')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('registrationDate')?.errors?.required"
+                                       jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+
+                        </div>
+                        <div class="form-group" >
+                            <div formArrayName="customerShutters">
+                                <div *ngFor="let customerShutter of customerShutters.controls; let i=index">
+                                    <div [formGroupName]="i">
+                                        <input type="text" formControlName="id" hidden>
+                                        <div class="form-row">
+                                            <div class="form-group col-4">
+                                                <label class="form-control-label"
+                                                >Shutter No</label>
+                                                <select
+                                                    (change)="findWithOutCurrentShutter(i)"
+                                                    *ngIf="!customerShutter.get('shutterId')!.value"
+                                                    class="form-control" name="shutterId"
+                                                    formControlName="shutterId">
+                                                    <option *ngIf="!customerShutter.get('shutterId')!.value"
+                                                            [ngValue]="null"
+                                                            selected></option>
+                                                    <option
+                                                        [ngValue]="shutter.id"
+                                                        *ngFor="let shutter of shutterList; trackBy: trackById">
+                                                        {{ shutter.shutterNo }}
+                                                    </option>
+                                                </select>
+
+                                                <select
+                                                    (change)="findWithOutCurrentShutter(i)"
+                                                    *ngIf="customerShutter.get('shutterId')!.value"
+                                                    class="form-control" name="shutterId"
+                                                    formControlName="shutterId">
+                                                    <option [ngValue]="customerShutter.get('shutterId')!.value"
+                                                            selected>
+                                                        {{customerShutter.get('shutterNo')!.value}}</option>
+                                                    <option
+                                                        [ngValue]="shutter.id"
+                                                        *ngFor="let shutter of shutterList; trackBy: trackById">
+                                                        {{ shutter.shutterNo }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-4" *ngIf="i==0">
+                                                <label class="form-control-label">Effective Date From</label>
+                                                <div class="d-flex">
+                                                    <input type="text"  id="field_effectiveDateFrom"
+                                                           class="form-control"
+                                                           maxlength="10"
+                                                           name="effectiveDateFrom"
+                                                           formControlName="effectiveDateFrom"
+                                                    placeholder="e.g. 2080-01-01"/>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="form-group col-4" *ngIf="i==0">
+                                                <label class="form-control-label" for="field_effectiveDateTo">Effective
+                                                    Date To</label>
+                                                <div class="d-flex">
+                                                    <input type="text"  id="field_effectiveDateTo"
+                                                           class="form-control"
+                                                           maxlength="10"
+                                                           name="effectiveDateTo"
+                                                           formControlName="effectiveDateTo"
+                                                           placeholder="e.g. 2081-12-30"/>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group col-9" >
+                                            <span (click)="addNewCustomerShutter()" class="btn btn-primary">Add more Shutter
+                                            </span>
+                                                <button *ngIf="i > 0" (click)="removeCustomerShutter(i)"
+                                                        class="btn btn-danger">Remove
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label class="form-control-label">Customer</label>
+                            <select class="form-control" id="field_customer" name="customer"
+                                    (click)="getListOfCustomer()"
+                                    formControlName="customerId">
+                                <option *ngIf="!editForm.get('customerId')!.value" [ngValue]="null"
+                                        selected></option>
+                                <option [ngValue]="customer.id"
+                                        *ngFor="let customer of customerList; trackBy: trackById">{{ customer.name }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-4">
+                            <label class="form-control-label" for="field_monthlyRent">
+                                Monthly Rent</label>
+                            <input type="number" class="form-control" name="monthlyRent" id="field_monthlyRent"
+                                   formControlName="monthlyRent"/>
+                            <div
+                                *ngIf="editForm.get('monthlyRent')!.invalid && (editForm.get('monthlyRent')!.dirty || editForm.get('monthlyRent')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('monthlyRent')?.errors?.required"
+                                       jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.get('monthlyRent')?.errors?.number"
+                                       jhiTranslate="entity.validation.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group col-4">
+                            <label class="form-control-label"
+                                   jhiTranslate="rentalUiApp.customerRegistration.depositAmount"
+                                   for="field_depositAmount">Deposit Amount</label>
+                            <input type="number" class="form-control" name="depositAmount" id="field_depositAmount"
+                                   formControlName="depositAmount"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label class="form-control-label">Business Type</label>
+                            <select class="form-control" id="field_businessType" name="Business Type"
+                                    formControlName="businessTypeId" (change)="findByBusinessId()">
+                                <option *ngIf="!editForm.get('businessTypeId')!.value" [ngValue]="null"
+                                        selected></option>
+                                <option [ngValue]="businessType.id"
+                                        *ngFor="let businessType of businessTypeList; trackBy: trackById">
+                                    {{ businessType.typeName }}</option>
+                            </select>
+                            <div
+                                *ngIf="editForm.get('businessTypeId')!.invalid && (editForm.get('businessTypeId')!.dirty || editForm.get('businessTypeId')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('businessTypeId')?.errors?.required"
+                                       jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.get('businessTypeId')?.errors?.number"
+                                       jhiTranslate="entity.validation.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group col-4">
+                            <label class="form-control-label"
+                                   jhiTranslate="rentalUiApp.customerRegistration.advancementTillDate"
+                                   for="field_advancementTillDate"style="padding-right:30px;">Advancement Till Date</label>
+                            <div class="d-flex">
+                                <input id="field_advancementTillDate" type="datetime-local" class="form-control"
+                                       name="advancementTillDate" formControlName="advancementTillDate"
+                                       placeholder="YYYY-MM-DD HH:mm"/>
+                            </div>
+                            <div
+                                *ngIf="editForm.get('advancementTillDate')!.invalid && (editForm.get('advancementTillDate')!.dirty || editForm.get('advancementTillDate')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('advancementTillDate')?.errors?.required"
+                                       jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.get('advancementTillDate')?.errors?.ZonedDateTimelocal"
+                                       jhiTranslate="entity.validation.ZonedDateTimelocal">
+
+                                </small>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-4" >
+                            <label class="form-control-label">Water</label>
+                            <select class="form-control" id="field_item" name="item"
+                                    formControlName="itemId" (click)="findByItemId()">
+                                <option *ngIf="!editForm.get('itemId')!.value" [ngValue]="null"
+                                        selected></option>
+                                <option [ngValue]="item.id"
+                                        *ngFor="let item of itemList; trackBy: trackById">{{ item.name }}</option>
+                            </select>
+                            <div
+                                *ngIf="editForm.get('itemId')!.invalid && (editForm.get('itemId')!.dirty || editForm.get('itemId')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('itemId')?.errors?.required"
+                                       jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.get('itemId')?.errors?.number"
+                                       jhiTranslate="entity.validation.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                    </div>
+
+                  <!--  <div class="form-row">
+                       &lt;!&ndash; <div class="form-group col-4">
+                            <label class="form-control-label"
+                                   for="field_electricityMeterNumber">Electricity Meter Type</label>
+                            <select  class="form-control" id="field_electricityMeterType" name="Electricity Meter Type"
+                                     formControlName="electricityMeterType">
+                                <option value="FIXED"> FIXED</option>
+                                <option value="METER"> METER </option>
+                            </select>
+                        </div>&ndash;&gt;
+
+
+                    </div>-->
+
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label class="form-control-label" jhiTranslate="rentalUiApp.customerRegistration.shopName"
+                                   for="field_shopName" >Shop Name</label>
+                            <input type="text" class="form-control" name="shopName" id="field_shopName"
+                                   formControlName="shopName" readonly/>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label class="form-control-label" jhiTranslate="rentalUiApp.customerRegistration.totalArea"
+                                   for="field_totalArea" >Total Area</label>
+                            <input type="number" class="form-control" name="totalArea" id="field_totalArea"
+                                   formControlName="totalArea" readonly/>
+
+                        </div>
+
+
+
+
+                        <div class="form-group col-4">
+                            <label class="form-control-label" for="field_monthlyRate">
+                                Rate</label>
+                            <input type="number" class="form-control" name="monthlyRate" id="field_monthlyRate"
+                                   formControlName="monthlyRate" readonly/>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label class="form-control-label"
+                                   for="field_rentOpeningBalance">Rent Opening Balance</label>
+                            <input type="text" class="form-control" name="rentOpeningBalance"
+                                   id="field_rentOpeningBalance" formControlName="rentOpeningBalance" readonly/>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label class="form-control-label"
+                                   for="field_electricityOpeningBalance">Electricity Opening Balance</label>
+                            <input type="text" class="form-control" name="electricityOpeningBalance"
+                                   id="field_electricityOpeningBalance" formControlName="electricityOpeningBalance" readonly/>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label class="form-control-label">Service Opening Balance</label>
+                            <input type="text" class="form-control" name="serviceOpeningBalance"
+                                   id="field_serviceOpeningBalance" formControlName="serviceOpeningBalance" readonly/>
+                        </div>
+
+
+
+
+                    </div>
+
+                <div class="form-row">
+                <div class="form-group col-4">
+                    <label class="form-control-label"
+                           for="field_rate">Water Rate</label>
+                    <input type="number" class="form-control" name="rate" id="field_rate"
+                           formControlName="rate" readonly/>
+                    <div
+                        *ngIf="editForm.get('rate')!.invalid && (editForm.get('rate')!.dirty || editForm.get('rate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('rate')?.errors?.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               [hidden]="!editForm.get('rate')?.errors?.number"
+                               jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-4">
+                    <label class="form-control-label">Service Charge</label>
+                    <fieldset [disabled]="isAnonymous">
+                        <select class="form-control" id="field_serviceCharge" name="Service Charge"
+                                formControlName="serviceChargeId"
+                                (click)="setServiceChargeRate()">
+                            <option *ngIf="!editForm.get('serviceChargeId')!.value" [ngValue]="null"
+                                    selected></option>
+                            <option [ngValue]="serviceCharge.id"
+                                    *ngFor="let serviceCharge of serviceChargeList; trackBy: trackById">
+                                {{ serviceCharge.name }}</option>
+                        </select>
+                    </fieldset>
+                    <div
+                        *ngIf="editForm.get('serviceChargeId')!.invalid && (editForm.get('serviceChargeId')!.dirty || editForm.get('serviceChargeId')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('serviceChargeId')?.errors?.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               [hidden]="!editForm.get('serviceChargeId')?.errors?.number"
+                               jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                    <div class="form-group col-4">
+                        <label class="form-control-label">Service Charge Rate</label>
+                        <input type="text" class="form-control" formControlName="serviceChargeRate" readonly>
+                    </div>
+                </div>
+
+                    <div class="form-group " >
+                        <div class="form-row">
+                            <div class="form-group col-4">
+                                <label class="form-control-label"
+                                       jhiTranslate="rentalUiApp.customerRegistration.electricityMeterNumber"
+                                       for="field_electricityMeterNumber">Electricity Meter Number</label>
+                                <input type="text" class="form-control" name="electricityMeterNumber"
+                                       id="field_electricityMeterNumber"
+                                       formControlName="electricityMeterNumber"/>
+                            </div>
+                            <div class="form-group col-4">
+                                <label class="form-control-label">Electricity Type</label>
+                                <fieldset [disabled]="isAnonymous">
+                                    <select  class="form-control" id="field_electricityType" name="Electricity Type"
+                                             formControlName="electricityTypeId"
+                                             (click)="findByElectricityTypeId()">
+                                        <option *ngIf="!editForm.get('electricityTypeId')!.value" [ngValue]="null"
+                                                selected></option>
+                                        <option [ngValue]="electricity.id"
+                                                *ngFor="let electricity of electricityList; trackBy: trackById">{{ electricity.typeName }}</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+
+                            <div
+                                *ngIf="editForm.get('electricityTypeId')!.invalid && (editForm.get('electricityTypeId')!.dirty || editForm.get('electricityTypeId')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('electricityTypeId')?.errors?.required"
+                                       jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.get('electricityTypeId')?.errors?.number"
+                                       jhiTranslate="entity.validation.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
+
+                            <div class="form-group col-4">
+                                <label class="form-control-label"
+                                       for="field_electricityMeterNumber">Electricity Rate</label>
+                                <input type="text" class="form-control" name="electricityMeterNumber"
+                                       id="field_electricityRate" formControlName="electricityRate" readonly/>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="!editForm.get('showShutter')!.value">
+                        <div class="form-group col-4">
+                            <label class="form-control-label">Floor</label>
+                            <select class="form-control"  name="payment type"
+                                    formControlName="floorId">
+                                <option *ngIf="!editForm.get('floorId')!.value" [ngValue]="null"
+                                        selected></option>
+                                <option [ngValue]="floor.id"
+                                        *ngFor="let floor of floors; trackBy: trackById">
+                                    {{ floor.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-3">
+                        <label class="form-control-label"
+                               for="field_discountType">Show Policy</label>
+                        <input type="checkbox" class="form-control" name="showPolicy"
+                               formControlName="showPolicy"/>
+                    </div>
+                    <div class="form-group " *ngIf="editForm.get('showPolicy')!.value">
+                    <div class="form-group">
+                        <div formGroupName="discountPolicies">
+                            <div *ngFor="let discountPolicy of discountPolicies.controls; let i=index">
+                                <div [formGroupName]="i">
+                                    <input type="text" formControlName="id" hidden>
+                                    <div class="form-row">
+                                        <div class="form-group col-4">
+                                            <label for="field_discountType" class="form-control-label"> Name</label>
+                                            <div>
+                                                <fieldset [disabled]="isAnonymous">
+                                                    <select class="form-control"  name="id" formControlName="id"
+                                                            *ngIf="!discountPolicy.get('id')!.value"
+                                                            (change)="setDiscountPolicies(i)">
+
+                                                        <option *ngIf="!discountPolicy.get('id')!.value"
+                                                                [ngValue]="null" selected>
+                                                        <option
+                                                            [ngValue]="discountPolicy.id"
+                                                            *ngFor="let discountPolicy of policiesList; trackBy: trackById">
+                                                            {{ discountPolicy.name }}
+                                                        </option>
+                                                    </select>
+                                                    <select class="form-control"  name="id" formControlName="id"
+                                                            *ngIf="discountPolicy.get('id')!.value"
+                                                            (change)="setDiscountPolicies(i)">
+                                                        <option [ngValue]="discountPolicy.get('id')!.value"
+                                                                selected>
+                                                            {{discountPolicy.get('name')!.value}}</option>
+                                                        <option
+                                                            [ngValue]="discountPolicy.id"
+                                                            *ngFor="let discountPolicy of policiesList; trackBy: trackById">
+                                                            {{ discountPolicy.name }}
+                                                        </option>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-4 ">
+                                            <label for="field_discountType" class="form-control-label" name="numberOfDays"> Number Of Days </label>
+                                            <div class="d-flex">
+                                                <input type="number"  id="field_numberOfDays"
+                                                       class="form-control"
+                                                       formControlName="numberOfDays" readonly/>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-4">
+                                            <label for="field_discountType" class="form-control-label" name="discount"> Discount </label>
+                                            <div class="d-flex">
+                                                <input type="number"  id="field_discount"
+                                                       class="form-control"
+                                                       formControlName="discount"  readonly/>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-4">
+                                            <label for="field_discountType" class="form-control-label"> Policy Type </label>
+                                            <div class="d-flex">
+                                                <input type="text" name="policyType"
+                                                       class="form-control"
+                                                       formControlName="policyType" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label for="field_discountType" class="form-control-label"> DISCOUNT TYPE </label>
+                                            <div class="d-flex">
+                                                <input id="field_discountType" type="text" name="discountType"
+                                                       class="form-control"
+                                                       formControlName="discountType" readonly>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-9" >
+                                            <span (click)="addNewDiscountPolicies()" class="btn btn-primary">Add more
+                                            </span>
+                                            <button *ngIf="i > 0" (click)="removeDiscountPolicies(i)"
+                                                    class="btn btn-danger">Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        </div>
+    <div class="justify-content-center" style="margin-top: 20px;">
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+            <fa-icon icon="ban"></fa-icon>&nbsp;<span
+            jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+
+
+
+        <button type="submit"  id="save-entity1" [disabled]="editForm.invalid || isSaving"
+                class="btn btn-primary" (click)="save()">
+            <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+
+        <div *ngIf="!this.editForm.get('floorId')!.value && !this.customerShutters.at(0).get('shutterId')!.value">
+            <small class="form-text text-danger">
+                Floor or Shutter cannot be empty
+            </small>
+        </div>
+
+
+    </div>
+</div>

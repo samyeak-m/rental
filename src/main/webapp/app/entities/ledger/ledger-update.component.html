@@ -1,0 +1,129 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-ledger-heading" jhiTranslate="rentalUiApp.ledger.home.createOrEditLabel">Create or edit a Ledger</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-row">
+                <div class="form-group col-4" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.ledger.amount" for="field_amount">Amount</label>
+                    <input type="number" class="form-control" name="amount" id="field_amount"
+                           formControlName="amount"/>
+                    <div *ngIf="editForm.get('amount')!.invalid && (editForm.get('amount')!.dirty || editForm.get('amount')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('amount')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('amount')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                    <div class="form-group col-4">
+                        <label class="form-control-label" jhiTranslate="rentalUiApp.ledger.paidAmount" for="field_paidAmount">Paid Amount</label>
+                        <input type="number" class="form-control" name="paidAmount" id="field_paidAmount"
+                               formControlName="paidAmount"/>
+                        <div *ngIf="editForm.get('paidAmount')!.invalid && (editForm.get('paidAmount')!.dirty || editForm.get('paidAmount')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('paidAmount')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.get('paidAmount')?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group col-4">
+                        <label class="form-control-label" jhiTranslate="rentalUiApp.ledger.remarks" for="field_remarks">Remarks</label>
+                        <input type="text" class="form-control" name="remarks" id="field_remarks"
+                               formControlName="remarks"/>
+                        <div *ngIf="editForm.get('remarks')!.invalid && (editForm.get('remarks')!.dirty || editForm.get('remarks')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('remarks')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.ledger.month" for="field_month">Month</label>
+                    <input type="text" class="form-control" name="month" id="field_month"
+                           formControlName="month"/>
+                    <div *ngIf="editForm.get('month')!.invalid && (editForm.get('month')!.dirty || editForm.get('month')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('month')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.ledger.ledgerType" for="field_ledgerType">Ledger Type</label>
+                    <select class="form-control" name="ledgerType" formControlName="ledgerType" id="field_ledgerType">
+                        <option value="PAID_AMOUNT">{{ 'rentalUiApp.LedgerType.PAID_AMOUNT' | translate }}</option>
+                        <option value="AMOUNT">{{ 'rentalUiApp.LedgerType.AMOUNT' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('ledgerType')!.invalid && (editForm.get('ledgerType')!.dirty || editForm.get('ledgerType')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ledgerType')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-4">
+                    <label class="form-control-label">Fiscal Year</label>
+                    <select class="form-control" id="field_fiscalYear" name="fiscalYear" formControlName="fiscalYear">
+                        <option *ngIf="!editForm.get('fiscalYear')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="fiscalYearOption.id === editForm.get('fiscalYear')!.value?.id ? editForm.get('fiscalYear')!.value : fiscalYearOption" *ngFor="let fiscalYearOption of fiscalyears; trackBy: trackById">{{ fiscalYearOption.id }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('fiscalYear')!.invalid && (editForm.get('fiscalYear')!.dirty || editForm.get('fiscalYear')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('fiscalYear')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                </div>
+<!--                <div class="form-group">-->
+<!--                    <label class="form-control-label" jhiTranslate="rentalUiApp.ledger.bill" for="field_bill">Bill</label>-->
+<!--                    <select class="form-control" id="field_bill" name="bill" formControlName="bill">-->
+<!--                        <option *ngIf="!editForm.get('bill')!.value" [ngValue]="null" selected></option>-->
+<!--                        <option [ngValue]="billOption.id === editForm.get('bill')!.value?.id ? editForm.get('bill')!.value : billOption" *ngFor="let billOption of bills; trackBy: trackById">{{ billOption.id }}</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <div *ngIf="editForm.get('bill')!.invalid && (editForm.get('bill')!.dirty || editForm.get('bill')!.touched)">-->
+<!--                    <small class="form-text text-danger"-->
+<!--                           *ngIf="editForm.get('bill')?.errors?.required" jhiTranslate="entity.validation.required">-->
+<!--                        This field is required.-->
+<!--                    </small>-->
+<!--                </div>-->
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

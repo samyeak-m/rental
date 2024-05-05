@@ -1,0 +1,24 @@
+{
+  "rentalUiApp": {
+    "cashReceipt": {
+      "home": {
+        "title": "CashReceipts",
+        "createLabel": "नया Cash Receipt बनाएँ",
+        "createOrEditLabel": "Cash Receipt बनाएँ या संपादित करें",
+        "notFound": "No Cash Receipts found"
+      },
+      "created": "एक नया Cash Receipt [identifier: {{ param }}] तैयार है",
+      "updated": "एक Cash Receipt [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Cash Receipt [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Cash Receipt [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Cash Receipt"
+      },
+      "amount": "Amount",
+      "bill": "Bill",
+      "customer": "Customer"
+    }
+  }
+}

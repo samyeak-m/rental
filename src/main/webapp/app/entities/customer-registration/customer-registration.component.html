@@ -1,0 +1,142 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h2 id="page-heading">
+                <span jhiTranslate="rentalUiApp.customerRegistration.home.title">Customer Registrations</span>
+
+                <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-customer-registration" [routerLink]="['/customer-registration/new']">
+                    <fa-icon icon="plus"></fa-icon>
+                    <span  jhiTranslate="rentalUiApp.customerRegistration.home.createLabel">
+            Create a new Customer Registration
+            </span>
+                </button>
+            </h2>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <jhi-alert></jhi-alert>
+
+            <form name="editForm" role="form" (ngSubmit)="filter()" style="margin-right: 20px">
+                <div class="row">
+                    <jhi-alert-error></jhi-alert-error>
+                    <div>
+                        <input type="text" class="form-control" id="query" name="query"
+                               placeholder="Search Customer Registration"  [(ngModel)]="query" />
+                    </div>
+                    <div style="margin-left: 30px">
+                        <button type="submit" id="search-user" class="btn btn-primary" [disabled]="!query">
+                            <fa-icon></fa-icon>&nbsp;<span>Search</span>
+                        </button>
+                        <button type="reset" id="reset-user" class="btn btn-primary" (click)="reset()">
+                            <fa-icon></fa-icon>&nbsp;<span>Reset</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="alert alert-warning" id="no-result" *ngIf="customerRegistrations?.length === 0">
+                <span jhiTranslate="rentalUiApp.customerRegistration.home.notFound">No customerRegistrations found</span>
+            </div>
+
+            <div class="table-responsive" id="entities" *ngIf="customerRegistrations && customerRegistrations.length > 0">
+                <table class="table table-striped" aria-describedby="page-heading">
+                    <thead>
+                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                        <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="applicationNumber"><span jhiTranslate="rentalUiApp.customerRegistration.applicationNumber">Application Number</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="registrationNumber"><span jhiTranslate="rentalUiApp.customerRegistration.registrationNumber">Registration Number</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="applicationDate"><span jhiTranslate="rentalUiApp.customerRegistration.applicationDate">Application Date</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="registrationDate"><span jhiTranslate="rentalUiApp.customerRegistration.registrationDate">Registration Date</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="totalArea"><span jhiTranslate="rentalUiApp.customerRegistration.totalArea">Total Area</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="monthlyRate"><span jhiTranslate="rentalUiApp.customerRegistration.monthlyRate">Rate</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="monthlyRent"><span>Monthly Rent</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="customerType"><span jhiTranslate="rentalUiApp.customerRegistration.customerType">Customer Type</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="shopName"><span jhiTranslate="rentalUiApp.customerRegistration.shopName">Shop Name</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="businessTypeName"><span>Business Type Name</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="serviceChargeName"><span>Service Charge Name</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="electricityTypeName"><span>Electricity Type Name</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="advanceAmount"><span jhiTranslate="rentalUiApp.customerRegistration.advanceAmount">Advance Amount</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="depositAmount"><span jhiTranslate="rentalUiApp.customerRegistration.depositAmount">Deposit Amount</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="paymentType"><span jhiTranslate="rentalUiApp.customerRegistration.paymentType">Payment Type</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="advancementTillDate"><span jhiTranslate="rentalUiApp.customerRegistration.advancementTillDate">Advancement Till Date</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="currentUnit"><span jhiTranslate="rentalUiApp.customerRegistration.currentUnit">Current Unit</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="monthlyRate"><span jhiTranslate="rentalUiApp.customerRegistration.rate">Rate</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="electricityMeterNumber"><span jhiTranslate="rentalUiApp.customerRegistration.electricityMeterNumber">Electricity Meter Number</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="itemMeterNumber"><span jhiTranslate="rentalUiApp.customerRegistration.itemMeterNumber">Item Meter Number</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="bankNumber"><span jhiTranslate="rentalUiApp.customerRegistration.bankNumber">Bank Number</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="chequeNumber"><span jhiTranslate="rentalUiApp.customerRegistration.chequeNumber">Cheque Number</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="itemRateName"><span jhiTranslate="rentalUiApp.customerRegistration.itemRateName">Item Rate Name</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="customerN"><span jhiTranslate="rentalUiApp.customerRegistration.customerN">Customer N</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let customerRegistration of customerRegistrations ;trackBy: trackId">
+                        <td><a [routerLink]="['/customer-registration', customerRegistration.id, 'view']">{{ customerRegistration.id }}</a></td>
+                        <td>{{ customerRegistration.applicationNumber }}</td>
+                        <td>{{ customerRegistration.registrationNumber }}</td>
+                        <td>{{ customerRegistration.applicationDate }}</td>
+                        <td>{{ customerRegistration.registrationDate }}</td>
+                        <td>{{ customerRegistration.totalArea }}</td>
+                        <td>{{ customerRegistration.monthlyRate }}</td>
+                        <td>{{ customerRegistration.monthlyRent }}</td>
+                        <td>{{ customerRegistration.customerType }}</td>
+                        <td>{{ customerRegistration.shopName }}</td>
+                        <td>{{ customerRegistration.businessTypeName }}</td>
+                        <td>{{ customerRegistration.serviceChargeName }}</td>
+                        <td>{{ customerRegistration.electricityTypeName }}</td>
+                        <td>{{ customerRegistration.advanceAmount }}</td>
+                        <td>{{ customerRegistration.depositAmount }}</td>
+                        <td>{{ customerRegistration.paymentType }}</td>
+                        <td>{{ customerRegistration.advancementTillDate | date:'medium' }}</td>
+                        <td>{{ customerRegistration.currentUnit }}</td>
+                        <td>{{ customerRegistration.rate }}</td>
+                        <td>{{ customerRegistration.electricityMeterNumber }}</td>
+                        <td>{{ customerRegistration.itemMeterNumber }}</td>
+                        <td>{{ customerRegistration.bankNumber }}</td>
+                        <td>{{ customerRegistration.chequeNumber }}</td>
+                        <td>{{ customerRegistration.itemRateName }}</td>
+                        <td>{{ customerRegistration.customerN }}</td>
+                        <td class="text-right">
+                            <div class="btn-group">
+                                <button type="submit"
+                                        [routerLink]="['/customer-registration', customerRegistration.id, 'view']"
+                                        class="btn btn-info btn-sm">
+                                    <fa-icon icon="eye"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                </button>
+
+                                <button type="submit"
+                                        [disabled]="customerRegistration.deleted &&
+                                                    !customerRegistration.status"
+                                        [routerLink]="['/customer-registration', customerRegistration.id, 'edit']"
+                                        class="btn btn-primary btn-sm">
+                                    <fa-icon icon="pencil-alt"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                </button>
+
+                                <button type="submit" [disabled]="customerRegistration.deleted &&
+                                !customerRegistration.status" (click)="delete(customerRegistration)"
+                                        class="btn btn-danger btn-sm">
+                                    <fa-icon icon="times"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div *ngIf="customerRegistrations && customerRegistrations.length > 0">
+                <div class="row justify-content-center">
+                    <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                </div>
+
+                <div class="row justify-content-center">
+                    <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

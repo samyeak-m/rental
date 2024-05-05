@@ -1,0 +1,141 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-discount-policy-heading" jhiTranslate="rentalUiApp.discountPolicy.home.createOrEditLabel">Create or edit a Discount/ Fine Policy</h2>
+
+            <hr>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-row">
+                <div class="form-group col-4" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-4">
+                    <label class="form-control-label">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div
+                        *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                    <div class="form-group col-4">
+                        <label class="form-control-label">Number Of Days</label>
+                        <input type="number" class="form-control" name="numberOfDays" id="field_numberOfDays"
+                               formControlName="numberOfDays"/>
+                        <div
+                            *ngIf="editForm.get('numberOfDays')!.invalid && (editForm.get('numberOfDays')!.dirty || editForm.get('numberOfDays')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('numberOfDays')?.errors?.required"
+                                   jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label class="form-control-label">  Type </label>
+                        <select class="form-control" (change)="validateAmount()" formControlName="discountType">
+                            <option value="PERCENTAGE"> PERCENTAGE </option>
+                            <option value="FLAT"> FLAT </option>
+                        </select>
+                        <div
+                            *ngIf="editForm.get('discountType')!.invalid && (editForm.get('discountType')!.dirty
+                            || editForm.get('discountType')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('discountType')?.errors?.required"
+                                   jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-4">
+                        <label class="form-control-label">Discount/Fine</label>
+                        <fieldset [disabled]="disabled">
+                        <input type="number" class="form-control" (keyup)="setDiscountAmount()" name="name" id="field_discount"
+                               minlength="0"
+                               formControlName="discount"/>
+                        </fieldset>
+                        <div
+                            *ngIf="editForm.get('discount')!.invalid && (editForm.get('discount')!.dirty || editForm.get('discount')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('discount')?.errors?.required"
+                                   jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group col-4">
+                        <label class="form-control-label"> Policy Type </label>
+                        <select class="form-control" formControlName="policyType">
+                            <option value="DISCOUNT"> DISCOUNT </option>
+                            <option value="FINE"> FINE </option>
+                        </select>
+                        <div
+                            *ngIf="editForm.get('policyType')!.invalid && (editForm.get('policyType')!.dirty
+                            || editForm.get('policyType')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('policyType')?.errors?.required"
+                                   jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label>Business Type</label>
+                        <select *ngIf="!this.showEdit" class="form-control" multiple name="business Type" formControlName="businessType">
+                            <option *ngFor="let businessType of businessTypeList" [value]="businessType">{{ businessType.typeName }}</option>
+                        </select>
+
+                        <select *ngIf="this.showEdit" (change)="getBusinessType()" class="form-control" multiple name="business Type"
+                                formControlName="businessType">
+                            <option *ngFor="let businessType of editForm.get('businessType')!.value"  [ngValue]="businessType"
+                                    selected>
+                                {{businessType.typeName}}</option>
+                            <option *ngFor="let businessType of remainingBusinessTypes" [value]="businessType">{{ businessType.typeName }}</option>
+
+                        </select>
+                        <div
+                            *ngIf="editForm.get('businessType')!.invalid && (editForm.get('businessType')!.dirty
+                            || editForm.get('businessType')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('businessType')?.errors?.required"
+                                   jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

@@ -1,0 +1,35 @@
+{
+  "rentalUiApp": {
+    "fiscalYear": {
+      "home": {
+        "title": "FiscalYears",
+        "createLabel": "नया Fiscal Year बनाएँ",
+        "createOrEditLabel": "Fiscal Year बनाएँ या संपादित करें",
+        "notFound": "No Fiscal Years found"
+      },
+      "created": "एक नया Fiscal Year [identifier: {{ param }}] तैयार है",
+      "updated": "एक Fiscal Year [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Fiscal Year [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Fiscal Year [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Fiscal Year"
+      },
+      "fiscalYearFrom": "Fiscal Year From",
+      "fiscalYearTill": "Fiscal Year Till",
+      "fiscalAdStart": "Fiscal Ad Start",
+      "fiscalAdEnd": "Fiscal Ad End",
+      "fiscalBsStart": "Fiscal Bs Start",
+      "fiscalBsEnd": "Fiscal Bs End",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedByID": "Inserted By ID",
+      "updatedBy": "Updated By",
+      "updatedByID": "Updated By ID",
+      "status": "Status"
+    }
+  }
+}

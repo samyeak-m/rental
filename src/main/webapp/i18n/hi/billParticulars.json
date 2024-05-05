@@ -1,0 +1,32 @@
+{
+  "rentalUiApp": {
+    "billParticulars": {
+      "home": {
+        "title": "BillParticulars",
+        "createLabel": "नया Bill Particulars बनाएँ",
+        "createOrEditLabel": "Bill Particulars बनाएँ या संपादित करें",
+        "notFound": "No Bill Particulars found"
+      },
+      "created": "एक नया Bill Particulars [identifier: {{ param }}] तैयार है",
+      "updated": "एक Bill Particulars [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Bill Particulars [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Bill Particulars [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Bill Particulars"
+      },
+      "code": "Code",
+      "name": "Name",
+      "remarks": "Remarks",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

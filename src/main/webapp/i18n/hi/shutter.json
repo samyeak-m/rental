@@ -1,0 +1,35 @@
+{
+  "rentalUiApp": {
+    "shutter": {
+      "home": {
+        "title": "Shutters",
+        "createLabel": "नया Shutter बनाएँ",
+        "createOrEditLabel": "Shutter बनाएँ या संपादित करें",
+        "notFound": "No Shutters found"
+      },
+      "created": "एक नया Shutter [identifier: {{ param }}] तैयार है",
+      "updated": "एक Shutter [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Shutter [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Shutter [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Shutter"
+      },
+      "shutterNo": "Shutter No",
+      "itemCode": "Shutter Code",
+      "area": "Area",
+      "rate": "Rate",
+      "floorId": "Floor",
+      "floorN": "Floor Name",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

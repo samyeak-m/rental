@@ -1,0 +1,25 @@
+{
+  "rentalUiApp": {
+    "meternumber": {
+      "home": {
+        "title": "Meternumbers",
+        "createLabel": "Create a new Meternumber",
+        "createOrEditLabel": "Create or edit a Meternumber",
+        "notFound": "No Meternumbers found"
+      },
+      "created": "A new Meternumber is created with identifier {{ param }}",
+      "updated": "A Meternumber is updated with identifier {{ param }}",
+      "deleted": "A Meternumber is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Meternumber {{ id }}?"
+      },
+      "detail": {
+        "title": "Meternumber"
+      },
+      "meterNumber": "Meter Number",
+      "floorId": "Floor Id",
+      "customerId": "Customer Id",
+      "blockId": "Block Id"
+    }
+  }
+}

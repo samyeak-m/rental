@@ -1,0 +1,317 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="customerRegistration">
+            <h2><span jhiTranslate="rentalUiApp.customerRegistration.detail.title">Customer Registration</span> {{ customerRegistration.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.applicationNumber">Application Number</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.registrationNumber">Registration Number</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.applicationDate">Application Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.registrationDate">Registration Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.totalArea">Total Area</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.monthlyRate">Monthly Rate</span></th>
+                    <th><span>Monthly Rent</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.customerType">Customer Type</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.shopName">Shop Name</span></th>
+<!--                    <th><span jhiTranslate="rentalUiApp.customerRegistration.electricityTypeId">Electricity Type Id</span></th>-->
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.electricityTypeName">Electricity Type Name</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.advanceAmount">Advance Amount</span></th>
+                </tr>
+                <tr>
+
+                    <td><span>{{ customerRegistration.applicationNumber }}</span></td>
+                    <td><span>{{ customerRegistration.registrationNumber }}</span></td>
+                    <td><span>{{ customerRegistration.applicationDate }}</span></td>
+                    <td><span>{{ customerRegistration.registrationDate }}</span></td>
+                    <td><span>{{ customerRegistration.totalArea }}</span></td>
+                    <td><span>{{ customerRegistration.monthlyRate }}</span></td>
+                    <td><span>{{ customerRegistration.monthlyRent }}</span></td>
+                    <td><span>{{ customerRegistration.customerType }}</span></td>
+                    <td><span>{{ customerRegistration.shopName }}</span></td>
+                    <!--                <td><span>{{ customerRegistration.electricityTypeId }}</span></td>-->
+                    <td><span>{{ customerRegistration.electricityTypeName }}</span></td>
+                    <td><span>{{ customerRegistration.advanceAmount }}</span></td>
+                </tr>
+            </table>
+            <table class="neche1" >
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.depositAmount">Deposit Amount</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.paymentType">Payment Type</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.advancementTillDate">Advancement Till Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.currentUnit">Current Unit</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.rate">Rate</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.electricityMeterNumber">Electricity Meter Number</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.itemMeterNumber">Item Meter Number</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.bankNumber">Bank Number</span></th>
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.chequeNumber">Cheque Number</span></th>
+<!--                    <th><span jhiTranslate="rentalUiApp.customerRegistration.itemRateId">Item Id</span></th>-->
+                    <th><span jhiTranslate="rentalUiApp.customerRegistration.itemRateName">Item Name</span></th>
+                </tr>
+                <tr>
+                    <td> <span>{{ customerRegistration.depositAmount }}</span></td>
+                    <td>  <span>{{ customerRegistration.paymentType }}</span></td>
+                    <td> <span>{{ customerRegistration.advancementTillDate | date:'medium'  }}</span></td>
+                    <td><span>{{ customerRegistration.currentUnit }}</span></td>
+                    <td> <span>{{ customerRegistration.rate }}</span></td>
+                    <td> <span>{{ customerRegistration.electricityMeterNumber }}</span></td>
+                    <td><span>{{ customerRegistration.itemMeterNumber }}</span></td>
+                    <td> <span>{{ customerRegistration.bankNumber }}</span></td>
+                    <td> <span>{{ customerRegistration.chequeNumber }}</span></td>
+<!--                    <td>  <span>{{ customerRegistration.itemRateId }}</span></td>-->
+                    <td><span>{{ customerRegistration.itemRateName }}</span></td>
+
+                </tr>
+            </table>
+            <table align="center" class="neche" >
+                <tr>
+<!--                <th><span jhiTranslate="rentalUiApp.customerRegistration.enteredById">Entered By Id</span></th>-->
+                <th><span jhiTranslate="rentalUiApp.customerRegistration.enteredByLogin">Entered By Login</span></th>
+<!--                <th><span jhiTranslate="rentalUiApp.customerRegistration.approvedById">Approved By Id</span></th>-->
+                <th><span jhiTranslate="rentalUiApp.customerRegistration.approvedByLogin">Approved By Login</span></th>
+<!--                <th><span jhiTranslate="rentalUiApp.customerRegistration.customerId">Customer Id</span></th>-->
+                <th><span jhiTranslate="rentalUiApp.customerRegistration.customerN">Customer N</span></th>
+                <th><span jhiTranslate="rentalUiApp.customerRegistration.enteredDate">Entered Date</span></th>
+                <th><span jhiTranslate="rentalUiApp.customerRegistration.approvedDate">Approved Date</span></th>
+                <th><span jhiTranslate="rentalUiApp.customerRegistration.createdDate">Created Date</span></th>
+                <th><span jhiTranslate="rentalUiApp.customerRegistration.updatedDate">Updated Date</span></th>
+                <th><span jhiTranslate="rentalUiApp.customerRegistration.deleted">Deleted</span></th>
+                <th><span jhiTranslate="rentalUiApp.customerRegistration.insertedBy">Inserted By</span></th>
+<!--                <th><span jhiTranslate="rentalUiApp.customerRegistration.insertedById">Inserted By Id</span></th>-->
+                <th><span jhiTranslate="rentalUiApp.customerRegistration.updatedBy">Updated By</span></th>
+<!--                <th><span jhiTranslate="rentalUiApp.customerRegistration.updatedById">Updated By Id</span></th>-->
+                <th><span jhiTranslate="rentalUiApp.customerRegistration.status">Status</span></th>
+                </tr>
+                <tr>
+<!--                    <td> <span>{{ customerRegistration.enteredById }}</span></td>-->
+                    <td> <span>{{ customerRegistration.enteredByLogin }}</span></td>
+<!--                    <td>  <span>{{ customerRegistration.approvedById }}</span></td>-->
+                    <td> <span>{{ customerRegistration.approvedByLogin }}</span></td>
+<!--                    <td> <span>{{ customerRegistration.customerId }}</span></td>-->
+                    <td> <span>{{ customerRegistration.customerN }}</span></td>
+                    <td> <span>{{ customerRegistration.enteredDate | date:'medium' }}</span></td>
+                    <td> <span>{{ customerRegistration.approvedDate | date:'medium' }}</span></td>
+                    <td> <span>{{ customerRegistration.createdDate | date:'medium' }}</span></td>
+                    <td> <span>{{ customerRegistration.updatedDate | date:'medium' }}</span></td>
+                    <td><span>{{ customerRegistration.deleted }}</span></td>
+                    <td> <span>{{ customerRegistration.insertedBy }}</span></td>
+<!--                    <td> <span>{{ customerRegistration.insertedById }}</span></td>-->
+                    <td>  <span>{{ customerRegistration.updatedBy }}</span></td>
+<!--                    <td>  <span>{{ customerRegistration.updatedById }}</span></td>-->
+                    <td><span>{{ customerRegistration.status }}</span></td>
+                </tr>
+            </table>
+           <!-- <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.applicationNumber">Application Number</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.applicationNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.registrationNumber">Registration Number</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.registrationNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.applicationDate">Application Date</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.applicationDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.registrationDate">Registration Date</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.registrationDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.totalArea">Total Area</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.totalArea }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.monthlyRate">Monthly Rate</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.monthlyRate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.customerType">Customer Type</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.customerType }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.shopName">Shop Name</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.shopName }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.electricityTypeId">Electricity Type Id</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.electricityTypeId }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.electricityTypeName">Electricity Type Name</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.electricityTypeName }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.advanceAmount">Advance Amount</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.advanceAmount }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.depositAmount">Deposit Amount</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.depositAmount }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.paymentType">Payment Type</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.paymentType }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.advancementTillDate">Advancement Till Date</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.advancementTillDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.currentUnit">Current Unit</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.currentUnit }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.rate">Rate</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.rate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.electricityMeterNumber">Electricity Meter Number</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.electricityMeterNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.itemMeterNumber">Item Meter Number</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.itemMeterNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.bankNumber">Bank Number</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.bankNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.chequeNumber">Cheque Number</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.chequeNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.itemId">Item Id</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.itemId }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.itemN">Item N</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.itemN }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.enteredById">Entered By Id</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.enteredById }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.enteredByLogin">Entered By Login</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.enteredByLogin }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.approvedById">Approved By Id</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.approvedById }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.approvedByLogin">Approved By Login</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.approvedByLogin }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.customerId">Customer Id</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.customerId }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.customerN">Customer N</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.customerN }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.enteredDate">Entered Date</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.enteredDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.approvedDate">Approved Date</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.approvedDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.createdDate">Created Date</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.createdDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.updatedDate">Updated Date</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.updatedDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.deleted">Deleted</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.deleted }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.insertedBy">Inserted By</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.insertedBy }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.insertedById">Inserted By Id</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.insertedById }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.updatedBy">Updated By</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.updatedBy }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.updatedById">Updated By Id</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.updatedById }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerRegistration.status">Status</span></dt>
+                <dd>
+                    <span>{{ customerRegistration.status }}</span>
+                </dd>
+            </dl>-->
+<div align="center" class="row push-down ">
+    <div class="col-md-3 okay">
+        <h4 >Customer Shutter</h4>
+        <div class="ligr"  *ngIf="customerRegistration.customerShutters && customerRegistration.customerShutters.length>0">
+            <div *ngFor="let customerShutter of customerRegistration.customerShutters">
+                <th>Shutter No:</th>
+                <td>{{customerShutter.shutterN}} </td>
+                <div>
+                    <th>Effective Date From</th>
+                    <td>{{customerShutter.effectiveDateFrom}}</td>
+                </div>
+                <div>
+                    <th>Effective Date To</th>
+                    <td>{{customerShutter.effectiveDateTo}}</td>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div  class="col-md-3 okay" *ngIf="customerRegistration.incrementPolicyDTO">
+            <h4 >Increment Policy</h4>
+        <div  class="ligr"  >
+            <th><span> Additional Type</span></th>
+            <td> {{customerRegistration.incrementPolicyDTO.additionalType}}</td>
+            <div *ngIf="customerRegistration.incrementPolicyDTO.additionalType==='YEARLY'">
+                <th><span> Total Year </span></th>
+                <td> {{customerRegistration.incrementPolicyDTO.totalTime}}</td>
+            </div>
+            <div *ngIf="customerRegistration.incrementPolicyDTO.additionalType==='MONTHLY'">
+                <th><span> Total Month </span></th>
+                <td> {{customerRegistration.incrementPolicyDTO.totalTime}}</td>
+            </div>
+            <th><span> Total Amount </span></th>
+            <td>{{customerRegistration.incrementPolicyDTO.amount}} </td>
+        </div>
+</div>
+</div>
+            <div class="row justify-content-center neche2">
+                <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+<!--            <button type="button"-->
+<!--                    [routerLink]="['/customer-registration', customerRegistration.id, 'edit']"-->
+<!--                    class="btn btn-primary">-->
+<!--                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>-->
+<!--            </button>-->
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

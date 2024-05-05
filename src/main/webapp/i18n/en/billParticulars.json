@@ -1,0 +1,32 @@
+{
+  "rentalUiApp": {
+    "billParticulars": {
+      "home": {
+        "title": "Bill Particulars",
+        "createLabel": "Create a new Bill Particulars",
+        "createOrEditLabel": "Create or edit a Bill Particulars",
+        "notFound": "No Bill Particulars found"
+      },
+      "created": "A new Bill Particulars is created with identifier {{ param }}",
+      "updated": "A Bill Particulars is updated with identifier {{ param }}",
+      "deleted": "A Bill Particulars is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Bill Particulars {{ id }}?"
+      },
+      "detail": {
+        "title": "Bill Particulars"
+      },
+      "code": "Code",
+      "name": "Name",
+      "remarks": "Remarks",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

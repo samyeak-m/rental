@@ -1,0 +1,28 @@
+{
+  "rentalUiApp": {
+    "ledger": {
+      "home": {
+        "title": "Ledgers",
+        "createLabel": "नया Ledger बनाएँ",
+        "createOrEditLabel": "Ledger बनाएँ या संपादित करें",
+        "notFound": "No Ledgers found"
+      },
+      "created": "एक नया Ledger [identifier: {{ param }}] तैयार है",
+      "updated": "एक Ledger [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Ledger [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Ledger [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Ledger"
+      },
+      "remarks": "Remarks",
+      "paidAmount": "Paid Amount",
+      "amount": "Amount",
+      "month": "Month",
+      "ledgerType": "Ledger Type",
+      "fiscalYear": "Fiscal Year",
+      "bill": "Bill"
+    }
+  }
+}

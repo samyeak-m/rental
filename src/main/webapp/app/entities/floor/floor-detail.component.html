@@ -1,0 +1,56 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="floor">
+            <h2><span jhiTranslate="rentalUiApp.floor.detail.title">Floor</span> {{ floor.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.floor.code">Code</span></th>
+                    <th><span jhiTranslate="rentalUiApp.floor.name">Name</span></th>
+                    <th><span jhiTranslate="rentalUiApp.floor.remarks">Remarks</span></th>
+                    <th><span jhiTranslate="rentalUiApp.floor.createdDate">Created Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.floor.updatedDate">Updated Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.floor.deleted">Deleted</span></th>
+                    <th><span jhiTranslate="rentalUiApp.floor.insertedBy">Inserted By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.floor.updatedBy">Updated By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.floor.status">Status</span></th>
+                </tr>
+                <tr>
+
+                    <td>  <span>{{ floor.code }}</span></td>
+                    <td> <span>{{ floor.name }}</span></td>
+                    <td> <span>{{ floor.remarks }}</span></td>
+                    <td>  <span>{{ floor.createdDate | date:'medium' }}</span></td>
+                    <td> <span>{{ floor.updatedDate | date:'medium' }}</span></td>
+                    <td> <span>{{ floor.deleted }}</span></td>
+                    <td>  <span>{{ floor.insertedBy }}</span></td>
+                    <td> <span>{{ floor.updatedBy }}</span></td>
+                    <td><span>{{ floor.status }}</span></td>
+                </tr>
+
+            </table>
+
+
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/floor', floor.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

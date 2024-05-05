@@ -1,0 +1,28 @@
+{
+  "rentalUiApp": {
+    "incrementpolicy": {
+      "home": {
+        "title": "Incrementpolicies",
+        "createLabel": "Create a new Incrementpolicy",
+        "createOrEditLabel": "Create or edit a Incrementpolicy",
+        "notFound": "No Incrementpolicies found"
+      },
+      "created": "A new Incrementpolicy is created with identifier {{ param }}",
+      "updated": "A Incrementpolicy is updated with identifier {{ param }}",
+      "deleted": "A Incrementpolicy is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Incrementpolicy {{ id }}?"
+      },
+      "detail": {
+        "title": "Incrementpolicy"
+      },
+      "totalDays": "Total Time",
+      "startDate": "Start Date",
+      "amount": "Amount",
+      "policyType": "Policy Type",
+      "incrementType": "Increment Type",
+      "increment": "Increment",
+      "customerRegistrationId": "Customer Registration"
+    }
+  }
+}

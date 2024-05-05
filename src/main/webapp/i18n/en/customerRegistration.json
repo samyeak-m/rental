@@ -1,0 +1,65 @@
+{
+  "rentalUiApp": {
+    "customerRegistration": {
+      "home": {
+        "title": "Customer Registrations",
+        "createLabel": "Create a new Customer Registration",
+        "createOrEditLabel": "Create or edit a Customer Registration",
+        "notFound": "No Customer Registrations found"
+      },
+      "created": "A new Customer Registration is created with identifier {{ param }}",
+      "updated": "A Customer Registration is updated with identifier {{ param }}",
+      "deleted": "A Customer Registration is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Customer Registration {{ id }}?"
+      },
+      "detail": {
+        "title": "Customer Registration"
+      },
+      "applicationNumber": "Application Number",
+      "registrationNumber": "Registration Number",
+      "applicationDate": "Application Date",
+      "registrationDate": "Registration Date",
+      "totalArea": "Total Area",
+      "monthlyRate": "Rate",
+      "customerType": "Customer Type",
+      "shopName": "Shop Name",
+      "discountAmount": "Discount Amount",
+      "electricityTypeId": "Electricity Type Id",
+      "electricityTypeName": "Electricity Type Name",
+      "advanceAmount": "Advance Amount",
+      "depositAmount": "Deposit Amount",
+      "paymentType": "Payment Type",
+      "advancementTillDate": "Advancement Till Date",
+      "currentUnit": "Current Unit",
+      "rate": "Rate",
+      "electricityMeterNumber": "Electricity Meter Number",
+      "itemMeterNumber": "Water Meter Number",
+      "bankNumber": "Bank Number",
+      "chequeNumber": "Cheque Number",
+      "itemRateId": "Item Rate Id",
+      "itemRateName": "Item Rate Name",
+      "businessTypeId": "Business Type Id",
+      "businessTypeName": "Business Type Name",
+      "serviceChargeId": "Service Charge Id",
+      "serviceChargeName": "Service Charge Name",
+      "enteredById": "Entered By Id",
+      "enteredByLogin": "Entered By Login",
+      "approvedById": "Approved By Id",
+      "approvedByLogin": "Approved By Login",
+      "customerId": "Customer Id",
+      "customerN": "Customer Name",
+      "enteredDate": "Entered Date",
+      "approvedDate": "Approved Date",
+      "customerShutterDTOList": "Customer Shutter DTO List",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

@@ -1,0 +1,249 @@
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+    <h2 id="page-heading">
+        <span jhiTranslate="rentalUiApp.bill.home.title">Bills</span>
+
+<!--        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bill" [routerLink]="['/bill/new']">-->
+<!--            <fa-icon icon="plus"></fa-icon>-->
+<!--            <span  jhiTranslate="rentalUiApp.bill.home.createLabel">-->
+<!--            Create a new Bill-->
+<!--            </span>-->
+<!--        </button>-->
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+            <form name="editForm" role="form" (ngSubmit)="filter()">
+                <div class="row">
+                    <jhi-alert-error></jhi-alert-error>
+                    <div class="col-4">
+                        <input type="text" class="form-control" id="query" name="query"
+                               placeholder="Search Bill"  [(ngModel)]="query" />
+                    </div>
+                    <div>
+                        <button type="submit" id="search-user" class="btn btn-primary" [disabled]="!query">
+                            <fa-icon></fa-icon>&nbsp;<span>Search</span>
+                        </button>
+                        <button type="reset" id="reset-user" class="btn btn-primary" (click)="reset()">
+                            <fa-icon></fa-icon>&nbsp;<span>Reset</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"  role="tab"
+                       aria-controls="nav-home" aria-selected="true" (click)="loadAll(null)">All</a>
+
+
+                    <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab"  role="tab"
+                       aria-controls="nav-incomplete" aria-selected="false" (click)="loadAll('INCOMPLETE')" style="color: green">Incomplete</a>
+                    <a class="nav-item nav-link" id="nav-approved-tab" data-toggle="tab"  role="tab"
+                       aria-controls="nav-unpaid" aria-selected="false" (click)="loadAll('UNPAID')" style="color: red">Unpaid</a>
+                    <a class="nav-item nav-link" id="nav-received-tab" data-toggle="tab"  role="tab"
+                       aria-controls="nav-partial" aria-selected="false" (click)="loadAll('PARTIAL')" style="color: red">Partial</a>
+                    <a class="nav-item nav-link" id="nav-completed-tab" data-toggle="tab"  role="tab"
+                       aria-controls="nav-paid" aria-selected="false" (click)="loadAll('PAID')" style="color: red">Paid</a>
+                    <a class="nav-item nav-link" id="nav-electricity-tab" data-toggle="tab"  role="tab"
+                       aria-controls="nav-paid" aria-selected="false" (click)="loadAll('ELECTRICITY')" style="color: red">ELECTRICITY</a>
+                    <a class="nav-item nav-link" id="nav-servicecharge-tab" data-toggle="tab"  role="tab"
+                       aria-controls="nav-paid" aria-selected="false" (click)="loadAll('SERVICECHARGE')" style="color: red">SERVICECHARGE</a>
+                    <a class="nav-item nav-link" id="nav-water-tab" data-toggle="tab"  role="tab"
+                       aria-controls="nav-paid" aria-selected="false" (click)="loadAll('WATER')" style="color: red">WATER</a>
+                    <a class="nav-item nav-link" id="nav-monthlyrent-tab" data-toggle="tab"  role="tab"
+                       aria-controls="nav-paid" aria-selected="false" (click)="loadAll('MONTHLYRENT')" style="color: red">MONTHLYRENT</a>
+                    <a class="nav-item nav-link" id="nav-tds-tab" data-toggle="tab"  role="tab"
+                       aria-controls="nav-paid" aria-selected="false" (click)="loadAll('TDS')" style="color: red">TDS</a>
+                    <a class="nav-item nav-link" id="nav-tds-tab" data-toggle="tab"  role="tab"
+                       aria-controls="nav-paid" aria-selected="false" (click)="loadAll('BILLADJUST')" style="color: red">BILL ADJUST</a>
+
+                    <a class="nav-item nav-link" id="nav-custom-tab" data-toggle="tab"  role="tab"
+                       aria-controls="nav-paid" aria-selected="false" (click)="showEditForm()" style="color: red"> Generate All Bill</a>
+                </div>
+            </nav>
+
+            <div *ngIf="showCustomForm">
+                <div class="form-row">
+                    <div class="form-group col-3">
+                        <label class="form-control-label">Electricity</label>
+               <select class="form-control" [(ngModel)]="this.electricityStatus">
+                   <option value="ELECTRICITY">ELECTRICITY</option>
+               </select>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group col-3">
+                        <label class="form-control-label">Service</label>
+                <select class="form-control" [(ngModel)]="this.serviceChargeStatus">
+                    <option value="SERVICECHARGE">SERVICECHARGE</option>
+                </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-3">
+                        <label class="form-control-label">Water</label>
+                <select class="form-control" [(ngModel)]="this.waterStatus">
+                    <option value="WATER">WATER</option>
+                </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-3">
+                        <label class="form-control-label">Monthly</label>
+                <select class="form-control" [(ngModel)]="this.monthlyRentStatus">
+                    <option value="MONTHLYRENT">MONTHLYRENT</option>
+                </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-3">
+                        <label class="form-control-label">BILL ADJUST</label>
+                        <select class="form-control" [(ngModel)]="this.billAdjustStatus">
+                            <option value="BILLADJUST">BILL ADJUST</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-3">
+                        <label class="form-control-label">Tds Deduct</label>
+                        <select class="form-control" [(ngModel)]="this.tdsDeduct">
+                            <option value="TDSDEDUCT">TDS DEDUCT</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div style="margin-top: 20px;margin-bottom:20px;">
+                 <button (click)="hideForm()" class="btn btn-info btn-sm"> Cancel</button>
+                <button (click)="generateCustomPdf()"  class="btn btn-info btn-sm"> Generate Bill</button>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </div>
+
+
+<!--            <div class="overlay" *ngIf="popup">-->
+<!--                <div class="popup">-->
+<!--                    <h2>Here i am</h2>-->
+<!--                    <a class="close" (click)="popup = false">&times;</a>-->
+<!--                    <div class="content">-->
+<!--                        you have selected this event-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+    <div class="alert alert-warning" id="no-result" *ngIf="bills?.length === 0">
+        <span jhiTranslate="rentalUiApp.bill.home.notFound">No bills found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="bills && bills.length > 0">
+        <button (click)="generatePdf()"  class="btn btn-info btn-sm"> Generate Bill Pdf</button>
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="customerN"><span jhiTranslate="rentalUiApp.bill.customerN">Customer</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="filePath"><span>Image</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="month"><span jhiTranslate="rentalUiApp.bill.month">Month</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fiscalYearN"><span jhiTranslate="rentalUiApp.bill.fiscalYearN">Fiscal Year</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="totalArea"><span jhiTranslate="rentalUiApp.bill.totalArea">Total Area</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="monthlyRate"><span jhiTranslate="rentalUiApp.bill.monthlyRate">Monthly Rate</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="monthlyRent"><span>Monthly Rent</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="monthlyRateDeduct"><span>Monthly Rate Deduct</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="serviceChargeAmount"><span jhiTranslate="rentalUiApp.bill.serviceChargeAmount">Service Charge Amount</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="serviceChargeDeduct"><span>Service Charge Deduct</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="waterRate"><span jhiTranslate="rentalUiApp.bill.waterRate">Water Rate</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"><span>Water Rate Deduct</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="electricityRate"><span jhiTranslate="rentalUiApp.bill.electricityRate">Electricity Rate</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="electricityRateDeduct"><span>Electricity Rate Deduct</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="tdsDeduct"><span>Tds Deduct</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="billAdjust"><span>Billl Adjust</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="paymentStatus"><span jhiTranslate="rentalUiApp.bill.paymentStatus">Payment Status</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="totalVat"><span>Total Vat</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"><span>Total Electricity Unit</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"><span>Total Amount</span> <fa-icon icon="sort"></fa-icon></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bill of bills ;trackBy: trackId">
+                    <td> {{bill.id}}</td>
+                    <td> {{bill.customerN}}</td>
+                    <td><img :src="http://202.51.74.158:8083/documents/view/image/{{bill.customerId}}" width="70" height="70"/></td>
+                    <td> {{bill.month}}</td>
+                    <td> {{bill.fiscalYearN}}</td>
+                    <td>{{ bill.totalArea }}</td>
+                    <td>{{ bill.monthlyRate }}</td>
+                    <td>{{ bill.monthlyRent }}</td>
+                    <td>{{ bill.monthlyDeduct }}</td>
+                    <td>{{ bill.serviceChargeAmount }}</td>
+                    <td>{{ bill.serviceChargeDeduct }}</td>
+                    <td>{{ bill.waterRate }}</td>
+                    <td>{{ bill.waterDeduct }}</td>
+                    <td> {{bill.electricityRate}}</td>
+                    <td>{{ bill.electricityDeduct }}</td>
+                    <td> {{bill.tdsDeduct}}</td>
+                    <td> {{bill.billAdjust}}</td>
+                    <td> {{bill.paymentStatus}}</td>
+                    <td> {{bill.totalVat}}</td>
+                    <td>{{ bill.totalElectricityUnit }}</td>
+                    <td> {{bill.finalAmount}}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [disabled]="bill.deleted && !bill.status"
+                                    [routerLink]="['/bill', bill.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [disabled]="bill.deleted && !bill.status"
+                                    [routerLink]="['/bill', bill.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit"
+                                    [disabled]="bill.deleted && !bill.status"
+                                    (click)="delete(bill)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <td> Total</td>
+                <td *ngIf="bills.length>0">{{ bills[0].sumOfBill }}</td>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="bills && bills.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
+    </div>
+</div>

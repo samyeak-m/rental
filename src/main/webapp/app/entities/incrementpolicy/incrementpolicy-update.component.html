@@ -1,0 +1,160 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+                <h2 id="jhi-incrementpolicy-heading" jhiTranslate="rentalUiApp.incrementpolicy.home.createOrEditLabel">Create or edit a Incrementpolicy</h2>
+
+                <div>
+                    <jhi-alert-error></jhi-alert-error>
+
+                    <div class="form-row">
+                        <div class="form-group col-4" [hidden]="!editForm.get('id')!.value">
+                            <label for="id" jhiTranslate="global.field.id">ID</label>
+                            <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group col-4">
+                            <label class="form-control-label" jhiTranslate="rentalUiApp.incrementpolicy.incrementType">Increment Type</label>
+                            <select class="form-control" formControlName="policyType">
+                                <option value="INCREMENT"> INCREMENT </option>
+                            </select>
+                            <div *ngIf="editForm.get('incrementType')!.invalid && (editForm.get('incrementType')!.dirty || editForm.get('incrementType')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('incrementType')?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group col-4">
+                            <label class="form-control-label" jhiTranslate="rentalUiApp.incrementpolicy.policyType">Policy Type</label>
+                            <select class="form-control" (change)="validateAmount()" formControlName="incrementType">
+                                <option value="PERCENTAGE"> PERCENTAGE </option>
+                                <option value="FLAT"> FLAT </option>
+                            </select>
+                            <div *ngIf="editForm.get('policyType')!.invalid && (editForm.get('policyType')!.dirty || editForm.get('policyType')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('policyType')?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group col-4">
+                            <label class="form-control-label">Additional Type</label>
+                            <select class="form-control"  formControlName="additionalType">
+                                <option value="YEARLY"> YEARLY </option>
+                                <option value="MONTHLY"> MONTHLY </option>
+                            </select>
+                            <div *ngIf="editForm.get('policyType')!.invalid && (editForm.get('policyType')!.dirty || editForm.get('policyType')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('policyType')?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label class="form-control-label"  for="field_totalTime">Total Time</label>
+                            <input type="number" class="form-control" name="totalTime" id="field_totalTime"
+                                   formControlName="totalTime"/>
+                            <div *ngIf="editForm.get('totalTime')!.invalid && (editForm.get('totalTime')!.dirty || editForm.get('totalTime')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('totalTime')?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.get('totalTime')?.errors?.number" jhiTranslate="entity.validation.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label class="form-control-label" jhiTranslate="rentalUiApp.incrementpolicy.amount" for="field_amount">Amount</label>
+                            <fieldset [disabled]="disabled">
+                                <input type="number" class="form-control" name="amount" id="field_amount"
+                                       (keyup)="setAmount()"
+                                       formControlName="amount"/>
+                            </fieldset>
+                            <div *ngIf="editForm.get('amount')!.invalid && (editForm.get('amount')!.dirty || editForm.get('amount')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('amount')?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.get('amount')?.errors?.number" jhiTranslate="entity.validation.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-4">
+                            <label class="form-control-label" jhiTranslate="rentalUiApp.incrementpolicy.customerRegistrationId">Customer Registration</label>
+                           <!-- <input type="number" class="form-control" name="customerRegistrationId" id="field_customerRegistrationId"
+                                   formControlName="customerRegistrationId"/>-->
+                            <select class="form-control" id="field_businessType" name="Business Type"
+                                    formControlName="customerRegistrationId">
+                                <option *ngIf="!editForm.get('customerRegistrationId')!.value" [ngValue]="null"
+                                        selected></option>
+                                <option [ngValue]="customerRegistration.id"
+                                        *ngFor="let customerRegistration of customerRegistrations; trackBy: trackById">
+                                    {{ customerRegistration.customerN}}</option>
+                            </select>
+                            <div *ngIf="editForm.get('customerRegistrationId')!.invalid && (editForm.get('customerRegistrationId')!.dirty || editForm.get('customerRegistrationId')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('customerRegistrationId')?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.get('customerRegistrationId')?.errors?.number" jhiTranslate="entity.validation.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group col-4">
+                            <label class="form-control-label" jhiTranslate="rentalUiApp.incrementpolicy.increment" for="field_increment">Increment</label>
+                            <input type="checkbox" class="form-control" name="increment" id="field_increment"
+                                   formControlName="increment"/>
+                            <div *ngIf="editForm.get('increment')!.invalid && (editForm.get('increment')!.dirty || editForm.get('increment')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('increment')?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-4">
+                            <label class="form-control-label"  for="field_increment">Effective Date From</label>
+                            <input type="text" class="form-control" name="effectiveDateFrom" id="field_effectiveDateFrom"
+                                   formControlName="effectiveDateFrom"/>
+                            <div *ngIf="editForm.get('effectiveDateFrom')!.invalid && (editForm.get('effectiveDateFrom')!.dirty || editForm.get('effectiveDateFrom')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('effectiveDateFrom')?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                    </button>
+
+                    <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                        <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

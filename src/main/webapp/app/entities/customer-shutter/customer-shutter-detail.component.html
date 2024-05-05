@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="customerShutter">
+            <h2><span jhiTranslate="rentalUiApp.customerShutter.detail.title">Customer Shutter</span> {{ customerShutter.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.effectiveDateFrom">Effective Date From</span></dt>
+                <dd>
+                    <span>{{ customerShutter.effectiveDateFrom }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.effectiveDateTo">Effective Date To</span></dt>
+                <dd>
+                    <span>{{ customerShutter.effectiveDateTo }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.customerId">Customer Id</span></dt>
+                <dd>
+                    <span>{{ customerShutter.customerId }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.customerN">Customer N</span></dt>
+                <dd>
+                    <span>{{ customerShutter.customerN }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.shutterId">Shutter Id</span></dt>
+                <dd>
+                    <span>{{ customerShutter.shutterId }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.shutterN">Shutter N</span></dt>
+                <dd>
+                    <span>{{ customerShutter.shutterN }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.customerRegistrationId">Customer Registration Id</span></dt>
+                <dd>
+                    <span>{{ customerShutter.customerRegistrationId }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.customerRegistrationN">Customer Registration N</span></dt>
+                <dd>
+                    <span>{{ customerShutter.customerRegistrationN }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.createdDate">Created Date</span></dt>
+                <dd>
+                    <span>{{ customerShutter.createdDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.updatedDate">Updated Date</span></dt>
+                <dd>
+                    <span>{{ customerShutter.updatedDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.deleted">Deleted</span></dt>
+                <dd>
+                    <span>{{ customerShutter.deleted }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.insertedBy">Inserted By</span></dt>
+                <dd>
+                    <span>{{ customerShutter.insertedBy }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.insertedById">Inserted By Id</span></dt>
+                <dd>
+                    <span>{{ customerShutter.insertedById }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.updatedBy">Updated By</span></dt>
+                <dd>
+                    <span>{{ customerShutter.updatedBy }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.updatedById">Updated By Id</span></dt>
+                <dd>
+                    <span>{{ customerShutter.updatedById }}</span>
+                </dd>
+                <dt><span jhiTranslate="rentalUiApp.customerShutter.status">Status</span></dt>
+                <dd>
+                    <span>{{ customerShutter.status }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/customer-shutter', customerShutter.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

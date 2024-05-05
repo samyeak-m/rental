@@ -1,0 +1,28 @@
+{
+  "rentalUiApp": {
+    "incrementpolicy": {
+      "home": {
+        "title": "Incrementpolicies",
+        "createLabel": "नया Incrementpolicy बनाएँ",
+        "createOrEditLabel": "Incrementpolicy बनाएँ या संपादित करें",
+        "notFound": "No Incrementpolicies found"
+      },
+      "created": "एक नया Incrementpolicy [identifier: {{ param }}] तैयार है",
+      "updated": "एक Incrementpolicy [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Incrementpolicy [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Incrementpolicy [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Incrementpolicy"
+      },
+      "totalDays": "Total Days",
+      "startDate": "Start Date",
+      "amount": "Amount",
+      "policyType": "Policy Type",
+      "incrementType": "Increment Type",
+      "increment": "Increment",
+      "customerRegistrationId": "Customer Registration Id"
+    }
+  }
+}

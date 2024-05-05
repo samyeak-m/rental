@@ -1,0 +1,265 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-ad-bs-dates-heading" jhiTranslate="rentalUiApp.adBsDates.home.createOrEditLabel">Create or edit a Ad Bs Dates</h2>
+
+            <hr>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-row">
+                <div class="form-group col-4" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.adDate" for="field_adDate">Ad Date</label>
+                    <div class="input-group">
+                        <input id="field_adDate" type="text" class="form-control" name="adDate" ngbDatepicker #adDateDp="ngbDatepicker" formControlName="adDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="adDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('adDate')!.invalid && (editForm.get('adDate')!.dirty || editForm.get('adDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('adDate')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-4">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.bsDate" for="field_bsDate">Bs Date</label>
+                    <input type="text" class="form-control" name="bsDate" id="field_bsDate"
+                           formControlName="bsDate"/>
+                    <div *ngIf="editForm.get('bsDate')!.invalid && (editForm.get('bsDate')!.dirty || editForm.get('bsDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('bsDate')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div formArrayName="relateMonths">
+                        <div *ngFor="let relateMonth of relateMonths.controls; let i=index">
+                            <div [formGroupName]="i">
+                                <input type="text" formControlName="id" hidden>
+
+                                <div class=" form-row">
+                                    <div class="form-group col-4">
+                                        <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.month" for="field_month">Month</label>
+                                        <input type="text" class="form-control" name="month" id="field_month"
+                                               formControlName="month" [disabled]="true"/>
+                                        <div *ngIf="editForm.get('month')!.invalid && (editForm.get('month')!.dirty || editForm.get('month')!.touched)">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="editForm.get('month')?.errors?.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-4">
+                                        <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.totalDays" for="field_totalDays">totalDays</label>
+                                        <input type="number" class="form-control" name="totalDays" id="field_totalDays"
+                                               formControlName="totalDays" placeholder="Total Days"/>
+                                        <div *ngIf="editForm.get('totalDays')!.invalid && (editForm.get('totalDays')!.dirty || editForm.get('totalDays')!.touched)">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="editForm.get('totalDays')?.errors?.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+               <!-- <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.day" for="field_day">Day</label>
+                    <input type="text" class="form-control" name="day" id="field_day"
+                           formControlName="day"/>
+                    <div *ngIf="editForm.get('day')!.invalid && (editForm.get('day')!.dirty || editForm.get('day')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('day')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.holiday" for="field_holiday">Holiday</label>
+                    <input type="checkbox" class="form-control" name="holiday" id="field_holiday"
+                           formControlName="holiday"/>
+                    <div *ngIf="editForm.get('holiday')!.invalid && (editForm.get('holiday')!.dirty || editForm.get('holiday')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('holiday')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.month" for="field_month">Month</label>
+                    <input type="text" class="form-control" name="month" id="field_month"
+                           formControlName="month"/>
+                    <div *ngIf="editForm.get('month')!.invalid && (editForm.get('month')!.dirty || editForm.get('month')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('month')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.fiscalYearId" for="field_fiscalYearId">Fiscal Year Id</label>
+                    <input type="number" class="form-control" name="fiscalYearId" id="field_fiscalYearId"
+                           formControlName="fiscalYearId"/>
+                    <div *ngIf="editForm.get('fiscalYearId')!.invalid && (editForm.get('fiscalYearId')!.dirty || editForm.get('fiscalYearId')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fiscalYearId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('fiscalYearId')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.fiscalYearN" for="field_fiscalYearN">Fiscal Year N</label>
+                    <input type="text" class="form-control" name="fiscalYearN" id="field_fiscalYearN"
+                           formControlName="fiscalYearN"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.createdDate" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.updatedDate" for="field_updatedDate">Updated Date</label>
+                    <div class="d-flex">
+                        <input id="field_updatedDate" type="datetime-local" class="form-control" name="updatedDate" formControlName="updatedDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.deleted" for="field_deleted">Deleted</label>
+                    <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                           formControlName="deleted"/>
+                    <div *ngIf="editForm.get('deleted')!.invalid && (editForm.get('deleted')!.dirty || editForm.get('deleted')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('deleted')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.insertedBy" for="field_insertedBy">Inserted By</label>
+                    <input type="text" class="form-control" name="insertedBy" id="field_insertedBy"
+                           formControlName="insertedBy"/>
+                    <div *ngIf="editForm.get('insertedBy')!.invalid && (editForm.get('insertedBy')!.dirty || editForm.get('insertedBy')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('insertedBy')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.insertedByID" for="field_insertedByID">Inserted By ID</label>
+                    <input type="number" class="form-control" name="insertedByID" id="field_insertedByID"
+                           formControlName="insertedByID"/>
+                    <div *ngIf="editForm.get('insertedByID')!.invalid && (editForm.get('insertedByID')!.dirty || editForm.get('insertedByID')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('insertedByID')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('insertedByID')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.updatedBy" for="field_updatedBy">Updated By</label>
+                    <input type="text" class="form-control" name="updatedBy" id="field_updatedBy"
+                           formControlName="updatedBy"/>
+                    <div *ngIf="editForm.get('updatedBy')!.invalid && (editForm.get('updatedBy')!.dirty || editForm.get('updatedBy')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('updatedBy')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.updatedByID" for="field_updatedByID">Updated By ID</label>
+                    <input type="number" class="form-control" name="updatedByID" id="field_updatedByID"
+                           formControlName="updatedByID"/>
+                    <div *ngIf="editForm.get('updatedByID')!.invalid && (editForm.get('updatedByID')!.dirty || editForm.get('updatedByID')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('updatedByID')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('updatedByID')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.status" for="field_status">Status</label>
+                    <input type="checkbox" class="form-control" name="status" id="field_status"
+                           formControlName="status"/>
+                    <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('status')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.adBsDates.fiscalYear" for="field_fiscalYear">Fiscal Year</label>
+                    <select class="form-control" id="field_fiscalYear" name="fiscalYear" formControlName="fiscalYear">
+                        <option *ngIf="!editForm.get('fiscalYear')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="fiscalYearOption.id === editForm.get('fiscalYear')!.value?.id ? editForm.get('fiscalYear')!.value : fiscalYearOption" *ngFor="let fiscalYearOption of fiscalyears; trackBy: trackById">{{ fiscalYearOption.id }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('fiscalYear')!.invalid && (editForm.get('fiscalYear')!.dirty || editForm.get('fiscalYear')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('fiscalYear')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>-->
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

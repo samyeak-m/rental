@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-meternumber-heading" jhiTranslate="rentalUiApp.meternumber.home.createOrEditLabel">Create or edit a Meternumber</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.meternumber.meterNumber" for="field_meterNumber">Meter Number</label>
+                    <input type="text" class="form-control" name="meterNumber" id="field_meterNumber"
+                           formControlName="meterNumber"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.meternumber.floorId" for="field_floorId">Floor Id</label>
+                    <input type="number" class="form-control" name="floorId" id="field_floorId"
+                           formControlName="floorId"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.meternumber.customerId" for="field_customerId">Customer Id</label>
+                    <input type="number" class="form-control" name="customerId" id="field_customerId"
+                           formControlName="customerId"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.meternumber.blockId" for="field_blockId">Block Id</label>
+                    <input type="number" class="form-control" name="blockId" id="field_blockId"
+                           formControlName="blockId"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

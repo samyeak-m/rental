@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+        <div *ngIf="incrementpolicy">
+            <h2><span jhiTranslate="rentalUiApp.incrementpolicy.detail.title">Incrementpolicy</span> {{ incrementpolicy.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.incrementpolicy.totalDays">Total Days</span></th>
+                    <th><span jhiTranslate="rentalUiApp.incrementpolicy.amount">Amount</span></th>
+                    <th><span jhiTranslate="rentalUiApp.incrementpolicy.policyType">Policy Type</span></th>
+                    <th><span jhiTranslate="rentalUiApp.incrementpolicy.incrementType">Increment Type</span></th>
+                    <th><span jhiTranslate="rentalUiApp.incrementpolicy.increment">Increment</span></th>
+                    <th><span jhiTranslate="rentalUiApp.incrementpolicy.customerRegistrationId">Customer Registration</span></th>
+                </tr>
+                <tr>
+                    <td><span>{{ incrementpolicy.totalTime }}</span></td>
+                    <td><span>{{ incrementpolicy.amount }}</span></td>
+                    <td><span>{{ incrementpolicy.policyType }}</span></td>
+                    <td><span>{{ incrementpolicy.incrementType }}</span></td>
+                    <td> <span>{{ incrementpolicy.increment }}</span></td>
+                    <td><span>{{ incrementpolicy.customerName }}</span></td>
+                </tr>
+            </table>
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/incrementpolicy', incrementpolicy.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,159 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-customer-shutter-heading" jhiTranslate="rentalUiApp.customerShutter.home.createOrEditLabel">Create or edit a Customer Shutter</h2>
+
+            <hr>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-row">
+                <div class="form-group col-6" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-6">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.effectiveDateFrom" for="field_effectiveDateFrom">Effective Date From</label>
+                    <div class="d-flex">
+                        <input id="field_effectiveDateFrom" type="datetime-local" class="form-control" name="effectiveDateFrom" formControlName="effectiveDateFrom" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('effectiveDateFrom')!.invalid && (editForm.get('effectiveDateFrom')!.dirty || editForm.get('effectiveDateFrom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('effectiveDateFrom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('effectiveDateFrom')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-6">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.effectiveDateTo" for="field_effectiveDateTo">Effective Date To</label>
+                    <div class="d-flex">
+                        <input id="field_effectiveDateTo" type="datetime-local" class="form-control" name="effectiveDateTo" formControlName="effectiveDateTo" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('effectiveDateTo')!.invalid && (editForm.get('effectiveDateTo')!.dirty || editForm.get('effectiveDateTo')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('effectiveDateTo')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('effectiveDateTo')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-6">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.customerId" for="field_customerId">Customer Id</label>
+                    <input type="number" class="form-control" name="customerId" id="field_customerId"
+                           formControlName="customerId"/>
+                </div>
+
+                <div class="form-group col-6">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.customerN" for="field_customerN">Customer N</label>
+                    <input type="text" class="form-control" name="customerN" id="field_customerN"
+                           formControlName="customerN"/>
+                </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-6">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.shutterId" for="field_shutterId">Shutter Id</label>
+                    <input type="number" class="form-control" name="shutterId" id="field_shutterId"
+                           formControlName="shutterId"/>
+                </div>
+
+                <div class="form-group col-6">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.shutterN" for="field_shutterN">Shutter N</label>
+                    <input type="text" class="form-control" name="shutterN" id="field_shutterN"
+                           formControlName="shutterN"/>
+                </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-6">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.customerRegistrationId" for="field_customerRegistrationId">Customer Registration Id</label>
+                    <input type="number" class="form-control" name="customerRegistrationId" id="field_customerRegistrationId"
+                           formControlName="customerRegistrationId"/>
+                </div>
+
+                <div class="form-group col-6">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.customerRegistrationN" for="field_customerRegistrationN">Customer Registration N</label>
+                    <input type="text" class="form-control" name="customerRegistrationN" id="field_customerRegistrationN"
+                           formControlName="customerRegistrationN"/>
+                </div>
+                </div>
+
+              <!--  <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.createdDate" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.updatedDate" for="field_updatedDate">Updated Date</label>
+                    <div class="d-flex">
+                        <input id="field_updatedDate" type="datetime-local" class="form-control" name="updatedDate" formControlName="updatedDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.deleted" for="field_deleted">Deleted</label>
+                    <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                           formControlName="deleted"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.insertedBy" for="field_insertedBy">Inserted By</label>
+                    <input type="text" class="form-control" name="insertedBy" id="field_insertedBy"
+                           formControlName="insertedBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.insertedById" for="field_insertedById">Inserted By Id</label>
+                    <input type="number" class="form-control" name="insertedById" id="field_insertedById"
+                           formControlName="insertedById"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.updatedBy" for="field_updatedBy">Updated By</label>
+                    <input type="text" class="form-control" name="updatedBy" id="field_updatedBy"
+                           formControlName="updatedBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.updatedById" for="field_updatedById">Updated By Id</label>
+                    <input type="number" class="form-control" name="updatedById" id="field_updatedById"
+                           formControlName="updatedById"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rentalUiApp.customerShutter.status" for="field_status">Status</label>
+                    <input type="checkbox" class="form-control" name="status" id="field_status"
+                           formControlName="status"/>
+                </div>-->
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

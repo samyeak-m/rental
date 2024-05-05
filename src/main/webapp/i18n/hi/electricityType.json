@@ -1,0 +1,35 @@
+{
+  "rentalUiApp": {
+    "electricityType": {
+      "home": {
+        "title": "ElectricityTypes",
+        "createLabel": "नया Electricity Type बनाएँ",
+        "createOrEditLabel": "Electricity Type बनाएँ या संपादित करें",
+        "notFound": "No Electricity Types found"
+      },
+      "created": "एक नया Electricity Type [identifier: {{ param }}] तैयार है",
+      "updated": "एक Electricity Type [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Electricity Type [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Electricity Type [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Electricity Type"
+      },
+      "typeCode": "Code",
+      "typeName": "Name",
+      "rate": "Rate",
+      "remarks": "Remarks",
+      "businessTypeId": "Business Type Id",
+      "businessTypeN": "Business Type N",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deleted": "Deleted",
+      "insertedBy": "Inserted By",
+      "insertedById": "Inserted By Id",
+      "updatedBy": "Updated By",
+      "updatedById": "Updated By Id",
+      "status": "Status"
+    }
+  }
+}

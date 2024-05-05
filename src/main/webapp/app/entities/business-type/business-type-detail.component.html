@@ -1,0 +1,52 @@
+<div class="container-fluid">
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="businessType">
+            <h2><span jhiTranslate="rentalUiApp.businessType.detail.title">Business Type</span> {{ businessType.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <table>
+                <tr>
+                    <th><span jhiTranslate="rentalUiApp.businessType.typeCode">Type Code</span></th>
+                    <th><span jhiTranslate="rentalUiApp.businessType.typeName">Type Name</span></th>
+                    <th><span jhiTranslate="rentalUiApp.businessType.remarks">Remarks</span></th>
+                    <th><span jhiTranslate="rentalUiApp.businessType.createdDate">Created Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.businessType.updatedDate">Updated Date</span></th>
+                    <th><span jhiTranslate="rentalUiApp.businessType.deleted">Deleted</span></th>
+                    <th><span jhiTranslate="rentalUiApp.businessType.insertedBy">Inserted By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.businessType.updatedBy">Updated By</span></th>
+                    <th><span jhiTranslate="rentalUiApp.businessType.status">Status</span></th>
+                </tr>
+                <tr>
+                    <td><span>{{ businessType.typeCode }}</span></td>
+                    <td><span>{{ businessType.typeName }}</span></td>
+                    <td><span>{{ businessType.remarks }}</span></td>
+                    <td><span>{{ businessType.createdDate | date:'medium' }}</span></td>
+                    <td><span>{{ businessType.updatedDate | date:'medium' }}</span></td>
+                    <td><span>{{ businessType.deleted }}</span></td>
+                    <td><span>{{ businessType.insertedBy }}</span></td>
+                    <td> <span>{{ businessType.updatedBy }}</span></td>
+                    <td> <span>{{ businessType.status }}</span></td>
+                </tr>
+            </table>
+
+            <div class="row justify-content-center"style="margin-top:30px;">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/business-type', businessType.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
